@@ -5,10 +5,13 @@
 :root {
   --color-banner-bg: #CFE5FF;
   --color-footer-bg: #111827;
+  --color-section-bg: #fcfcfc;
+
+  --color-white: #FFFFFF;
 
   --color-blue-100: #3692FF;
-  --color-blue-200: #1967d6;
-  --color-blue-300: #1251aa;
+  --color-blue-200: #1967D6;
+  --color-blue-300: #1251AA;
 
   --color-red: #f74747;
 

@@ -26,7 +26,7 @@ body{
     position: fixed;
     top: 0;
     z-index: 1;
-    background-color: #ffffff;
+    background-color: var(--color-white);
   }
           
   nav{
@@ -48,11 +48,11 @@ body{
     height: var(--login_bt_height);            /*clamp(38px, 3.7vw, 48px);*/
     text-align: center;
     line-height: var(--login_bt_height);  
-    background-color: #3692ff;
+    background-color: var(--color-blue-100);
     font-family: "pretendard";
     font-size: clamp(13px, 1.3vw, 16px);
     font-weight: 600;
-    color: #f3f4f6;
+    color: var(--color-gray-100);
     border-radius: 8px;
     
   }
@@ -70,10 +70,11 @@ body{
   }
 
   nav .title{
+  font-family: "ROKAFSans";
   font-size: clamp(21px, 1.7vw, 25.63px);
   font-weight: 700;
  
-  color: #3692ff;
+  color: var(--color-blue-100);
   text-decoration: none;
   }
 
@@ -84,7 +85,7 @@ body{
 
   .banner_bg_top, .banner_bg_bottom{
     height: clamp(378px, 30vw, 540px);
-    background-color: #cfe5ff;
+    background-color: var(--color-banner-bg);
     position: relative;
   }
 
@@ -127,7 +128,7 @@ body{
     font-family: "pretendard";
     font-size: clamp(28px, 2.6vw, 40px);
     font-weight: 700;
-    color: #374151;
+    color: var(--color-gray-700);
   }
 
   .banner_text_box a{
@@ -140,10 +141,10 @@ body{
     font-family: "pretendard";
     font-size: clamp(14px, 1.3vw, 20px);
     font-weight: 600;
-    color: #f9fafb;
+    color: var(--color-gray-50);
     border-radius: 40px;
     margin-top: 30px;
-    background-color: #3692ff;
+    background-color: var(--color-blue-100);
   }
 
 
@@ -162,7 +163,7 @@ body{
     width: clamp(691.6px, 60vw, 988px);
     height: clamp(310.8px, 25vw, 444px);
     margin: auto auto;
-    background-color: #fcfcfc;
+    background-color: var(--color-section-bg);
     border-radius: 12px;
     display: flex;
     flex-direction: row;
@@ -174,7 +175,7 @@ body{
     width: clamp(691.6px, 60vw, 988px);
     height: clamp(310.8px, 25vw, 444px);
     margin: auto auto;
-    background-color: #fcfcfc;
+    background-color: var(--color-section-bg);
     border-radius: 12px;
     display: flex;
     flex-direction: row;
@@ -186,7 +187,7 @@ body{
     width: clamp(691.6px, 60vw, 988px);
     height: clamp(310.8px, 25vw, 444px);
     margin: auto auto;
-    background-color: #fcfcfc;
+    background-color: var(--color-section-bg);
     border-radius: 12px;
     display: flex;
     flex-direction: row;
@@ -196,10 +197,10 @@ body{
 
 
   .article_textbox{
-    
+    font-family: "pretendard";
     font-size: clamp(16.8px, 1.4vw, 24px);
     font-weight: 500;
-    color: #374151;
+    color: var(--color-gray-700);
   }
 
   .register .article_textbox{
@@ -223,7 +224,7 @@ body{
     display:inline-block;
     font-size: 0.76em;
     font-weight: 700;
-    color: #3692ff;
+    color: var(--color-blue-100);
     margin-bottom: 0.68em;
     
   }
@@ -231,7 +232,7 @@ body{
   .article_textbox> div{
     font-size: 1.66em;
     font-weight: 700;
-    color: #374151;
+    color: var(--color-gray-700);
     margin-bottom: 1em;
   }
 
@@ -244,7 +245,7 @@ body{
 
   footer{
     height: 160px;
-    background-color: #111827;
+    background-color: var(--color-footer-bg);
     position: relative;
   }
 
@@ -252,9 +253,10 @@ body{
     
     width: clamp(784px, 90vw, 1120px);
     height: 20px;
+    font-family: "pretendard";
     font-size: 16px;
     font-weight: 400;
-    color: #e5e7eb;
+    color: var(--color-gray-200);
     position: absolute;
     top: 32px;
     left: 50%;    
@@ -265,20 +267,20 @@ body{
   }
 
   .footer_textbox> .footer_info{
-    color: #9ca3af;
+    color: var(--color-gray-400);
   }
 
   .footer_textbox> .footer_links{
     width: 159px;
     height: 19px;
     display: flex;
-    color: #e5e7eb;
+    color: var(--color-gray-200);
     
     justify-content: space-between;
   }
 
   .footer_links > a{
-    color: #e5e7eb;
+    color: var(--color-gray-200);
     text-decoration: none;
     line-height: 19px;
   }
@@ -322,11 +324,11 @@ nav{
     height: clamp(38px, 3.7vw, 48px);
     text-align: center;
     line-height: clamp(38px, 3.7vw, 48px);
-    background-color: #3692ff;
+    background-color: var(--color-blue-100);
     font-family: "pretendard";
     font-size: clamp(13px, 1.3vw, 16px);
     font-weight: 600;
-    color: #f3f4f6;
+    color: var(--color-gray-100);
     border-radius: 8px;
     
   }
@@ -347,7 +349,7 @@ nav{
   font-size: clamp(21px, 1.7vw, 25.63px);
   font-weight: 700;
 
-  color: #3692ff;
+  color: var(--color-blue-100);
   text-decoration: none;
   }
 
@@ -356,12 +358,12 @@ nav{
 
   .banner_bg_bottom{
     height: clamp(927px, 115vw, 1324px);
-    background-color: #cfe5ff;
+    background-color: var(--color-banner-bg);
     
   }
   .banner_bg_top{
     height: clamp(771px, 100vw, 1101px);
-    background-color: #cfe5ff;
+    background-color: var(--color-banner-bg);
 
   }
   .banner_bg_top .banner.section{
@@ -421,7 +423,7 @@ nav{
     font-family: "pretendard";
     font-size: clamp(39px, 5vw, 45px);
     font-weight: 700;
-    color: #374151;
+    color: var(--color-gray-700);
     text-align: center;
   }
 
@@ -435,10 +437,10 @@ nav{
     font-family: "pretendard";
     font-size: clamp(20px, 2.4vw, 28px);
     font-weight: 600;
-    color: #f9fafb;
+    color: var(--color-gray-50);
     border-radius: 40px;
     margin-top: 30px;
-    background-color: #3692ff;
+    background-color: var(--color-blue-100);
   }
 
 
@@ -457,7 +459,7 @@ nav{
     width: clamp(700px, 80vw, 990px);
     height: clamp(708px, 82vw, 1010px);
     margin: 0 auto 20px auto;
-    background-color: #fcfcfc;
+    background-color: var(--color-section-bg);
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -470,7 +472,7 @@ nav{
     width: clamp(700px, 80vw, 990px);
     height: clamp(708px, 82vw, 1010px);
     margin: 0 auto 20px auto;
-    background-color: #fcfcfc;
+    background-color: var(--color-section-bg);
     border-radius: 12px;
     display: flex;
     flex-direction: column-reverse;
@@ -483,7 +485,7 @@ nav{
     width: clamp(700px, 80vw, 990px);
     height: clamp(708px, 82vw, 1010px);
     margin: 0 auto 20px auto;
-    background-color: #fcfcfc;
+    background-color: var(--color-section-bg);
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -495,9 +497,10 @@ nav{
 
   .article_textbox{
     width: 100%;
+    font-family: "pretendard";
     font-size: clamp(16.8px, 1.4vw, 24px);
     font-weight: 500;
-    color: #374151;
+    color: var(--color-gray-700);
   }
   
   
@@ -524,7 +527,7 @@ nav{
     display:inline-block;
     font-size: 0.76em;
     font-weight: 700;
-    color: #3692ff;
+    color: var(--color-blue-100);
     margin-bottom: 0.68em;
     
   }
@@ -532,7 +535,7 @@ nav{
   .article_textbox> div{
     font-size: 1.66em;
     font-weight: 700;
-    color: #374151;
+    color: var(--color-gray-700);
     margin-bottom: 1em;
   }
 
@@ -542,7 +545,7 @@ nav{
 
   footer{
     height: 160px;
-    background-color: #111827;
+    background-color: var(--color-footer-bg);
     position: relative;
   }
 
@@ -552,7 +555,7 @@ nav{
     height: 20px;
     font-size: 16px;
     font-weight: 400;
-    color: #e5e7eb;
+    color: var(--color-gray-200);
     position: absolute;
     top: 32px;
     left: 50%;    
@@ -563,20 +566,20 @@ nav{
   }
 
   .footer_textbox> .footer_info{
-    color: #9ca3af;
+    color: var(--color-gray-400);
   }
 
   .footer_textbox> .footer_links{
     width: 159px;
     height: 19px;
     display: flex;
-    color: #e5e7eb;
+    color: var(--color-gray-200);
     
     justify-content: space-between;
   }
 
   .footer_links > a{
-    color: #e5e7eb;
+    color: var(--color-gray-200);
     text-decoration: none;
     line-height: 19px;
   }
@@ -617,11 +620,11 @@ nav{
     height: clamp(38px, 3.7vw, 48px);
     text-align: center;
     line-height: clamp(38px, 3.7vw, 48px);
-    background-color: #3692ff;
+    background-color: var(--color-blue-100);
     font-family: "pretendard";
     font-size: clamp(13px, 1.3vw, 16px);
     font-weight: 600;
-    color: #f3f4f6;
+    color: var(--color-gray-100);
     border-radius: 8px;
     
   }
@@ -642,7 +645,7 @@ nav{
   font-size: clamp(21px, 1.7vw, 25.63px);
   font-weight: 700;
   
-  color: #3692ff;
+  color: var(--color-blue-100);
   text-decoration: none;
   }
 
@@ -651,13 +654,13 @@ nav{
 
   .banner_bg_bottom{
     height: clamp(540px, 115vw, 771px);
-    background-color: #cfe5ff;
+    background-color: var(--color-banner-bg);
     
   }
 
   .banner_bg_top{
     height: clamp(540px, 115vw, 771px);
-    background-color: #cfe5ff;
+    background-color: var(--color-banner-bg);
 
   }
   .banner_bg_top .banner.section{
@@ -717,7 +720,7 @@ nav{
     font-family: "pretendard";
     font-size: clamp(32px, 8vw, 40px);
     font-weight: 700;
-    color: #374151;
+    color: var(--color-gray-700);
     text-align: center;
   }
 
@@ -731,10 +734,10 @@ nav{
     font-family: "pretendard";
     font-size: clamp(20px, 2.4vw, 28px);
     font-weight: 600;
-    color: #f9fafb;
+    color: var(--color-gray-50);
     border-radius: 40px;
     margin-top: 30px;
-    background-color: #3692ff;
+    background-color: var(--color-blue-100);
   }
   /*--------------------------------section----------------------------------*/
 
@@ -749,7 +752,7 @@ nav{
     width: clamp(344px, 70vw, 491px);
     height: clamp(417px, 72vw, 595px);
     margin: 0 auto 20px auto;
-    background-color: #fcfcfc;
+    background-color: var(--color-section-bg);
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -762,7 +765,7 @@ nav{
     width: clamp(344px, 70vw, 491px);
     height: clamp(417px, 72vw, 595px);
     margin: 0 auto 20px auto;
-    background-color: #fcfcfc;
+    background-color: var(--color-section-bg);
     border-radius: 12px;
     display: flex;
     flex-direction: column-reverse;
@@ -775,7 +778,7 @@ nav{
     width: clamp(344px, 70vw, 491px);
     height: clamp(417px, 72vw, 595px);
     margin: 0 auto 20px auto;
-    background-color: #fcfcfc;
+    background-color: var(--color-section-bg);
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -789,7 +792,7 @@ nav{
     width: 100%;
     font-size: clamp(16px, 1.4vw, 20px);
     font-weight: 500;
-    color: #374151;
+    color: var(--color-gray-700);
   }
   
   
@@ -816,7 +819,7 @@ nav{
     display:inline-block;
     font-size: 0.76em;
     font-weight: 700;
-    color: #3692ff;
+    color: var(--color-blue-100);
     margin-bottom: 0.4em;
     
   }
@@ -824,14 +827,14 @@ nav{
   .article_textbox> div{
     font-size: 1.66em;
     font-weight: 700;
-    color: #374151;
+    color: var(--color-gray-700);
     margin-bottom: 0.5em;
   }
   /*--------------------------------footer----------------------------------*/
 
   footer{
     height: 160px;
-    background-color: #111827;
+    background-color: var(--color-footer-bg);
     position: relative;
   }
 
@@ -841,7 +844,7 @@ nav{
     height: 63px;
     font-size: 16px;
     font-weight: 400;
-    color: #e5e7eb;
+    color: var(--color-gray-200);
     position: absolute;
     top: 32px;
     left: 50%;    
@@ -854,7 +857,7 @@ nav{
   }
 
   .footer_textbox> .footer_info{
-    color: #9ca3af;
+    color: var(--color-gray-400);
     grid-column: 1;
     grid-row: 2;
   }
@@ -863,7 +866,7 @@ nav{
     width: 159px;
     height: 19px;
     display: flex;
-    color: #e5e7eb;
+    color: var(--color-gray-200);
     
     justify-content: space-between;
     grid-column: 1;
@@ -871,7 +874,7 @@ nav{
   }
 
   .footer_links > a{
-    color: #e5e7eb;
+    color: var(--color-gray-200);
     text-decoration: none;
     line-height: 19px;
   }
