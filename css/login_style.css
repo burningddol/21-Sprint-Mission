@@ -116,3 +116,46 @@ button{
   color: var(--color-blue-100);
   text-decoration: underline;
 }
+
+
+
+
+
+
+
+/* -------------------------------------
+--------------  모바일  -----------------
+---------------------------------------- */
+
+
+
+@media (max-width: 767px){
+  .container{
+  width: clamp(343px, 50vw, 400px);
+  height: 501px;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: content-box;
+}
+
+.title{
+  width: 198px;
+  height: 66px;
+  margin: 24px auto 24px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title img{
+  width: 51.76px;
+  height: 51.94px;
+}
+
+.title h1{
+  
+  font-size: 33.17px;
+  color: var(--color-blue-100);
+  
+}
+}
