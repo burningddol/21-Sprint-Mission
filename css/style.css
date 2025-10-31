@@ -304,13 +304,13 @@ body{
 --------------  테블릿  -----------------
 ---------------------------------------- */
 
-@media (max-width: 992px){
+@media (max-width: 1199px){
 
 /*--------------------------------header----------------------------------*/
 nav{
-    width: clamp(697px, 58.3vw, 1120px);         
+    width: clamp(730px, 61vw, 1120px);         
     margin: 9.5px auto;
-    padding: 0 30px;
+    padding: 0 24px;
     box-sizing: content-box;
     display: flex;
     justify-content: space-between;
@@ -600,13 +600,13 @@ nav{
 
 
 
-@media (max-width: 768px){
+@media (max-width: 767px){
 
   /*--------------------------------header----------------------------------*/
   nav{
-    width: clamp(330px, 80vw, 700px);         
+    width: clamp(390px, 90vw, 700px);         
     margin: 9.5px auto;
-    padding: 0 ;
+    padding: 0 16px;
     box-sizing: content-box;
     display: flex;
     justify-content: space-between;
