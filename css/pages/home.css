@@ -1,17 +1,3 @@
-*{
-  box-sizing: border-box;
-}
-
-
-body{
-  margin: 0;
-}
-
-
-.section{
-  width: 1120px;
-  
-}
 
 
 /* -------------------------------------
@@ -26,7 +12,7 @@ body{
     position: fixed;
     top: 0;
     z-index: 1;
-    background-color: var(--color-white);
+    background-color: var(--white);
   }
           
   nav{
@@ -48,11 +34,11 @@ body{
     height: var(--login_bt_height);            /*clamp(38px, 3.7vw, 48px);*/
     text-align: center;
     line-height: var(--login_bt_height);  
-    background-color: var(--color-blue-100);
+    background-color: var(--blue-100);
     font-family: "pretendard";
     font-size: clamp(13px, 1.3vw, 16px);
     font-weight: 600;
-    color: var(--color-gray-100);
+    color: var(--gray-100);
     border-radius: 8px;
     
   }
@@ -74,7 +60,7 @@ body{
   font-size: clamp(21px, 1.7vw, 25.63px);
   font-weight: 700;
  
-  color: var(--color-blue-100);
+  color: var(--blue-100);
   text-decoration: none;
   }
 
@@ -128,7 +114,7 @@ body{
     font-family: "pretendard";
     font-size: clamp(28px, 2.6vw, 40px);
     font-weight: 700;
-    color: var(--color-gray-700);
+    color: var(--gray-700);
   }
 
   .banner_text_box a{
@@ -141,10 +127,10 @@ body{
     font-family: "pretendard";
     font-size: clamp(14px, 1.3vw, 20px);
     font-weight: 600;
-    color: var(--color-gray-50);
+    color: var(--gray-50);
     border-radius: 40px;
     margin-top: 30px;
-    background-color: var(--color-blue-100);
+    background-color: var(--blue-100);
   }
 
 
@@ -200,7 +186,7 @@ body{
     font-family: "pretendard";
     font-size: clamp(16.8px, 1.4vw, 24px);
     font-weight: 500;
-    color: var(--color-gray-700);
+    color: var(--gray-700);
   }
 
   .register .article_textbox{
@@ -224,7 +210,7 @@ body{
     display:inline-block;
     font-size: 0.76em;
     font-weight: 700;
-    color: var(--color-blue-100);
+    color: var(--blue-100);
     margin-bottom: 0.68em;
     
   }
@@ -232,7 +218,7 @@ body{
   .article_textbox> div{
     font-size: 1.66em;
     font-weight: 700;
-    color: var(--color-gray-700);
+    color: var(--gray-700);
     margin-bottom: 1em;
   }
 
@@ -256,7 +242,7 @@ body{
     font-family: "pretendard";
     font-size: 16px;
     font-weight: 400;
-    color: var(--color-gray-200);
+    color: var(--gray-200);
     position: absolute;
     top: 32px;
     left: 50%;    
@@ -267,20 +253,20 @@ body{
   }
 
   .footer_textbox> .footer_info{
-    color: var(--color-gray-400);
+    color: var(--gray-400);
   }
 
   .footer_textbox> .footer_links{
     width: 159px;
     height: 19px;
     display: flex;
-    color: var(--color-gray-200);
+    color: var(--gray-200);
     
     justify-content: space-between;
   }
 
   .footer_links > a{
-    color: var(--color-gray-200);
+    color: var(--gray-200);
     text-decoration: none;
     line-height: 19px;
   }
@@ -324,11 +310,11 @@ nav{
     height: clamp(38px, 3.7vw, 48px);
     text-align: center;
     line-height: clamp(38px, 3.7vw, 48px);
-    background-color: var(--color-blue-100);
+    background-color: var(--blue-100);
     font-family: "pretendard";
     font-size: clamp(13px, 1.3vw, 16px);
     font-weight: 600;
-    color: var(--color-gray-100);
+    color: var(--gray-100);
     border-radius: 8px;
     
   }
@@ -349,7 +335,7 @@ nav{
   font-size: clamp(21px, 1.7vw, 25.63px);
   font-weight: 700;
 
-  color: var(--color-blue-100);
+  color: var(--blue-100);
   text-decoration: none;
   }
 
@@ -423,7 +409,7 @@ nav{
     font-family: "pretendard";
     font-size: clamp(39px, 5vw, 45px);
     font-weight: 700;
-    color: var(--color-gray-700);
+    color: var(--gray-700);
     text-align: center;
   }
 
@@ -437,10 +423,10 @@ nav{
     font-family: "pretendard";
     font-size: clamp(20px, 2.4vw, 28px);
     font-weight: 600;
-    color: var(--color-gray-50);
+    color: var(--gray-50);
     border-radius: 40px;
     margin-top: 30px;
-    background-color: var(--color-blue-100);
+    background-color: var(--blue-100);
   }
 
 
@@ -500,7 +486,7 @@ nav{
     font-family: "pretendard";
     font-size: clamp(16.8px, 1.4vw, 24px);
     font-weight: 500;
-    color: var(--color-gray-700);
+    color: var(--gray-700);
   }
   
   
@@ -527,7 +513,7 @@ nav{
     display:inline-block;
     font-size: 0.76em;
     font-weight: 700;
-    color: var(--color-blue-100);
+    color: var(--blue-100);
     margin-bottom: 0.68em;
     
   }
@@ -535,7 +521,7 @@ nav{
   .article_textbox> div{
     font-size: 1.66em;
     font-weight: 700;
-    color: var(--color-gray-700);
+    color: var(--gray-700);
     margin-bottom: 1em;
   }
 
@@ -555,7 +541,7 @@ nav{
     height: 20px;
     font-size: 16px;
     font-weight: 400;
-    color: var(--color-gray-200);
+    color: var(--gray-200);
     position: absolute;
     top: 32px;
     left: 50%;    
@@ -566,20 +552,20 @@ nav{
   }
 
   .footer_textbox> .footer_info{
-    color: var(--color-gray-400);
+    color: var(--gray-400);
   }
 
   .footer_textbox> .footer_links{
     width: 159px;
     height: 19px;
     display: flex;
-    color: var(--color-gray-200);
+    color: var(--gray-200);
     
     justify-content: space-between;
   }
 
   .footer_links > a{
-    color: var(--color-gray-200);
+    color: var(--gray-200);
     text-decoration: none;
     line-height: 19px;
   }
@@ -620,11 +606,11 @@ nav{
     height: clamp(38px, 3.7vw, 48px);
     text-align: center;
     line-height: clamp(38px, 3.7vw, 48px);
-    background-color: var(--color-blue-100);
+    background-color: var(--blue-100);
     font-family: "pretendard";
     font-size: clamp(13px, 1.3vw, 16px);
     font-weight: 600;
-    color: var(--color-gray-100);
+    color: var(--gray-100);
     border-radius: 8px;
     
   }
@@ -645,7 +631,7 @@ nav{
   font-size: clamp(21px, 1.7vw, 25.63px);
   font-weight: 700;
   
-  color: var(--color-blue-100);
+  color: var(--blue-100);
   text-decoration: none;
   }
 
@@ -720,7 +706,7 @@ nav{
     font-family: "pretendard";
     font-size: clamp(32px, 8vw, 40px);
     font-weight: 700;
-    color: var(--color-gray-700);
+    color: var(--gray-700);
     text-align: center;
   }
 
@@ -734,10 +720,10 @@ nav{
     font-family: "pretendard";
     font-size: clamp(20px, 2.4vw, 28px);
     font-weight: 600;
-    color: var(--color-gray-50);
+    color: var(--gray-50);
     border-radius: 40px;
     margin-top: 30px;
-    background-color: var(--color-blue-100);
+    background-color: var(--blue-100);
   }
   /*--------------------------------section----------------------------------*/
 
@@ -792,7 +778,7 @@ nav{
     width: 100%;
     font-size: clamp(16px, 1.4vw, 20px);
     font-weight: 500;
-    color: var(--color-gray-700);
+    color: var(--gray-700);
   }
   
   
@@ -819,7 +805,7 @@ nav{
     display:inline-block;
     font-size: 0.76em;
     font-weight: 700;
-    color: var(--color-blue-100);
+    color: var(--blue-100);
     margin-bottom: 0.4em;
     
   }
@@ -827,7 +813,7 @@ nav{
   .article_textbox> div{
     font-size: 1.66em;
     font-weight: 700;
-    color: var(--color-gray-700);
+    color: var(--gray-700);
     margin-bottom: 0.5em;
   }
   /*--------------------------------footer----------------------------------*/
@@ -844,7 +830,7 @@ nav{
     height: 63px;
     font-size: 16px;
     font-weight: 400;
-    color: var(--color-gray-200);
+    color: var(--gray-200);
     position: absolute;
     top: 32px;
     left: 50%;    
@@ -857,7 +843,7 @@ nav{
   }
 
   .footer_textbox> .footer_info{
-    color: var(--color-gray-400);
+    color: var(--gray-400);
     grid-column: 1;
     grid-row: 2;
   }
@@ -866,7 +852,7 @@ nav{
     width: 159px;
     height: 19px;
     display: flex;
-    color: var(--color-gray-200);
+    color: var(--gray-200);
     
     justify-content: space-between;
     grid-column: 1;
@@ -874,7 +860,7 @@ nav{
   }
 
   .footer_links > a{
-    color: var(--color-gray-200);
+    color: var(--gray-200);
     text-decoration: none;
     line-height: 19px;
   }
