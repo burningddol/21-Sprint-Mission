@@ -38,12 +38,12 @@ function email_form_checker(e){
 // 닉네임 칸이 비었는지 체크하는 함수
 function nickname_empty_checker(e){
   const nickname_empty_message = document.querySelector('.nickname_empty_message');
-  if(!e.target.value){                                         //password가 공란일 경우
+  if(!e.target.value){                                         //nickname이 공란일 경우
     e.target.classList.add('nickname_empty');
     nickname_empty_message.classList.remove('display_none');
-  } else if(e.target.value) {                                  //password가 입력됐을 경우
+  } else if(e.target.value) {                                  //nickname이 입력됐을 경우
     e.target.classList.remove('nickname_empty');
-    e.target.classList.remove('init');    
+    e.target.classList.remove('init');                          // 회원가입 button이 웹 진입 초기단계에서 이메일 or password or password_confirm or nickname 넷 중하나만 만족해도 활성화 되는 issue 해결을 위한 class임  
     nickname_empty_message.classList.add('display_none');
   }
 }
@@ -70,7 +70,7 @@ function password_length_checker(e){
     password_wrong_message.classList.remove("display_none");
   } else if (password.length >= 8 || !password) {                 //password가 입력되지 않았거나 길이를 만족 할 경우
     e.target.classList.remove('password_wrong');
-    e.target.classList.remove('init');                            // 로그인 button이 웹 진입 초기단계에서 이메일 or password 둘중하나만 만족해도 활성화 되는 issue 해결을 위한 class임  
+    e.target.classList.remove('init');                            // 회원가입 button이 웹 진입 초기단계에서 이메일 or password or password_confirm or nickname 넷 중하나만 만족해도 활성화 되는 issue 해결을 위한 class임  
     password_wrong_message.classList.add("display_none");
   }
 }
@@ -82,12 +82,12 @@ function password_confirm_checker(e){
   const password_confirm_input = password_confirm.value.trim();
   const password_confirm_wrong_message = document.querySelector('.password_confirm_wrong_message');
 
-  if(password_input !== password_confirm_input){
+  if(password_input !== password_confirm_input){                      // 패스워드가 동일하지 않을 경우
     e.target.classList.add('password_confirm_wrong');
     password_confirm_wrong_message.classList.remove("display_none");
-  } else if(password_input === password_confirm_input){
+  } else if(password_input === password_confirm_input){                // 패스워드가 동일할 경우
     e.target.classList.remove('password_confirm_wrong');
-    e.target.classList.remove('init');                            // 로그인 button이 웹 진입 초기단계에서 이메일 or password 둘중하나만 만족해도 활성화 되는 issue 해결을 위한 class임  
+    e.target.classList.remove('init');                             // 회원가입 button이 웹 진입 초기단계에서 이메일 or password or password_confirm or nickname 넷 중하나만 만족해도 활성화 되는 issue 해결을 위한 class임  
     password_confirm_wrong_message.classList.add("display_none");
   }
 }
@@ -98,8 +98,8 @@ function button_active_checker(e){
   const inactive_index = ["email_empty", "email_wrong", "password_empty", "password_wrong", "password_confirm_wrong", "nickname_empty", "init"];
   const inactive_result_email = inactive_index.some(index => email.classList.contains(index));         // 상위 배열 요소중 하나라도 갖으면 true가 되어 inactive유도
   const inactive_result_password = inactive_index.some(index => password.classList.contains(index));   // 상위 배열 요소중 하나라도 갖으면 true가 되어 inactive유도
-  const inactive_result_password_confirm = inactive_index.some(index => password_confirm.classList.contains(index));
-  const inactive_result_nickname = inactive_index.some(index => nickname.classList.contains(index));
+  const inactive_result_password_confirm = inactive_index.some(index => password_confirm.classList.contains(index));   // 상위 배열 요소중 하나라도 갖으면 true가 되어 inactive유도
+  const inactive_result_nickname = inactive_index.some(index => nickname.classList.contains(index));                    // 상위 배열 요소중 하나라도 갖으면 true가 되어 inactive유도
 
   if(inactive_result_email || inactive_result_password || inactive_result_password_confirm || inactive_result_nickname){                       
     button.classList.add("inactive");
