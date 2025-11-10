@@ -103,7 +103,7 @@ button{
 }
 
 
-.signup_box{
+.signup_box, .login_box{
   text-align: center;
   margin: 0 auto;
   font-family: "pretendard";
