@@ -108,9 +108,13 @@
   }
   .banner_text_box{
     flex:1 0 ;
+    word-break: keep-all;
   }
 
   .banner_text_box span{
+    display: block;
+    width: 100%;
+    max-width: 300px;
     font-family: "pretendard";
     font-size: clamp(28px, 2.6vw, 40px);
     font-weight: 700;
@@ -294,11 +298,11 @@
 
 /*--------------------------------header----------------------------------*/
 nav{
-    width: clamp(730px, 61vw, 1120px);         
-    margin: 9.5px auto;
+    width: 100%;         
+    margin: 9.5px 0;
     padding: 0 24px;
-    box-sizing: content-box;
     display: flex;
+    box-sizing: border-box;
     justify-content: space-between;
     align-items: center;
   }
@@ -405,7 +409,8 @@ nav{
 
 
   .banner_text_box span{
-   
+    width: 100%;
+    max-width: 100%;
     font-family: "pretendard";
     font-size: clamp(39px, 5vw, 45px);
     font-weight: 700;
@@ -590,10 +595,10 @@ nav{
 
   /*--------------------------------header----------------------------------*/
   nav{
-    width: clamp(390px, 90vw, 700px);         
+    width: 100%;         
     margin: 9.5px auto;
     padding: 0 16px;
-    box-sizing: content-box;
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -702,7 +707,7 @@ nav{
 
 
   .banner_text_box span{
-   
+    max-width: 300px;
     font-family: "pretendard";
     font-size: clamp(32px, 8vw, 40px);
     font-weight: 700;
