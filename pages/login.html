@@ -20,21 +20,25 @@
       <a href="../index.html"><h1>판다마켓</h1></a>
     </div>
 
-    <foam>
+    <form>
       <div class="input_box">
         <label for="email">이메일</label>
-        <input id="email" name="email" type="email" placeholder="codeit@email.com">
+        <input id="email" class="init" name="email" type="email" placeholder="codeit@email.com">
+        <span class="email_empty_message display_none">이메일을 입력해주세요.</span>
+        <span class="email_wrong_message display_none">잘못된 이메일 형식입니다.</span>
       </div>
 
       <div class="input_box">
         <label for="password">비밀번호</label>
         <div class="password_input_box">
-          <input id="password" name="password" type="password" placeholder="비밀번호를 입력 하시오">
+          <input id="password" class="init" name="password" type="password" placeholder="비밀번호를 입력 하시오">
           <img src="../images/icons/btn_visibility.png" alt="패스워드 안보이기 버튼">
         </div>
+        <span class="password_empty_message display_none">비밀번호를 입력해주세요.</span>
+        <span class="password_wrong_message display_none">비밀번호를 8자 이상 입력해주세요.</span>
       </div>
 
-      <button type="submit">로그인</button>
+      <button class="inactive" type="submit">로그인</button>
 
       <div class="simple_login_box">
         <span>간편 로그인하기</span>
@@ -47,12 +51,8 @@
       <div class="signup_box">
         판다마켓이 처음이신가요? <a href="./signup.html">회원가입</a>
       </div>
-    </foam>
-
-  
-
-
-
+    </form>
   </main>
+   <script src="/js/login.js"></script>
 </body>
 </html>

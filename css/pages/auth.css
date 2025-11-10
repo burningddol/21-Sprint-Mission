@@ -1,10 +1,8 @@
-*{
-  box-sizing: border-box;
-}
+
 
 .container{
   width: 640px;
-  height: 618px;
+  height: 670px;
   margin: 0 auto;
 }
 
@@ -78,11 +76,18 @@ button{
   border: none;
   border-radius: 40px;
   background-color: var(--blue-100);
+  
   font-family: "pretendard";
   font-size: 20px;
   font-weight: 600;
   color: var(--gray-100);
   margin-bottom: 24px;
+}
+
+button.inactive{
+  cursor: default;
+  background-color: var(--gray-400);
+  
 }
 
 
@@ -117,9 +122,31 @@ button{
   text-decoration: underline;
 }
 
+.input_box .email_empty, .input_box .email_wrong,
+.input_box .password_empty, .input_box .password_wrong,
+.input_box .password_confirm_wrong, .input_box .nickname_empty{
+  border: 1.5px solid var(--red);
+}
 
+.email_empty_message, .email_wrong_message,
+.password_empty_message, .password_wrong_message,
+.password_confirm_wrong_message, .nickname_empty_message{
+  color: var(--red);
+  display: block;
+  font-family: "pretendard";
+  font-size: 14px;
+  font-weight: 600;
+  padding-top: 16px;
+  padding-left: 16px;
+}
 
+.display_none{
+  display: none;
+}
 
+.display_block{
+  display: block;
+}
 
 
 
@@ -131,31 +158,35 @@ button{
 
 @media (max-width: 767px){
   .container{
-  width: clamp(343px, 50vw, 400px);
-  height: 501px;
-  margin: 0 auto;
-  padding: 0 16px;
-  box-sizing: content-box;
-}
+    width: clamp(343px, 50vw, 400px);
+    height: 553px;
+    margin: 0 auto;
+    padding: 0 16px;
+    box-sizing: content-box;
+  }
+  .input_box{
+    margin-bottom: 16px;
+    
+  }
 
-.title{
-  width: 198px;
-  height: 66px;
-  margin: 24px auto 24px auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+  .title{
+    width: 198px;
+    height: 66px;
+    margin: 24px auto 24px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-.title img{
-  width: 51.76px;
-  height: 51.94px;
-}
+  .title img{
+    width: 51.76px;
+    height: 51.94px;
+  }
 
-.title h1{
-  
-  font-size: 33.17px;
-  color: var(--blue-100);
-  
-}
+  .title h1{
+    
+    font-size: 33.17px;
+    color: var(--blue-100);
+    
+  }
 }
