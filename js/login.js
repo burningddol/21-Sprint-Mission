@@ -2,6 +2,9 @@
 const email = document.querySelector('#email');
 const password = document.querySelector('#password');
 const button = document.querySelector('button');
+const img_visible_state = document.querySelector('#visible_state');
+const img_invisible_state = document.querySelector('#invisible_state');
+const img_box = document.querySelector(".img_box");
 
 // 이메일 칸이 공란일경우 red-border와 이메일을 입력하라는 문구 출력 해주는 함수
 function email_empty_checker(e){
@@ -60,7 +63,7 @@ function password_length_checker(e){
   }
 }
 
-// 인풋의 조건에 따라 버튼 활성화 결정 함수
+// 인풋의 조건에 따라 버튼 활성화 조건 체킹 및 활성화 함수
 function button_active_checker(e){
   const inactive_index = ["email_empty", "email_wrong", "password_empty", "password_wrong", "init"];
   const inactive_result_email = inactive_index.some(index => email.classList.contains(index));         // 상위 배열 요소중 하나라도 갖으면 true가 되어 inactive유도
@@ -81,12 +84,33 @@ function button_active_decider(e){
   }
 }
 
+// 패스워드 인풋의 눈모양 버튼 클릭시 패스워드 감춤 및 보이기 작동 함수
+function visibility_decider(e){
+
+  if(img_invisible_state.classList.contains('display_none')){
+    img_invisible_state.classList.toggle('display_none');
+    password.type = "password";
+  }
+
+  if(img_visible_state.classList.contains('display_none')){
+    img_visible_state.classList.toggle('display_none');
+    password.type = "text";
+  }
+  e.target.classList.toggle('display_none');
+}
+
+
+
 
 
 email.addEventListener('focusout', email_empty_checker);
 email.addEventListener('focusout', email_form_checker);
 email.addEventListener('focusout', button_active_checker);
+
 password.addEventListener('focusout', password_empty_checker);
 password.addEventListener('focusout', password_length_checker);
 password.addEventListener('focusout', button_active_checker);
+
 button.addEventListener('click', button_active_decider);
+
+img_box.addEventListener('click', visibility_decider);           // img_visible_state와 img_invisible_state의 이벤트 위임

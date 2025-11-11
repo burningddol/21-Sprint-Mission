@@ -32,7 +32,10 @@
         <label for="password">비밀번호</label>
         <div class="password_input_box">
           <input id="password" class="init" name="password" type="password" placeholder="비밀번호를 입력 하시오">
-          <img src="../images/icons/btn_visibility.png" alt="패스워드 안보이기 버튼">
+          <div class="img_box">
+            <img id="invisible_state" src="../images/icons/btn_visibility.png" alt="패스워드 안보이기 버튼">
+            <img id="visible_state" class="display_none"  src="../images/icons/btn_visibility_on.png" alt="패스워드 보이기 버튼">
+          </div>
         </div>
         <span class="password_empty_message display_none">비밀번호를 입력해주세요.</span>
         <span class="password_wrong_message display_none">비밀번호를 8자 이상 입력해주세요.</span>

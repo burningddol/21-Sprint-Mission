@@ -4,6 +4,10 @@ const password = document.querySelector('#password');
 const password_confirm = document.querySelector('#password_confirm');
 const nickname = document.querySelector('#nickname');
 const button = document.querySelector('button');
+const img_visible_state = document.querySelectorAll('.visible_state');
+const img_invisible_state = document.querySelectorAll('.invisible_state');
+const img_box = document.querySelectorAll(".img_box");
+
 
 // 이메일 칸이 공란일경우 red-border와 이메일을 입력하라는 문구 출력 해주는 함수
 function email_empty_checker(e){
@@ -93,7 +97,7 @@ function password_confirm_checker(e){
 }
 
 
-// 인풋의 조건에 따라 버튼 활성화 결정 함수
+// 인풋의 조건에 따라 버튼 활성화 조건 체킹 및 활성화 함수
 function button_active_checker(e){
   const inactive_index = ["email_empty", "email_wrong", "password_empty", "password_wrong", "password_confirm_wrong", "nickname_empty", "init"];
   const inactive_result_email = inactive_index.some(index => email.classList.contains(index));         // 상위 배열 요소중 하나라도 갖으면 true가 되어 inactive유도
@@ -117,6 +121,40 @@ function button_active_decider(e){
 }
 
 
+// 패스워드 인풋의 눈모양 버튼 클릭시 패스워드 감춤 및 보이기 작동 함수 (패스워드 입력칸)
+function visibility_decider1(e){
+
+    if(img_invisible_state[0].classList.contains('display_none')){
+      img_invisible_state[0].classList.toggle('display_none');
+      password.type = "password";
+      console.log(img_invisible_state);
+    }
+
+    if(img_visible_state[0].classList.contains('display_none')){
+      img_visible_state[0].classList.toggle('display_none');
+      password.type = "text";
+    }
+    e.target.classList.toggle('display_none');
+  
+}
+
+// 패스워드 확인 인풋의 눈모양 버튼 클릭시 패스워드 감춤 및 보이기 작동 함수 (패스워드 확인 입력칸)
+function visibility_decider2(e){
+
+    if(img_invisible_state[1].classList.contains('display_none')){
+      img_invisible_state[1].classList.toggle('display_none');
+      password_confirm.type = "password";
+      console.log(img_invisible_state);
+    }
+
+    if(img_visible_state[1].classList.contains('display_none')){
+      img_visible_state[1].classList.toggle('display_none');
+      password_confirm.type = "text";
+    }
+    e.target.classList.toggle('display_none');
+  
+}
+
 
 email.addEventListener('focusout', email_empty_checker);
 email.addEventListener('focusout', email_form_checker);
@@ -132,3 +170,6 @@ nickname.addEventListener('focusout', nickname_empty_checker);
 nickname.addEventListener('focusout', button_active_checker);
 
 button.addEventListener('click', button_active_decider);
+
+img_box[0].addEventListener('click', visibility_decider1);           // img_visible_state[0]와 img_invisible_state[0]의 이벤트 위임 (패스워드)
+img_box[1].addEventListener('click', visibility_decider2);           // img_visible_state[1]와 img_invisible_state[1]의 이벤트 위임 (패스워드 확인)     

@@ -38,7 +38,10 @@
         <label for="password">비밀번호</label>
         <div class="password_input_box">
           <input id="password" class="init" name="password" type="password" placeholder="비밀번호를 입력 하시오">
-          <img src="../images/icons/btn_visibility.png" alt="패스워드 안보이기 버튼">
+          <div class="img_box">
+            <img class="invisible_state" src="../images/icons/btn_visibility.png" alt="패스워드 안보이기 버튼">
+            <img class="visible_state display_none"  src="../images/icons/btn_visibility_on.png" alt="패스워드 보이기 버튼">
+          </div>
         </div>
         <span class="password_empty_message display_none">비밀번호를 입력해주세요.</span>
         <span class="password_wrong_message display_none">비밀번호를 8자 이상 입력해주세요.</span>
@@ -46,9 +49,12 @@
 
       <div class="input_box">
         <label for="password_confirm">비밀번호 확인</label>
-        <div class="password_input_box">
+        <div class="password_confirm_input_box">
           <input id="password_confirm" class="init" name="password" type="password" placeholder="비밀번호를 입력 하시오">
-          <img src="../images/icons/btn_visibility_on.png" alt="패스워드 보이기 버튼">
+          <div class="img_box">
+            <img class="invisible_state" src="../images/icons/btn_visibility.png" alt="패스워드 안보이기 버튼">
+            <img class="visible_state display_none" src="../images/icons/btn_visibility_on.png" alt="패스워드 보이기 버튼">
+          </div>
         </div>
         <span class="password_confirm_wrong_message display_none">비밀번호가 일치하지 않습니다.</span>
       </div>

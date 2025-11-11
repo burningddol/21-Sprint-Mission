@@ -59,15 +59,18 @@
   
 }
 
-.password_input_box{
+.password_input_box, .password_confirm_input_box{
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.password_input_box img{
+.password_input_box .img_box,
+.password_confirm_input_box .img_box{
   position: absolute;
   right: 24px;
+  width: 24px;
+  height: 24px;
 }
 
 button{
