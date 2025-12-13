@@ -1,0 +1,29 @@
+
+
+.positionBox {
+  position: relative;
+  
+
+}
+
+select {
+  border: 0.1px solid var(--gray-200);
+  width: 130px;
+  height: 100%;
+  border-radius: 12px;
+  padding: 0 20px 0 20px;
+  appearance: none;          
+  -webkit-appearance: none;  
+  -moz-appearance: none;
+  font-family: pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--gray-800);
+}
+
+span {
+  font-family: pretendard;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gray-900);
+}

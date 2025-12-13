@@ -42,3 +42,15 @@
     font-weight: 700;
     src: url('../fonts/ROKAFSansBold.woff') format('woff');
 }
+
+@font-face {
+    font-family: 'pretendard';
+    font-weight: 400;
+    src: url('../fonts/Pretendard-Medium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'pretendard';
+    font-weight: 700;
+    src: url('../fonts/Pretendard-Bold.woff') format('woff');
+}
