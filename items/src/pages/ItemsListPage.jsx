@@ -26,7 +26,7 @@ const Container = styled.div`
 
 
 export default function ItemsPage(){
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams({currentPage: 1, search: ""});
   const initKeyword = searchParams.get('search');
   const initPage = searchParams.get('currentPage');
   const [items, setItems] = useState([]);

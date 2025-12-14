@@ -61,6 +61,7 @@ const ArrowButton = styled(Button)`
         disabled={currentPage==1} 
         onClick={()=>{
           setCurrentPage((currentPage)=>currentPage-1);
+          handlePageClick(currentPage-1)
         }}>&lt;</ArrowButton>
 
       {pages.slice(startIndex, endIndex).map((page)=>
@@ -77,6 +78,7 @@ const ArrowButton = styled(Button)`
         disabled={currentPage==totalPages} 
         onClick={()=>{
          setCurrentPage((currentPage)=>currentPage+1);
+         handlePageClick(currentPage+1)
         }}>&gt;</ArrowButton>
     </PageBox>
   );
