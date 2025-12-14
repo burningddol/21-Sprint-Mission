@@ -2,7 +2,7 @@ import styled from "styled-components";
 import styles from "./AllItemsListNav.module.scss";
 import CustomSelect from "./CustomSelect";
 import searchIcon from "../assets/search.png";
-
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -63,6 +63,9 @@ const Button = styled.button`
   color: var(--gray-100);
   background: linear-gradient(to right, #1e6fff, #3692ff);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   @media (max-width: 744px) {
   position: absolute;
@@ -116,7 +119,7 @@ export default function AllItemsListNav({ search, setOrderBy, setSearch, setSear
               placeholder="검색할 상품을 입력해주세요"/>
           </form>
         </div>
-        <Button>상품 등록하기</Button>
+        <Button as={Link} to="/additem">상품 등록하기</Button>
         <div className={styles.positionBox} >
           <CustomSelect sortOptions={sortOptions} setOrderBy={setOrderBy}/>
         </div>
