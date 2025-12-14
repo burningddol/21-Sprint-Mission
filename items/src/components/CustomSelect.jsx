@@ -41,7 +41,7 @@ export default function CustomSelect({ sortOptions, setOrderBy }) {
   const [sortOption, setSortOption] = useState("최신순");
 
   return (
-    <div>
+    <div className={styles.positionBox}>
       <div className={styles.positionBox}>
         <button
           className={`${styles.sortOptions} ${open ? styles.active : ''}`}      // 버튼 오픈 시 그림자 삭제 css

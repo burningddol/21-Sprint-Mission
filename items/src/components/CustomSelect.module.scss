@@ -21,7 +21,8 @@
     height: 42px;
     background-image: url('../assets/sort.png');
     background-repeat: no-repeat;   
-    background-position: center;   
+    background-position: center;  
+    color: transparent;
     
   };
 
@@ -34,4 +35,15 @@
   
 .positionBox {
   position: relative;
+}
+
+ul {
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 12px;
+  top: 50px;
+  @media (max-width: 744px) {
+    right:0px;
+    
+  };
 }
