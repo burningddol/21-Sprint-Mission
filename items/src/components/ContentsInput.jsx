@@ -100,6 +100,7 @@ export default function ContentsInput({tags, setTags, setItemName, setItemConten
       <Label htmlFor="intro">상품 소개</Label>
       <textarea id="intro"
                 name="intro"
+                className={styles.textArea}
                 onChange={(e)=> setItemContent(e.target.value)}  
                 placeholder="상품 소개를 입력해주세요"
                 />
