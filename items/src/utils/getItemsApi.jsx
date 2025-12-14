@@ -1,8 +1,8 @@
 import axios from "./axios";
 
 
-export async function getItemsList(page=1, pageSize=10, keyword = "", orderBy = "recent" ) {
-  const params = { page, pageSize, keyword, orderBy};
+export async function getItemsList(currentPage=1, pageSize=10, keyword = "", orderBy = "recent" ) {
+  const params = { page: currentPage, pageSize, keyword, orderBy};
   const response = await axios.get("/products",{params});
   const data = response.data;
 

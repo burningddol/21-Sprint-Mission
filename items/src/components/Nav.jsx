@@ -12,6 +12,14 @@ const NavContainer = styled.div`
   height: 70px;
   border-bottom: 1px solid #dfdfdf;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.04);
+
+  @media (max-width: 1200px) {
+  padding: 0 24px;
+  };
+
+  @media (max-width: 744px) {
+  padding: 0 16px;
+  };
 ` ;
 
 const LogoBox = styled.div`
@@ -21,9 +29,17 @@ const LogoBox = styled.div`
   width: 153px;
   height: 51px;
   margin-right: 40px;
-`
+
+  @media (max-width: 744px) {
+  margin-right: 0;
+  width: 82px;
+  };
+`;
 const PandaImg = styled.img`
   margin-right: 3px;
+  @media (max-width: 744px) {
+  display: none;
+  };
 `;
 
 const LogoText = styled.span`
@@ -31,6 +47,10 @@ const LogoText = styled.span`
   font-size: 25.63px;
   font-weight: 700;
   color: var(--blue-100);
+
+  @media (max-width: 744px) {
+  font-size: 20.2px;
+  };
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -43,11 +63,20 @@ const StyledNavLink = styled(NavLink)`
   border-radius: 20px;
   margin-right: 20px;
   padding: 12px 10px;
+  text-align: center;
+  vertical-align: middle;
   &.active {
     background: linear-gradient(to right, #1e6fff, #3692ff);
     color: var(--gray-50);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
+
+  @media (max-width: 744px) {
+  font-size: 16px;
+  margin-right: 0;
+  padding: 10px 8px;
+  border-radius: 15px;
+  };
 `;
 export default function Nav() {
 

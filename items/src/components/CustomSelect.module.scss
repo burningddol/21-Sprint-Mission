@@ -1,0 +1,37 @@
+
+
+.sortOptions {
+  border: 0.1px solid var(--gray-200);
+  width: 130px;
+  height: 42px;
+  border-radius: 12px;
+  padding: 0 20px 0 20px;
+  background-color: #ffffff;
+  font-family: "pretendard";
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--gray-800);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  text-align: start;
+
+  
+
+  @media (max-width: 744px) {
+    width: 42px;
+    height: 42px;
+    background-image: url('../assets/sort.png');
+    background-repeat: no-repeat;   
+    background-position: center;   
+    
+  };
+
+}
+
+.active {
+
+    box-shadow: none;
+  }
+  
+.positionBox {
+  position: relative;
+}
