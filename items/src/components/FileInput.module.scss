@@ -1,0 +1,24 @@
+
+
+
+.imgLabel {
+  display: block;
+  margin-bottom: 16px;
+  font-family: "pretendard";
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gray-800);
+}
+
+.add {
+  cursor: pointer;
+ 
+     @media (max-width: 1200px) {
+    width: 168px;
+    height: 168px;
+  
+  };
+    
+
+}
+
