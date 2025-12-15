@@ -22,9 +22,6 @@ const Container = styled.div`
 
 
 
-
-
-
 export default function ItemsPage(){
   const [searchParams, setSearchParams] = useSearchParams({currentPage: 1, search: ""});
   const initKeyword = searchParams.get('search');
@@ -75,6 +72,7 @@ export default function ItemsPage(){
         console.log(err);
       }
     }
+  
     loadItems();
   }, [currentPage, search, orderBy, pageSize.all]);
 
