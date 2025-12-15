@@ -23,12 +23,12 @@ const ItemsGrid = styled.div`
 
 `;
 
-export default function AllItemsList({items, search, setOrderBy, setSearch, setSearchParams}) {
+export default function AllItemsList({items, search, setOrderBy, setSearch}) {
 
 
   return (
     <>
-      <AllItemsListNav search={search} setOrderBy={setOrderBy} setSearch={setSearch} setSearchParams={setSearchParams}/>
+      <AllItemsListNav search={search} setOrderBy={setOrderBy} setSearch={setSearch}/>
       <ItemsGrid>
         {items.map((item)=>
           <EachItem key={item.id} item={item} />

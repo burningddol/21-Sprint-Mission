@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
 import { getItemsList, getBestItemsList } from '../utils/getItemsApi';
 import styled from "styled-components";
 import AllItemsList from '../components/AllItemsList';
 import BestItemsList from "../components/BestItemsList";
 import Pagination from "../components/Pagination";
+import useSearchParam from "../hooks/useSearchParam";
 
 const Container = styled.div`
   width: 1200px;
@@ -23,27 +23,17 @@ const Container = styled.div`
 
 
 export default function ItemsPage(){
-  const [searchParams, setSearchParams] = useSearchParams({currentPage: 1, search: ""});
-  const initKeyword = searchParams.get('search');
-  const initPage = searchParams.get('currentPage');
   const [items, setItems] = useState([]);
   const [bestItems, setBestItems] = useState([]);
   const [orderBy, setOrderBy] = useState("recent");
-  const [currentPage, setCurrentPage] = useState(initPage || 1);
   const [totalPages, setTotalPages] = useState(50);
   const [pageSize, setPageSize] = useState({best: 4, all: 10,});
-  const [search, setSearch] = useState(initKeyword || "");
   
- 
-
-  useEffect(() => {
-  const pageFromUrl = Number(searchParams.get("currentPage")) || 1;
-  const keywordFromUrl = searchParams.get("search") || "";
-
-  setCurrentPage(pageFromUrl);
-  setSearch(keywordFromUrl);
-  }, [searchParams]);
-
+  const {currentPage,
+         setCurrentPage,
+         search,
+         setSearch} = useSearchParam();
+  
 
   useEffect(() => {
     const handleResize = () => {
@@ -92,9 +82,9 @@ export default function ItemsPage(){
     <>
       <Container>
         <BestItemsList items={bestItems}/>
-        <AllItemsList items={items} search={search} setOrderBy={setOrderBy} setSearch={setSearch} setSearchParams={setSearchParams}/>
+        <AllItemsList items={items} search={search} setOrderBy={setOrderBy} setSearch={setSearch}/>
       </Container>
-      <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage} setSearchParams={setSearchParams}/>
+      <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
     </>
   );
 }

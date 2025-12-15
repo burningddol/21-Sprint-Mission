@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useEffect } from "react";
+import useSearchParam from "../hooks/useSearchParam";
 
 const PageBox = styled.div`
   margin-top: 40px; 
@@ -40,12 +41,13 @@ const ArrowButton = styled(Button)`
   }
 `;
 
- function Pagination({totalPages, currentPage, setCurrentPage, setSearchParams}) {
+ function Pagination({totalPages, currentPage, setCurrentPage}) {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
   const pageGroup = Math.ceil(currentPage/5 -1);
   const [startPage, endPage] = [pageGroup*5+1, pageGroup*5+5];
   const [startIndex, endIndex] = [startPage-1, endPage];
 
+  const {setSearchParams} = useSearchParam();
 
   function handlePageClick(page) {
     setSearchParams((pre) => page ?

@@ -3,6 +3,7 @@ import styles from "./AllItemsListNav.module.scss";
 import CustomSelect from "./CustomSelect";
 import searchIcon from "../assets/search.png";
 import { Link } from "react-router-dom";
+import useSearchParam from "../hooks/useSearchParam";
 
 const Container = styled.div`
   display: flex;
@@ -84,7 +85,8 @@ const SearchButton = styled.button`
 
 
 
-export default function AllItemsListNav({ search, setOrderBy, setSearch, setSearchParams}) {
+export default function AllItemsListNav({ search, setOrderBy, setSearch}) {
+  const {setSearchParams} = useSearchParam();
   const sortOptions = [
     {
       name: "최신순",
