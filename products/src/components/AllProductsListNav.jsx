@@ -87,18 +87,7 @@ const SearchButton = styled.button`
 
 export default function AllProductsListNav({ search, setOrderBy, setSearch}) {
   const {setSearchParams} = useSearchParam();
-  const sortOptions = [
-    {
-      name: "최신순",
-      value: "recent"
-    },
-
-    {
-      name: "좋아요순",
-      value: "favorite"
-    }
-  ];
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -123,7 +112,7 @@ export default function AllProductsListNav({ search, setOrderBy, setSearch}) {
         </div>
         <Button as={Link} to="/addproduct">상품 등록하기</Button>
         <div className={styles.positionBox} >
-          <CustomSelect sortOptions={sortOptions} setOrderBy={setOrderBy}/>
+          <CustomSelect setOrderBy={setOrderBy}/>
         </div>
       </Right>
     </Container>

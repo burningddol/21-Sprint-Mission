@@ -5,6 +5,7 @@ import AllProductsList from '../components/AllProductsList';
 import BestProductsList from "../components/BestProductsList";
 import Pagination from "../components/Pagination";
 import useSearchParam from "../hooks/useSearchParam";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Container = styled.div`
   width: 1200px;
@@ -77,6 +78,8 @@ export default function ProductsPage(){
     }
     loadBestProducts();
   }, [pageSize]);
+
+  if (products.length===0) return <LoadingSpinner message="상품 정보를 불러오는 중..." />;
 
   return(
     <>

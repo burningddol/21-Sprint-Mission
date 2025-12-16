@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import styles from "./EachProduct.module.scss";
 import favoriteIcon from "../assets/favorite.png";
@@ -39,16 +40,26 @@ export default function EachProduct({product}) {
 
   return(
     <ProductBox>
-          <AllProductImg src={product.images}/>
-          <ProductInfo>
-            <span className={styles.name}> {product.name} </span>
-            <span className={styles.price}> {product.price}원 </span>
-            <div className={styles.favoriteBox}>
-              <img src={favoriteIcon}/>
-              <span className={styles.favorite}> {product.favoriteCount} </span>
-            </div>
-          </ProductInfo>
-        </ProductBox>
+
+      <Link to={`/${product.id}`}>
+        <AllProductImg src={product.images}/>
+      </Link>
+
+      <ProductInfo>
+        <Link to={`/${product.id}`}>
+          <span className={styles.name}> {product.name} </span>
+        </Link>
+
+        <Link to={`/${product.id}`}>
+          <span className={styles.price}> {product.price}원 </span>
+        </Link>
+        
+        <div className={styles.favoriteBox}>
+          <img src={favoriteIcon}/>
+          <span className={styles.favorite}> {product.favoriteCount} </span>
+        </div>
+      </ProductInfo>
+    </ProductBox>
 
   );
 }

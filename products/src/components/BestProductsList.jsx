@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./BestProductsList.module.scss";
 import styled from "styled-components";
 import favoriteIcon from "../assets/favorite.png";
@@ -41,10 +42,19 @@ function BestProduct({product}) {
 
   return (
     <ProductBox>
-      <BestProductImg src={product.images}/>
+      <Link to={`/${product.id}`}>
+        <BestProductImg src={product.images}/>
+      </Link>
+
       <ProductInfo>
-        <span className={styles.name}> {product.name} </span>
-        <span className={styles.price}> {product.price}원 </span>
+        <Link to={`/${product.id}`}>
+          <span className={styles.name}> {product.name} </span>
+        </Link>
+
+        <Link to={`/${product.id}`}>
+          <span className={styles.price}> {product.price}원 </span>
+        </Link>
+
         <div className={styles.favoriteBox}>
           <img src={favoriteIcon}/>
           <span className={styles.favorite}> {product.favoriteCount} </span>
@@ -53,6 +63,9 @@ function BestProduct({product}) {
     </ProductBox>
   );
 }
+
+
+
 
 const ProductsGrid = styled.div`
   display: grid;

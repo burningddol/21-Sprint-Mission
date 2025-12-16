@@ -36,9 +36,20 @@ const ArrowIcon = styled.img`
   };
 `
 
-export default function CustomSelect({ sortOptions, setOrderBy }) {
+export default function CustomSelect({ setOrderBy }) {
   const [open, setOpen] = useState(false);
   const [sortOption, setSortOption] = useState("최신순");
+  const sortOptions = [
+    {
+      name: "최신순",
+      value: "recent"
+    },
+
+    {
+      name: "좋아요순",
+      value: "favorite"
+    }
+  ];
 
   return (
     <div className={styles.positionBox}>

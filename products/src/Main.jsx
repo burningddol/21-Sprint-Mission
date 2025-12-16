@@ -14,7 +14,7 @@ function Main() {
       <Routes>
         <Route path="/" element={<App />} >
           <Route index element={<ProductsListPage/>} />
-          <Route path=":productSlug" element={<ProductPage/>}/>
+          <Route path=":productId" element={<ProductPage/>}/>
           <Route path="addproduct" element={<AddProductPage/>} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

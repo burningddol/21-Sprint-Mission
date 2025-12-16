@@ -17,3 +17,10 @@ export async function getBestProductsList(pageSize=4) {
 
   return data;
 }
+
+export async function getProductById(id) {
+  const response = await axios.get(`/products/${id}`);
+  const product = response.data;
+
+  return product;
+}
