@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import styles from  './CustomSelect.module.scss';
+import styles from './CustomSelect.module.scss';
 import styled from 'styled-components';
-import arrowIcon from "../assets/arrow.png";
-
+import arrowIcon from '../assets/arrow.png';
+import useSortParam from '../hooks/useSortParam';
 
 const Li = styled.li`
   width: 130px;
   height: 42px;
-  font-family: "pretendard";
+  font-family: 'pretendard';
   font-size: 16px;
   font-weight: 400;
   color: var(--gray-800);
@@ -18,48 +18,45 @@ const Li = styled.li`
   cursor: pointer;
 
   border-radius: ${({ $firstOption, $lastOption }) =>
-    $firstOption
-      ? "12px 12px 0 0"
-      : $lastOption
-      ? "0 0 12px 12px"
-      : "0 0 0 0"};
+    $firstOption ? '12px 12px 0 0' : $lastOption ? '0 0 12px 12px' : '0 0 0 0'};
 `;
 
 const ArrowIcon = styled.img`
-   position: absolute;
-   right: 15px;
-   top: 22.5%;
-   pointer-events: none;
+  position: absolute;
+  right: 15px;
+  top: 22.5%;
+  pointer-events: none;
 
-   @media (max-width: 744px) {
+  @media (max-width: 744px) {
     display: none;
-  };
-`
+  }
+`;
 
-export default function CustomSelect({ setOrderBy }) {
+export default function CustomSelect() {
   const [open, setOpen] = useState(false);
-  const [sortOption, setSortOption] = useState("최신순");
+  const { orderBy, setOrderBy } = useSortParam();
+
   const sortOptions = [
     {
-      name: "최신순",
-      value: "recent"
+      name: '최신순',
+      value: 'recent',
     },
 
     {
-      name: "좋아요순",
-      value: "favorite"
-    }
+      name: '좋아요순',
+      value: 'favorite',
+    },
   ];
 
   return (
     <div className={styles.positionBox}>
       <div className={styles.positionBox}>
         <button
-          className={`${styles.sortOptions} ${open ? styles.active : ''}`}      // 버튼 오픈 시 그림자 삭제 css
+          className={`${styles.sortOptions} ${open ? styles.active : ''}`} // 버튼 오픈 시 그림자 삭제 css
           type="button"
           onClick={() => setOpen((prev) => !prev)}
         >
-          {sortOption}
+          {sortOptions.map((option) => option.value == orderBy && option.name)}
         </button>
         <ArrowIcon src={arrowIcon} />
       </div>
@@ -68,11 +65,10 @@ export default function CustomSelect({ setOrderBy }) {
           {sortOptions.map((option, index) => (
             <Li
               $firstOption={index == 0}
-              $lastOption={index == sortOptions.length-1}
+              $lastOption={index == sortOptions.length - 1}
               key={option.value}
               onClick={() => {
                 setOrderBy(option.value);
-                setSortOption(option.name);
                 setOpen(false);
               }}
             >

@@ -1,8 +1,6 @@
-import styled from "styled-components";
-import AllProductsListNav from "./AllProductsListNav";
-import EachProduct from "./EachProduct";
-
-
+import styled from 'styled-components';
+import AllProductsListNav from './AllProductsListNav';
+import EachProduct from './EachProduct';
 
 const ProductsGrid = styled.div`
   display: grid;
@@ -14,25 +12,22 @@ const ProductsGrid = styled.div`
   @media (max-width: 1200px) {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 40px 16px;
-  };
+  }
 
   @media (max-width: 744px) {
     grid-template-columns: 1fr 1fr;
     gap: 32px 8px;
-  };
-
+  }
 `;
 
-export default function AllProductsList({products, search, setOrderBy, setSearch}) {
-
-
+export default function AllProductsList({ products, search, setOrderBy }) {
   return (
     <>
-      <AllProductsListNav search={search} setOrderBy={setOrderBy} setSearch={setSearch}/>
+      <AllProductsListNav search={search} setOrderBy={setOrderBy} />
       <ProductsGrid>
-        {products.map((product)=>
+        {products.map((product) => (
           <EachProduct key={product.id} product={product} />
-        )}
+        ))}
       </ProductsGrid>
     </>
   );

@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import { getProductsList, getBestProductsList } from '../utils/getProductsApi';
-import styled from "styled-components";
+import styled from 'styled-components';
 import AllProductsList from '../components/AllProductsList';
-import BestProductsList from "../components/BestProductsList";
-import Pagination from "../components/Pagination";
-import useSearchParam from "../hooks/useSearchParam";
-import LoadingSpinner from "../components/LoadingSpinner";
+import BestProductsList from '../components/BestProductsList';
+import Pagination from '../components/Pagination';
+import useSearchParam from '../hooks/useSearchParam';
+import usePaginationParam from '../hooks/usePaginationParam';
+import useSortParam from '../hooks/useSortParam';
 
 const Container = styled.div`
   width: 1200px;
@@ -13,28 +14,21 @@ const Container = styled.div`
 
   @media (max-width: 1200px) {
     width: 696px;
-  };
+  }
 
   @media (max-width: 744px) {
     width: 344px;
-  };
+  }
+`;
 
-`
-
-
-
-export default function ProductsPage(){
+export default function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [bestProducts, setBestProducts] = useState([]);
-  const [orderBy, setOrderBy] = useState("recent");
+  const { orderBy } = useSortParam();
   const [totalPages, setTotalPages] = useState(50);
-  const [pageSize, setPageSize] = useState({best: 4, all: 10,});
-  
-  const {currentPage,
-         setCurrentPage,
-         search,
-         setSearch} = useSearchParam();
-  
+  const [pageSize, setPageSize] = useState({ best: 4, all: 10 });
+  const { currentPage } = usePaginationParam();
+  const { search, setSearch } = useSearchParam();
 
   useEffect(() => {
     const handleResize = () => {
@@ -48,22 +42,26 @@ export default function ProductsPage(){
       }
     };
     handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
-
 
   useEffect(() => {
     async function loadProducts() {
       try {
-        const data = await getProductsList(currentPage, pageSize.all, search, orderBy);
+        const data = await getProductsList(
+          currentPage,
+          pageSize.all,
+          search,
+          orderBy
+        );
         setProducts(data.list);
         setTotalPages(Math.ceil(data.totalCount / pageSize.all));
       } catch (err) {
         console.log(err);
       }
     }
-  
+
     loadProducts();
   }, [currentPage, search, orderBy, pageSize.all]);
 
@@ -79,15 +77,17 @@ export default function ProductsPage(){
     loadBestProducts();
   }, [pageSize]);
 
-  if (products.length===0) return <LoadingSpinner message="상품 정보를 불러오는 중..." />;
-
-  return(
+  return (
     <>
       <Container>
-        <BestProductsList products={bestProducts}/>
-        <AllProductsList products={products} search={search} setOrderBy={setOrderBy} setSearch={setSearch}/>
+        <BestProductsList products={bestProducts} />
+        <AllProductsList
+          products={products}
+          search={search}
+          setSearch={setSearch}
+        />
       </Container>
-      <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+      <Pagination totalPages={totalPages} currentPage={currentPage} />
     </>
   );
 }

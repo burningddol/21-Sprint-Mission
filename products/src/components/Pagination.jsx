@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { useEffect } from "react";
-import useSearchParam from "../hooks/useSearchParam";
+import styled from 'styled-components';
+
+import usePaginationParam from '../hooks/usePaginationParam';
 
 const PageBox = styled.div`
-  margin-top: 40px; 
+  margin-top: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,22 +15,18 @@ const Button = styled.button`
   height: 40px;
   border: 1px solid var(--gray-200);
   border-radius: 40px;
-  font-family: "pretendard";
+  font-family: 'pretendard';
   font-size: 16px;
   font-weight: 400;
-  color: ${ ({$active}) => ( $active ? "var(--gray-100)" : "var(--gray-500)")};
+  color: ${({ $active }) => ($active ? 'var(--gray-100)' : 'var(--gray-500)')};
 
   background: ${({ $active }) =>
-    $active
-      ? 'linear-gradient(to right, #1e6fff, #3692ff)'
-      : '#ffffff'};
+    $active ? 'linear-gradient(to right, #1e6fff, #3692ff)' : '#ffffff'};
 
-    &:hover {
+  &:hover {
     background: ${({ $active }) =>
-      $active
-        ? 'linear-gradient(to right, #1e6fff, #3692ff)'
-        : '#f5f5f5'};
-}
+      $active ? 'linear-gradient(to right, #1e6fff, #3692ff)' : '#f5f5f5'};
+  }
 `;
 
 const ArrowButton = styled(Button)`
@@ -41,47 +37,47 @@ const ArrowButton = styled(Button)`
   }
 `;
 
- function Pagination({totalPages, currentPage, setCurrentPage}) {
+function Pagination({ totalPages, currentPage }) {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
-  const pageGroup = Math.ceil(currentPage/5 -1);
-  const [startPage, endPage] = [pageGroup*5+1, pageGroup*5+5];
-  const [startIndex, endIndex] = [startPage-1, endPage];
+  const pageGroup = Math.ceil(currentPage / 5 - 1);
+  const [startPage, endPage] = [pageGroup * 5 + 1, pageGroup * 5 + 5];
+  const [startIndex, endIndex] = [startPage - 1, endPage];
 
-  const {setSearchParams} = useSearchParam();
+  const { setCurrentPage } = usePaginationParam();
 
-  function handlePageClick(page) {
-    setSearchParams((pre) => page ?
-    {...Object.fromEntries(pre), currentPage: page } :
-    {...Object.fromEntries(pre)},
-    { replace: false });
-  }
-  
-
-  return(
+  return (
     <PageBox>
       <ArrowButton
-        disabled={currentPage==1} 
-        onClick={()=>{
-          setCurrentPage((currentPage)=>currentPage-1);
-          handlePageClick(currentPage-1)
-        }}>&lt;</ArrowButton>
+        disabled={currentPage == 1}
+        onClick={() => {
+          setCurrentPage((currentPage) => currentPage - 1);
+          handlePageClick(currentPage - 1);
+        }}
+      >
+        &lt;
+      </ArrowButton>
 
-      {pages.slice(startIndex, endIndex).map((page)=>
+      {pages.slice(startIndex, endIndex).map((page) => (
         <Button
-          $active={page === currentPage} 
+          $active={page === currentPage}
           key={page}
-          onClick={()=>{
+          onClick={() => {
             setCurrentPage(page);
-            handlePageClick(page);
-          }}>{page}</Button>
-      )}
+          }}
+        >
+          {page}
+        </Button>
+      ))}
 
       <ArrowButton
-        disabled={currentPage==totalPages} 
-        onClick={()=>{
-         setCurrentPage((currentPage)=>currentPage+1);
-         handlePageClick(currentPage+1)
-        }}>&gt;</ArrowButton>
+        disabled={currentPage == totalPages}
+        onClick={() => {
+          setCurrentPage((currentPage) => currentPage + 1);
+          handlePageClick(currentPage + 1);
+        }}
+      >
+        &gt;
+      </ArrowButton>
     </PageBox>
   );
 }
