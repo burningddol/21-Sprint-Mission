@@ -11,7 +11,12 @@ const Skeleton = styled.div`
   width: ${({ $w }) => $w || '100%'};
   height: ${({ $h }) => $h || '16px'};
   border-radius: ${({ $r }) => $r || '8px'};
-  background: linear-gradient(90deg, var(--gray-20) 25%, var(--brown-10) 37%, var(--gray-20) 63%);
+  background: linear-gradient(
+    90deg,
+    var(--gray-100) 25%,
+    var(--gray-200) 37%,
+    var(--gray-100) 63%
+  );
   background-size: 400px 100%;
   animation: ${shimmer} 1.4s ease infinite;
 `;

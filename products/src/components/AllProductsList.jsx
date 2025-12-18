@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import AllProductsListNav from './AllProductsListNav';
 import EachProduct from './EachProduct';
 import media from '../utils/media';
+import EachProductSkeleton from './EachProductSkeleton';
+
 const ProductsGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -20,14 +22,24 @@ const ProductsGrid = styled.div`
     `}
 `;
 
-export default function AllProductsList({ products, search, setOrderBy }) {
+export default function AllProductsList({
+  products,
+  search,
+  setOrderBy,
+  isLoading,
+  pageSize,
+}) {
   return (
     <>
       <AllProductsListNav search={search} setOrderBy={setOrderBy} />
       <ProductsGrid>
-        {products.map((product) => (
-          <EachProduct key={product.id} product={product} />
-        ))}
+        {isLoading
+          ? Array.from({ length: pageSize.all }).map((_, index) => (
+              <EachProductSkeleton key={index} />
+            ))
+          : products.map((product) => (
+              <EachProduct key={product.id} product={product} />
+            ))}
       </ProductsGrid>
     </>
   );

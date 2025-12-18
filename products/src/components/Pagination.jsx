@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import usePaginationParam from '../hooks/usePaginationParam';
 
 const PageBox = styled.div`
-  margin-top: 40px;
+  margin: 40px 0 60px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,8 +20,8 @@ const Button = styled.button`
   font-weight: 400;
   color: ${({ $active }) => ($active ? 'var(--gray-100)' : 'var(--gray-500)')};
 
-  background: ${({ $active }) =>
-    $active ? 'linear-gradient(to right, #1e6fff, #3692ff)' : '#ffffff'};
+  background-color: ${({ $active }) =>
+    $active ? 'var(--blue-100)' : '#ffffff'};
 
   &:hover {
     background: ${({ $active }) =>
@@ -50,7 +50,7 @@ function Pagination({ totalPages, currentPage }) {
       <ArrowButton
         disabled={currentPage == 1}
         onClick={() => {
-          setCurrentPage((currentPage) => currentPage - 1);
+          setCurrentPage(currentPage - 1);
           handlePageClick(currentPage - 1);
         }}
       >
@@ -72,7 +72,7 @@ function Pagination({ totalPages, currentPage }) {
       <ArrowButton
         disabled={currentPage == totalPages}
         onClick={() => {
-          setCurrentPage((currentPage) => currentPage + 1);
+          setCurrentPage(currentPage + 1);
           handlePageClick(currentPage + 1);
         }}
       >

@@ -28,6 +28,9 @@ export default function ProductsPage() {
   const { orderBy } = useSortParam();
   const [totalPages, setTotalPages] = useState(50);
   const [pageSize, setPageSize] = useState({ best: 4, all: 10 });
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingBest, setIsLoadingBest] = useState(false);
+
   const { currentPage } = usePaginationParam();
   const { search, setSearch } = useSearchParam();
 
@@ -50,6 +53,7 @@ export default function ProductsPage() {
   useEffect(() => {
     async function loadProducts() {
       try {
+        setIsLoading(true);
         const data = await getProductsList(
           currentPage,
           pageSize.all,
@@ -60,6 +64,8 @@ export default function ProductsPage() {
         setTotalPages(Math.ceil(data.totalCount / pageSize.all));
       } catch (err) {
         console.log(err);
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -69,23 +75,32 @@ export default function ProductsPage() {
   useEffect(() => {
     async function loadBestProducts() {
       try {
+        setIsLoadingBest(true);
         const data = await getBestProductsList(pageSize.best);
         setBestProducts(data.list);
       } catch (err) {
         console.log(err);
+      } finally {
+        setIsLoadingBest(false);
       }
     }
     loadBestProducts();
-  }, [pageSize]);
+  }, [pageSize.best]);
 
   return (
     <>
       <Container>
-        <BestProductsList products={bestProducts} />
+        <BestProductsList
+          products={bestProducts}
+          pageSize={pageSize}
+          isLoadingBest={isLoadingBest}
+        />
         <AllProductsList
           products={products}
           search={search}
           setSearch={setSearch}
+          pageSize={pageSize}
+          isLoading={isLoading}
         />
       </Container>
       <Pagination totalPages={totalPages} currentPage={currentPage} />

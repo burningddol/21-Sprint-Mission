@@ -24,6 +24,10 @@ const Container = styled.div`
     `}
 `;
 
+const TitleSpan = styled.span`
+  height: 42px;
+`;
+
 const Right = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -62,7 +66,7 @@ const Button = styled.button`
   font-size: 16px;
   font-weight: 400;
   color: var(--gray-100);
-  background: linear-gradient(to right, #1e6fff, #3692ff);
+  background-color: var(--blue-100);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   display: flex;
   justify-content: center;
@@ -99,7 +103,7 @@ export default function AllProductsListNav({ search, setSearch }) {
 
   return (
     <Container>
-      <span>전체상품</span>
+      <TitleSpan>전체상품</TitleSpan>
       <Right>
         <div className={styles.positionBox}>
           <form onSubmit={handleSubmit}>

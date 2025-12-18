@@ -87,9 +87,7 @@ export default function ContentsInput({ product, updateProduct }) {
   };
 
   const handleRemove = (index) => {
-    const nextTags = [...product.tags];
-    nextTags.splice(index, 1);
-    handleTagsChange(nextTags);
+    handleTagsChange(product.tags.filter((_, i) => i !== index));
   };
 
   return (
