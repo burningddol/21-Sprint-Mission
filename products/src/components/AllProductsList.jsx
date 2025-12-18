@@ -25,13 +25,18 @@ const ProductsGrid = styled.div`
 export default function AllProductsList({
   products,
   search,
+  setSearch,
   setOrderBy,
   isLoading,
   pageSize,
 }) {
   return (
     <>
-      <AllProductsListNav search={search} setOrderBy={setOrderBy} />
+      <AllProductsListNav
+        search={search}
+        setSearch={setSearch}
+        setOrderBy={setOrderBy}
+      />
       <ProductsGrid>
         {isLoading
           ? Array.from({ length: pageSize.all }).map((_, index) => (

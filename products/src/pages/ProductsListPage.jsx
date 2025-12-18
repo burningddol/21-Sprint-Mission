@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import AllProductsList from '../components/AllProductsList';
 import BestProductsList from '../components/BestProductsList';
 import Pagination from '../components/Pagination';
-import useSearchParam from '../hooks/useSearchParam';
 import usePaginationParam from '../hooks/usePaginationParam';
 import useSortParam from '../hooks/useSortParam';
 import media from '../utils/media';
+import { useDebouncedEffect } from '../hooks/useDebouncedEffect';
 
 const Container = styled.div`
   width: 1200px;
@@ -30,9 +30,15 @@ export default function ProductsPage() {
   const [pageSize, setPageSize] = useState({ best: 4, all: 10 });
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingBest, setIsLoadingBest] = useState(false);
+  const [search, setSearch] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState(search);
+  const { currentPage, setCurrentPage } = usePaginationParam();
 
-  const { currentPage } = usePaginationParam();
-  const { search, setSearch } = useSearchParam();
+  useDebouncedEffect((value) => setDebouncedSearch(value), search, 600); // 검색 입력 시 데이터 로드 디바운스
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [debouncedSearch]); //1page가 아닌 다른페이지에서 검색 시 검색결과 노출 안되는 경향 해결책
 
   useEffect(() => {
     const mobileMedia = window.matchMedia('(max-width : 743px)');
@@ -58,7 +64,7 @@ export default function ProductsPage() {
         const data = await getProductsList(
           currentPage,
           pageSize.all,
-          search,
+          debouncedSearch,
           orderBy
         );
 
@@ -72,7 +78,7 @@ export default function ProductsPage() {
     }
 
     loadProducts();
-  }, [currentPage, search, orderBy, pageSize.all]);
+  }, [currentPage, debouncedSearch, orderBy, pageSize.all]);
 
   useEffect(() => {
     async function loadBestProducts() {
