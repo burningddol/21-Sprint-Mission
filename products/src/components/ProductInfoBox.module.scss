@@ -1,23 +1,19 @@
-
-
-
 .name {
-  font-family: "pretendard";
+  font-family: 'pretendard';
   font-size: 24px;
   font-weight: 700;
   color: var(--gray-800);
-
 }
 
 .price {
-  font-family: "pretendard";
+  font-family: 'pretendard';
   font-size: 40px;
   font-weight: 700;
   color: var(--gray-800);
 }
 
 .intro {
-  font-family: "pretendard";
+  font-family: 'pretendard';
   font-size: 16px;
   font-weight: 700;
   color: var(--gray-600);
@@ -25,18 +21,19 @@
 }
 
 .description {
-font-family: "pretendard";
+  font-family: 'pretendard';
   font-size: 16px;
   font-weight: 400;
   color: var(--gray-600);
-
 }
 
 .userInfoBox {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 2px 0;
-  font-family: "pretendard";
+  justify-content: center;
+  gap: 10px 0;
+  font-family: 'pretendard';
   font-size: 14px;
   font-weight: 700;
   color: var(--gray-600);
@@ -48,7 +45,16 @@ font-family: "pretendard";
 }
 
 .flex {
+  height: 100%;
   display: flex;
   align-items: center;
   gap: 0 15px;
+}
+
+.favoriteBox {
+  width: 111px;
+  height: 40px;
+  display: flex;
+  justify-content: flex-end;
+  border-left: 1px solid var(--gray-300);
 }

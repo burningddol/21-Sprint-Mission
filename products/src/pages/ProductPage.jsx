@@ -22,7 +22,7 @@ export default function ProductPage() {
     loadProduct();
   }, []);
 
-  if (!product) return <LoadingSpinner message="상품 정보를 불러오는 중..." />;
+  if (!product) return <LoadingSpinner message="페이지를 찾는중 ㅋㅋ" />;
 
   return (
     <>
