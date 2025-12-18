@@ -35,19 +35,20 @@ export default function ProductsPage() {
   const { search, setSearch } = useSearchParam();
 
   useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      if (width <= 743) {
-        setPageSize({ best: 1, all: 4 });
-      } else if (width <= 1200) {
-        setPageSize({ best: 2, all: 6 });
-      } else {
-        setPageSize({ best: 4, all: 10 });
-      }
+    const mobileMedia = window.matchMedia('(max-width : 743px)');
+    const tabletMedia = window.matchMedia('(max-width : 1200px)');
+
+    const mobileHandleChange = (e) => {
+      if (e.matches) setPageSize({ best: 1, all: 4 });
     };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+
+    const tabletHandleChange = (e) => {
+      if (e.matches) setPageSize({ best: 2, all: 6 });
+      else setPageSize({ best: 4, all: 10 });
+    };
+
+    mobileMedia.addEventListener('change', mobileHandleChange);
+    tabletMedia.addEventListener('change', tabletHandleChange);
   }, []);
 
   useEffect(() => {
@@ -60,6 +61,7 @@ export default function ProductsPage() {
           search,
           orderBy
         );
+
         setProducts(data.list);
         setTotalPages(Math.ceil(data.totalCount / pageSize.all));
       } catch (err) {
