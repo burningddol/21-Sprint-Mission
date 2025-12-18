@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect } from "react";
-import styled from "styled-components";
-import styles from "./FileInput.module.scss";
+import { useState, useRef, useEffect } from 'react';
+import styled from 'styled-components';
+import styles from './FileInput.module.scss';
 import placeHolderImage from '../assets/place_holder_image.png';
 import xIcon from '../assets/ic_X.png';
+import media from '../utils/media';
 
 const ImgBox = styled.div`
   display: flex;
@@ -10,10 +11,9 @@ const ImgBox = styled.div`
   gap: 24px;
   margin-bottom: 32px;
 
-  @media (max-width: 1200px) {
+  ${media.nowTablet`
   gap: 10px;
-  };
-
+  `};
 `;
 
 const PreviewImg = styled.img`
@@ -22,11 +22,10 @@ const PreviewImg = styled.img`
   border: 1px solid var(--gray-50);
   border-radius: 12px;
 
-  @media (max-width: 1200px) {
+  ${media.nowTablet`
   width: 168px;
   height: 168px;
-
-  };
+  `};
 `;
 
 const PreviewBox = styled.div`
@@ -40,20 +39,19 @@ const IconX = styled.img`
   cursor: pointer;
 `;
 
-
-export default function FileInput({name}) {
+export default function FileInput({ name }) {
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
-  
+
   const inputRef = useRef();
 
   const handleClick = () => {
-    if(inputRef.current) inputRef.current.click()
+    if (inputRef.current) inputRef.current.click();
   };
 
   const handleChange = (e) => {
     const nextFile = e.target.files[0];
-    console.log( e.target.files);
+    console.log(e.target.files);
     setFile(nextFile);
   };
 
@@ -69,31 +67,40 @@ export default function FileInput({name}) {
       setPreview(null);
       return;
     }
-	  const objectUrl = URL.createObjectURL(file);
-	  setPreview(objectUrl);
+    const objectUrl = URL.createObjectURL(file);
+    setPreview(objectUrl);
     return () => {
       URL.revokeObjectURL(objectUrl);
     };
   }, [file]);
 
-  return(
+  return (
     <>
-      <label className={styles.imgLabel} htmlFor="imgInput"> 상품 이미지 </label>
-      <input id="imgInput"
-            name={name} 
-            type="file"
-            ref={inputRef} 
-            onChange={handleChange} 
-            hidden  />
-      <ImgBox>    
-        <img className={styles.add} src={placeHolderImage} onClick={handleClick}/>
+      <label className={styles.imgLabel} htmlFor="imgInput">
+        {' '}
+        상품 이미지{' '}
+      </label>
+      <input
+        id="imgInput"
+        name={name}
+        type="file"
+        ref={inputRef}
+        onChange={handleChange}
+        hidden
+      />
+      <ImgBox>
+        <img
+          className={styles.add}
+          src={placeHolderImage}
+          onClick={handleClick}
+        />
         {preview && (
           <PreviewBox>
-            <PreviewImg src={preview}/>
-            <IconX src={xIcon} onClick={handleClear}/>
+            <PreviewImg src={preview} />
+            <IconX src={xIcon} onClick={handleClear} />
           </PreviewBox>
         )}
-      </ImgBox>  
+      </ImgBox>
     </>
   );
 }

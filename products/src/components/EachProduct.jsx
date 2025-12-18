@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import styles from "./EachProduct.module.scss";
-import favoriteIcon from "../assets/favorite.png";
-
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import styles from './EachProduct.module.scss';
+import favoriteIcon from '../assets/favorite.png';
+import media from '../utils/media';
 
 const ProductBox = styled.div`
   height: 317px;
@@ -10,9 +10,9 @@ const ProductBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  @media (max-width: 744px) {
+  ${media.nowMobile`
     height: 264px;
-  };
+    `};
 `;
 
 const AllProductImg = styled.img`
@@ -22,11 +22,10 @@ const AllProductImg = styled.img`
   border-radius: 16px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
 
-  @media (max-width: 744px) {
+  ${media.nowMobile`
     width: 168px;
     height: 168px;
-  };
-
+    `};
 `;
 
 const ProductInfo = styled.div`
@@ -36,13 +35,11 @@ const ProductInfo = styled.div`
   justify-content: space-around;
 `;
 
-export default function EachProduct({product}) {
-
-  return(
+export default function EachProduct({ product }) {
+  return (
     <ProductBox>
-
       <Link to={`/${product.id}`}>
-        <AllProductImg src={product.images}/>
+        <AllProductImg src={product.images} />
       </Link>
 
       <ProductInfo>
@@ -53,13 +50,12 @@ export default function EachProduct({product}) {
         <Link to={`/${product.id}`}>
           <span className={styles.price}> {product.price}원 </span>
         </Link>
-        
+
         <div className={styles.favoriteBox}>
-          <img src={favoriteIcon}/>
+          <img src={favoriteIcon} />
           <span className={styles.favorite}> {product.favoriteCount} </span>
         </div>
       </ProductInfo>
     </ProductBox>
-
   );
 }

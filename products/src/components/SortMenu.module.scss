@@ -1,4 +1,5 @@
-
+$nowTablet: 1200px;
+$nowMobile: 744px;
 
 .sortOptions {
   border: 0.1px solid var(--gray-200);
@@ -7,32 +8,27 @@
   border-radius: 12px;
   padding: 0 20px 0 20px;
   background-color: #ffffff;
-  font-family: "pretendard";
+  font-family: 'pretendard';
   font-size: 16px;
   font-weight: 400;
   color: var(--gray-800);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
   text-align: start;
 
-  
-
-  @media (max-width: 744px) {
+  @media (max-width: $nowMobile) {
     width: 42px;
     height: 42px;
     background-image: url('../assets/sort.png');
-    background-repeat: no-repeat;   
-    background-position: center;  
+    background-repeat: no-repeat;
+    background-position: center;
     color: transparent;
-    
-  };
-
+  }
 }
 
 .active {
+  box-shadow: none;
+}
 
-    box-shadow: none;
-  }
-  
 .positionBox {
   position: relative;
 }
@@ -42,8 +38,7 @@ ul {
   background-color: #ffffff;
   border-radius: 12px;
   top: 50px;
-  @media (max-width: 744px) {
-    right:0px;
-    
-  };
+  @media (max-width: $nowMobile) {
+    right: 0px;
+  }
 }

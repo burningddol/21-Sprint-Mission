@@ -7,18 +7,19 @@ import Pagination from '../components/Pagination';
 import useSearchParam from '../hooks/useSearchParam';
 import usePaginationParam from '../hooks/usePaginationParam';
 import useSortParam from '../hooks/useSortParam';
+import media from '../utils/media';
 
 const Container = styled.div`
   width: 1200px;
   margin: 25px auto 0;
 
-  @media (max-width: 1200px) {
+  ${media.nowTablet`
     width: 696px;
-  }
+    `}
 
-  @media (max-width: 744px) {
+  ${media.nowMobile`
     width: 344px;
-  }
+    `}
 `;
 
 export default function ProductsPage() {

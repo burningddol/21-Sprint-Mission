@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import AllProductsListNav from './AllProductsListNav';
 import EachProduct from './EachProduct';
-
+import media from '../utils/media';
 const ProductsGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -9,15 +9,15 @@ const ProductsGrid = styled.div`
   margin-top: 24px;
   gap: 40px 24px;
 
-  @media (max-width: 1200px) {
+  ${media.nowTablet`
     grid-template-columns: 1fr 1fr 1fr;
     gap: 40px 16px;
-  }
+    `}
 
-  @media (max-width: 744px) {
+  ${media.nowMobile`
     grid-template-columns: 1fr 1fr;
     gap: 32px 8px;
-  }
+    `}
 `;
 
 export default function AllProductsList({ products, search, setOrderBy }) {

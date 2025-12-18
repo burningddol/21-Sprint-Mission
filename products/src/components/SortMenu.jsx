@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import styles from './CustomSelect.module.scss';
+import styles from './SortMenu.module.scss';
 import styled from 'styled-components';
 import arrowIcon from '../assets/arrow.png';
 import useSortParam from '../hooks/useSortParam';
+import media from '../utils/media';
 
-const Li = styled.li`
+const SortOptionItem = styled.li`
   width: 130px;
   height: 42px;
   font-family: 'pretendard';
@@ -27,12 +28,12 @@ const ArrowIcon = styled.img`
   top: 22.5%;
   pointer-events: none;
 
-  @media (max-width: 744px) {
+  ${media.nowMobile`
     display: none;
-  }
+    `}
 `;
 
-export default function CustomSelect() {
+export default function SortMenu() {
   const [open, setOpen] = useState(false);
   const { orderBy, setOrderBy } = useSortParam();
 
@@ -63,7 +64,7 @@ export default function CustomSelect() {
       {open && (
         <ul>
           {sortOptions.map((option, index) => (
-            <Li
+            <SortOptionItem
               $firstOption={index == 0}
               $lastOption={index == sortOptions.length - 1}
               key={option.value}
@@ -73,7 +74,7 @@ export default function CustomSelect() {
               }}
             >
               {option.name}
-            </Li>
+            </SortOptionItem>
           ))}
         </ul>
       )}

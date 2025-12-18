@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import styles from './AllProductsListNav.module.scss';
-import CustomSelect from './CustomSelect';
+import SortMenu from './SortMenu';
 import searchIcon from '../assets/search.png';
 import { Link } from 'react-router-dom';
 import useSearchParam from '../hooks/useSearchParam';
+import media from '../utils/media';
 
 const Container = styled.div`
   display: flex;
@@ -14,13 +15,13 @@ const Container = styled.div`
   font-weight: 700;
   color: var(--gray-900);
 
-  @media (max-width: 744px) {
+  ${media.nowMobile`
     flex-direction: column;
     gap: 8px 0;
     align-items: flex-start;
     justify-content: center;
     position: relative;
-  }
+    `}
 `;
 
 const Right = styled.div`
@@ -42,13 +43,13 @@ const SearchingInput = styled.input`
   color: var(--gray-500);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
 
-  @media (max-width: 1200px) {
+  ${media.nowTablet`
     width: 242px;
-  }
+    `}
 
-  @media (max-width: 744px) {
+  ${media.nowMobile`
     width: 288px;
-  }
+    `}
 `;
 
 const Button = styled.button`
@@ -67,11 +68,11 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 744px) {
+  ${media.nowMobile`
     position: absolute;
     right: 0px;
     top: 0px;
-  }
+    `}
 `;
 
 const SearchButton = styled.button`
@@ -116,7 +117,7 @@ export default function AllProductsListNav({ search, setSearch }) {
           상품 등록하기
         </Button>
         <div className={styles.positionBox}>
-          <CustomSelect />
+          <SortMenu />
         </div>
       </Right>
     </Container>
