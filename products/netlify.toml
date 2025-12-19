@@ -1,4 +1,0 @@
-[[redirects]]
-  from = "/products/*"
-  to = "/products/index.html"
-  status = 200

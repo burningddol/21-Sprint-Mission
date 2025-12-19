@@ -23,11 +23,7 @@ const TitleSpan = styled.span`
   display: block;
   margin-bottom: 20px;
 `;
-export default function BestProductsList({
-  products,
-  pageSize,
-  isLoadingBest,
-}) {
+function BestProductsList({ products, pageSize, isLoadingBest }) {
   return (
     <>
       <TitleSpan>베스트 상품</TitleSpan>
@@ -43,3 +39,5 @@ export default function BestProductsList({
     </>
   );
 }
+
+export default BestProductsList;

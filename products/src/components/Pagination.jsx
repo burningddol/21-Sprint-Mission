@@ -51,7 +51,6 @@ function Pagination({ totalPages, currentPage }) {
         disabled={currentPage == 1}
         onClick={() => {
           setCurrentPage(currentPage - 1);
-          handlePageClick(currentPage - 1);
         }}
       >
         &lt;
@@ -73,7 +72,6 @@ function Pagination({ totalPages, currentPage }) {
         disabled={currentPage == totalPages}
         onClick={() => {
           setCurrentPage(currentPage + 1);
-          handlePageClick(currentPage + 1);
         }}
       >
         &gt;
