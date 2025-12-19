@@ -24,7 +24,6 @@ export function useDebouncedEffect(callback, value, delay = 300) {
 
   useEffect(() => {
     debouncedCallback(value);
-
     return () => {
       debouncedCallback.cancel();
     };

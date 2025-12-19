@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import styles from './ProductComments.module.scss';
 import profilePlaceholder from '../assets/profile.png';
 import getTimeAgo from '../utils/getTimeAgo';
+import KebabMenu from './KebabMenu';
+import arrowIc from '../assets/big_arrow_down.png';
 
 const CommentBox = styled.div`
   width: 1200px;
@@ -12,6 +13,7 @@ const CommentBox = styled.div`
   align-items: flex-start;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--gray-300);
+  position: relative;
 `;
 
 const Comment = styled.span`
@@ -47,7 +49,7 @@ const NickName = styled.span`
   color: var(--gray-600);
 `;
 
-function ProductComment({ productComment }) {
+export default function ProductComment({ productComment }) {
   const writer = productComment?.writer;
 
   const updatedDate = productComment?.updatedAt
@@ -58,6 +60,7 @@ function ProductComment({ productComment }) {
 
   return (
     <CommentBox>
+      <KebabMenu />
       <Comment>{productComment?.content}</Comment>
       <UserInfoBox>
         {writer?.image ? (
@@ -71,53 +74,5 @@ function ProductComment({ productComment }) {
         </FlexBox>
       </UserInfoBox>
     </CommentBox>
-  );
-}
-
-const Container = styled.div`
-  width: 1200px;
-  height: 569px;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-`;
-
-const StyledForm = styled.form`
-  width: 1200px;
-  height: 197px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  margin-bottom: 24px;
-`;
-
-const CommentsBox = styled.div`
-  width: 1200px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px 0;
-`;
-export default function ProductComments({ productComments }) {
-  const placeHolder =
-    '개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.';
-
-  return (
-    <Container>
-      <StyledForm>
-        <span className={styles.title}>문의하기</span>
-        <textarea className={styles.commentArea} placeholder={placeHolder} />
-        <div className={styles.btnBox}>
-          <button className={styles.submitBtn} type="submit">
-            등록
-          </button>
-        </div>
-      </StyledForm>
-
-      <CommentsBox>
-        {productComments.map((productComment, index) => (
-          <ProductComment productComment={productComment} key={index} />
-        ))}
-      </CommentsBox>
-    </Container>
   );
 }

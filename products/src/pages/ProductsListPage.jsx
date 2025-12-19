@@ -28,11 +28,13 @@ export default function ProductsPage() {
   const { orderBy } = useSortParam();
   const [totalPages, setTotalPages] = useState(50);
   const [pageSize, setPageSize] = useState({ best: 4, all: 10 });
-  const [isLoading, setIsLoading] = useState(false);
-  const [isLoadingBest, setIsLoadingBest] = useState(false);
   const [search, setSearch] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState(search);
   const { currentPage, setCurrentPage } = usePaginationParam();
+
+  const isLoading = products.length == 0;
+  const isLoadingBest = bestProducts.length == 0;
+
   // 검색 입력 시 데이터 로드 디바운스
   useDebouncedEffect(
     useCallback((value) => setDebouncedSearch(value), []), //아규먼트로 전달되는 함수 참조값이 계속 변경되어 메모처리
@@ -64,7 +66,6 @@ export default function ProductsPage() {
   useEffect(() => {
     async function loadProducts() {
       try {
-        setIsLoading(true);
         const data = await getProductsList(
           currentPage,
           pageSize.all,
@@ -76,8 +77,6 @@ export default function ProductsPage() {
         setTotalPages(Math.ceil(data.totalCount / pageSize.all));
       } catch (err) {
         console.log(err);
-      } finally {
-        setIsLoading(false);
       }
     }
 
@@ -87,13 +86,10 @@ export default function ProductsPage() {
   useEffect(() => {
     async function loadBestProducts() {
       try {
-        setIsLoadingBest(true);
         const data = await getBestProductsList(pageSize.best);
         setBestProducts(data.list);
       } catch (err) {
         console.log(err);
-      } finally {
-        setIsLoadingBest(false);
       }
     }
     loadBestProducts();

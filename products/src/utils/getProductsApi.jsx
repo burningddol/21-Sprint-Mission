@@ -28,9 +28,9 @@ export async function getProductById(id) {
   return product;
 }
 
-export async function getProductCommentsById(id, limit) {
+export async function getProductCommentsById(id, limit, cursor = 0) {
   const response = await axios.get(`/products/${id}/comments`, {
-    params: { limit },
+    params: { limit, cursor },
   });
   const data = response.data;
 

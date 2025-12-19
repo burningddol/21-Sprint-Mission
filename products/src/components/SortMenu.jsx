@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './SortMenu.module.scss';
 import styled from 'styled-components';
 import arrowIcon from '../assets/arrow.png';
@@ -34,9 +34,9 @@ const ArrowIcon = styled.img`
 `;
 
 export default function SortMenu() {
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const { orderBy, setOrderBy } = useSortParam();
-
+  const sortRef = useRef(null);
   const sortOptions = [
     {
       name: '최신순',
@@ -49,20 +49,33 @@ export default function SortMenu() {
     },
   ];
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const onClickOutside = (e) => {
+      if (!sortRef.current?.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', onClickOutside);
+    return () => document.removeEventListener('mousedown', onClickOutside);
+  }, [isOpen]);
+
   return (
-    <div className={styles.positionBox}>
+    <div className={styles.positionBox} ref={sortRef}>
       <div className={styles.positionBox}>
         <button
           className={`${styles.sortOptions} ${open ? styles.active : ''}`} // 버튼 오픈 시 그림자 삭제 css
           type="button"
-          onClick={() => setOpen((prev) => !prev)}
+          onClick={() => setIsOpen((prev) => !prev)}
         >
           {sortOptions.map((option) => option.value == orderBy && option.name)}
         </button>
         <ArrowIcon src={arrowIcon} />
       </div>
-      {open && (
-        <ul>
+      {isOpen && (
+        <ul className={styles.sortUl}>
           {sortOptions.map((option, index) => (
             <SortOptionItem
               $firstOption={index == 0}
@@ -70,7 +83,7 @@ export default function SortMenu() {
               key={option.value}
               onClick={() => {
                 setOrderBy(option.value);
-                setOpen(false);
+                setIsOpen(false);
               }}
             >
               {option.name}

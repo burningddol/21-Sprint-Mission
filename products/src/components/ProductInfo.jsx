@@ -134,6 +134,11 @@ const FavoriteButton = styled.button`
   & ${HeartIcon} {
     animation: ${pushPop} 0.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   }
+
+  &:hover {
+    border: 1px solid var(--gray-400);
+  }
+
   &:hover ${HeartIcon} {
     animation: ${pop} 0.5s ease forwards;
     path {
