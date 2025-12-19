@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { getProductsList, getBestProductsList } from '../utils/getProductsApi';
 import styled from 'styled-components';
 import AllProductsList from '../components/AllProductsList';
@@ -33,8 +33,12 @@ export default function ProductsPage() {
   const [search, setSearch] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState(search);
   const { currentPage, setCurrentPage } = usePaginationParam();
-
-  useDebouncedEffect((value) => setDebouncedSearch(value), search, 600); // 검색 입력 시 데이터 로드 디바운스
+  // 검색 입력 시 데이터 로드 디바운스
+  useDebouncedEffect(
+    useCallback((value) => setDebouncedSearch(value), []), //아규먼트로 전달되는 함수 참조값이 계속 변경되어 메모처리
+    search,
+    600
+  );
 
   useEffect(() => {
     setCurrentPage(1);

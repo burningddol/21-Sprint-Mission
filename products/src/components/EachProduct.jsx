@@ -21,11 +21,25 @@ const AllProductImg = styled.img`
   border: none;
   border-radius: 16px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  transition: 0.3s cubic-bezier(0.15, 0, 0.2, 1);
+
+  &:hover {
+    transform: scale(1.04);
+  }
 
   ${media.nowMobile`
     width: 168px;
     height: 168px;
     `};
+`;
+
+const ImgBox = styled.div`
+  overflow: hidden;
+  border-radius: 16px;
+  object-fit: cover;
+  aspect-ratio: 1/1;
 `;
 
 const ProductInfo = styled.div`
@@ -39,7 +53,9 @@ export default function EachProduct({ product }) {
   return (
     <ProductBox>
       <Link to={`/${product.id}`}>
-        <AllProductImg src={product.images} />
+        <ImgBox>
+          <AllProductImg src={product.images} />
+        </ImgBox>
       </Link>
 
       <ProductInfo>

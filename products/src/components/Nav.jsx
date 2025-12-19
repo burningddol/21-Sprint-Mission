@@ -90,7 +90,8 @@ const StyledNavLink = styled(NavLink)`
 export default function Nav() {
   const location = useLocation();
 
-  const isActive = location.pathname === '/addproduct';
+  const isActive =
+    location.pathname === '/addproduct' || /^\/\d+$/.test(location.pathname);
 
   return (
     <NavContainer>

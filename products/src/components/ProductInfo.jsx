@@ -19,11 +19,25 @@ const ProductImg = styled.img`
   height: 486px;
   border: 0.5px solid var(--gray-50);
   border-radius: 16px;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  transition: 0.3s cubic-bezier(0.15, 0, 0.2, 1);
+
+  &:hover {
+    transform: scale(1.04);
+  }
+`;
+
+const ImgBox = styled.div`
+  overflow: hidden;
+  border-radius: 16px;
+  object-fit: cover;
+  aspect-ratio: 1/1;
 `;
 
 const ContentsBox = styled.div`
   position: relative;
-  width: 100%;
+  width: 690px;
   height: 496px;
   display: flex;
   flex-direction: column;
@@ -142,7 +156,9 @@ export default function ProductInfo({ product }) {
 
   return (
     <Container>
-      <ProductImg src={product?.images?.[0]} />
+      <ImgBox>
+        <ProductImg src={product?.images?.[0]} />
+      </ImgBox>
       <ContentsBox>
         <KebabMenu />
         <div>

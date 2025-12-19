@@ -32,18 +32,33 @@ const BestProductImg = styled.img`
   border: none;
   border-radius: 16px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  transition: 0.3s cubic-bezier(0.15, 0, 0.2, 1);
+
+  &:hover {
+    transform: scale(1.04);
+  }
 
   ${media.nowTablet`
   width: 343px;
   height: 343px;
   `};
 `;
+const ImgBox = styled.div`
+  overflow: hidden;
+  border-radius: 16px;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+`;
 
 export default function BestProduct({ product }) {
   return (
     <ProductBox>
       <Link to={`/${product.id}`}>
-        <BestProductImg src={product.images} />
+        <ImgBox>
+          <BestProductImg src={product.images} />
+        </ImgBox>
       </Link>
 
       <ProductInfo>
