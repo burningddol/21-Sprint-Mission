@@ -1,15 +1,16 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 import profilePlaceholder from '../assets/profile.png';
 import getTimeAgo from '../utils/getTimeAgo';
 import KebabMenu from './KebabMenu';
-import arrowIc from '../assets/big_arrow_down.png';
+import CommentEditCard from './CommentEditCard';
 
 const CommentBox = styled.div`
   width: 1200px;
-  height: 100px;
+  height: ${(props) => (props.$isEditOpen ? '170px' : '100px')};
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: ${(props) => (props.$isEditOpen ? '15px 0' : '33px 0')};
   align-items: flex-start;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--gray-300);
@@ -50,6 +51,8 @@ const NickName = styled.span`
 `;
 
 export default function ProductComment({ productComment }) {
+  const [isEditOpen, setIsEditOpen] = useState(false);
+
   const writer = productComment?.writer;
 
   const updatedDate = productComment?.updatedAt
@@ -59,9 +62,18 @@ export default function ProductComment({ productComment }) {
   const diffHours = diffMs / (1000 * 60 * 60);
 
   return (
-    <CommentBox>
-      <KebabMenu />
-      <Comment>{productComment?.content}</Comment>
+    <CommentBox $isEditOpen={isEditOpen}>
+      <KebabMenu setIsEditOpen={setIsEditOpen} />
+
+      {!isEditOpen ? (
+        <Comment>{productComment?.content}</Comment>
+      ) : (
+        <CommentEditCard
+          existingComment={productComment?.content}
+          setIsEditOpen={setIsEditOpen}
+        />
+      )}
+
       <UserInfoBox>
         {writer?.image ? (
           <img src={writer?.image} />

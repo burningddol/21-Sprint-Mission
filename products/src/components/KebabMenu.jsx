@@ -31,6 +31,10 @@ const KebabOptionItem = styled.li`
     $firstOption ? '12px 12px 0 0' : $lastOption ? '0 0 12px 12px' : '0 0 0 0'};
   border-bottom: ${({ $firstOption }) => $firstOption && 'none'};
   border-top: ${({ $lastOption }) => $lastOption && 'none'};
+
+  &:hover {
+    color: var(--blue-100);
+  }
 `;
 
 const KebabUl = styled.ul`
@@ -41,7 +45,7 @@ const KebabUl = styled.ul`
   right: 0;
 `;
 
-export default function KebabMenu() {
+export default function KebabMenu({ setIsEditOpen }) {
   const [isOpen, setIsOpen] = useState(false);
   const kebabRef = useRef(null);
   const kebabOptions = [
@@ -65,12 +69,21 @@ export default function KebabMenu() {
       }
     };
 
-    document.addEventListener('mousedown', onClickOutside);
-    return () => document.removeEventListener('mousedown', onClickOutside);
+    document.addEventListener('click', onClickOutside);
+    return () => document.removeEventListener('click', onClickOutside);
   }, [isOpen]);
 
   const handleClick = (value) => {
-    alert(`과연 ${value}권한이 있을까요? \n다시 생각해보도록`);
+    switch (value) {
+      case '삭제하기':
+        alert(`과연 ${value}권한이 있을까요? \n다시 생각해보도록`);
+        break;
+      case '수정하기':
+        setIsEditOpen(true);
+        break;
+      default:
+        break;
+    }
   };
 
   return (

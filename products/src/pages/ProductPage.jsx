@@ -56,7 +56,7 @@ export default function ProductPage() {
           return;
         }
 
-        setNextCursor(commentsData.nextCursor);
+        setNextCursor(commentsData?.nextCursor);
       } catch (e) {
         console.log(e + '에러');
       } finally {
@@ -74,6 +74,7 @@ export default function ProductPage() {
         setCommentsPage={setCommentsPage}
         isLoadMoreOpen={isLoadMoreOpen}
         isLoading={isLoading}
+        nextCursor={nextCursor}
       />
       <Link to="/">
         <Button>

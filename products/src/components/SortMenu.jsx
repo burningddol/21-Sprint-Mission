@@ -20,6 +20,10 @@ const SortOptionItem = styled.li`
 
   border-radius: ${({ $firstOption, $lastOption }) =>
     $firstOption ? '12px 12px 0 0' : $lastOption ? '0 0 12px 12px' : '0 0 0 0'};
+
+  &:hover {
+    color: var(--blue-100);
+  }
 `;
 
 const ArrowIcon = styled.img`
