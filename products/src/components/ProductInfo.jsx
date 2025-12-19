@@ -2,6 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import styles from './ProductInfoBox.module.scss';
 import userIcon from '../assets/user_icon.png';
 import KebabMenu from './KebabMenu';
+import media from '../utils/media';
 
 const Container = styled.div`
   width: 1200px;
@@ -12,6 +13,19 @@ const Container = styled.div`
   align-items: flex-start;
   gap: 0 24px;
   border-bottom: 1px solid var(--gray-200);
+
+  ${media.nowTablet`
+    width: 696px;
+    height: 516px;
+  `};
+  ${media.nowMobile`
+    width: 344px;
+    height: 851px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+  `};
 `;
 
 const ProductImg = styled.img`
@@ -22,6 +36,16 @@ const ProductImg = styled.img`
   object-fit: cover;
   aspect-ratio: 1/1;
   transition: 0.3s cubic-bezier(0.15, 0, 0.2, 1);
+
+  ${media.nowTablet`
+    width: 340px;
+    height: 340px;
+  `};
+
+  ${media.nowMobile`
+    width: 343px;
+    height: 343px;
+  `};
 
   &:hover {
     transform: scale(1.04);
@@ -43,6 +67,16 @@ const ContentsBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 24px 0;
+
+  ${media.nowTablet`
+    width: 340px;
+    height: 484px;
+  `};
+  ${media.nowMobile`
+    width: 344px;
+    height: 468px;
+    margin-top:20px;
+  `};
 `;
 
 const NamePriceBox = styled.div`
@@ -53,6 +87,14 @@ const NamePriceBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  ${media.nowTablet`
+    height: 95px;
+  `};
+
+  ${media.nowMobile`
+    height: 80px;
+  `};
 `;
 
 const DescriptionBox = styled.div`
@@ -110,6 +152,10 @@ const HeartIcon = styled.svg`
   width: 32px;
   height: 32px;
 
+  ${media.nowTablet`
+    width: 27px;
+    height: 27px;
+  `};
   path {
     fill: none;
     stroke: #6b7280;
@@ -149,6 +195,12 @@ const FavoriteButton = styled.button`
   &:active ${HeartIcon} {
     animation: ${clickPop} 0.5s ease forwards;
   }
+
+  ${media.nowTablet`
+    width: 79px;
+    height: 32px;
+     gap: 0 2px;
+  `};
 `;
 
 export default function ProductInfo({ product }) {

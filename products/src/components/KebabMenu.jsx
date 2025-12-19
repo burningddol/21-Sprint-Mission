@@ -76,7 +76,7 @@ export default function KebabMenu({ setIsEditOpen }) {
   const handleClick = (value) => {
     switch (value) {
       case '삭제하기':
-        alert(`과연 ${value}권한이 있을까요? \n다시 생각해보도록`);
+        alert(`과연 ${value}권한이 있을까요?`);
         break;
       case '수정하기':
         setIsEditOpen(true);

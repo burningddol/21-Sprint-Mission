@@ -45,7 +45,7 @@ const Spinner = styled.span`
 
 const LoadMoreButton = styled.button`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 
   align-items: center;
   width: 100%;
@@ -80,7 +80,6 @@ const floatUpDown = keyframes`
   }
 `;
 const ArrowImg = styled.img`
-  padding: 0 150px 8px 150px;
   animation: ${floatUpDown} 1s ease-in-out infinite;
 `;
 
@@ -92,7 +91,7 @@ export default function LoadMoreCommentsButton({ isLoading, setCommentsPage }) {
         onClick={() => setCommentsPage((pre) => pre + 1)}
       >
         <ArrowImg src={arrowIc} />
-        질문이 ?개(api response에 총 질문갯수 만들어주세요) 더 남아 있습니다.
+        댓글 더보기
         <ArrowImg src={arrowIc} />
       </LoadMoreButton>
     );

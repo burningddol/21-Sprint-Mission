@@ -6,7 +6,7 @@ import KebabMenu from './KebabMenu';
 import CommentEditCard from './CommentEditCard';
 
 const CommentBox = styled.div`
-  width: 1200px;
+  width: 100%;
   height: ${(props) => (props.$isEditOpen ? '170px' : '100px')};
   display: flex;
   flex-direction: column;
