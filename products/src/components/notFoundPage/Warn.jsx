@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import warnIcon from '../assets/warn.svg';
+import warnIcon from '../../assets/warn.svg';
 import styles from './Warn.module.css';
 
 function Warn({ className, variant = '', title = '', description = '' }) {

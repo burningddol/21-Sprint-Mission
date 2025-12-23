@@ -1,8 +1,8 @@
 import styled, { keyframes } from 'styled-components';
-import styles from './ProductInfoBox.module.scss';
-import userIcon from '../assets/user_icon.png';
+import styles from './ProductInfo.module.scss';
+import userIcon from '../../assets/user_icon.png';
 import KebabMenu from './KebabMenu';
-import media from '../utils/media';
+import media from '../../utils/media';
 
 const Container = styled.div`
   width: 1200px;

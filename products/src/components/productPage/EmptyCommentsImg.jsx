@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import emptyCommentsImg from '../assets/for_empty.png';
-import media from '../utils/media';
+import emptyCommentsImg from '../../assets/for_empty.png';
+import media from '../../utils/media';
 
 const Img = styled.img`
   margin-bottom: 48px;

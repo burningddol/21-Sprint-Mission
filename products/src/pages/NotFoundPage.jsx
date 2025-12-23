@@ -1,24 +1,19 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Button from '../components/Button';
-import Warn from '../components/Warn';
-import styles from './NotFoundPage.module.css';
+
+import Warn from '../components/notFoundPage/Warn';
 
 const Container = styled.div`
- width: 100%;
+  width: 100%;
   max-width: 840px;
-  margin: 0 auto;
-
-  
+  margin: 80px auto;
 `;
 
-
-
-
+const Button = styled.button``;
 
 function NotFoundPage() {
   return (
-    <Container className={styles.container}>
+    <Container>
       <Warn
         variant="big"
         title="존재하지 않는 페이지에요."

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import styles from './ContentsInput.module.scss';
-import xIcon from '../assets/ic_X.png';
+import xIcon from '../../assets/ic_X.png';
 
 const Container = styled.div`
   margin-bottom: 110px;

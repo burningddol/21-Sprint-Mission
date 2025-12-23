@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import FileInput from '../components/FileInput';
-import ContentsInput from '../components/ContentsInput';
+import FileInput from '../components/addProductPage/FileInput';
+import ContentsInput from '../components/addProductPage/ContentsInput';
 import media from '../utils/media';
 
 const StyledForm = styled.form`

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import AllProductsListNav from './AllProductsListNav';
 import EachProduct from './EachProduct';
-import media from '../utils/media';
+import media from '../../utils/media';
 import EachProductSkeleton from './EachProductSkeleton';
 
 const ProductsGrid = styled.div`

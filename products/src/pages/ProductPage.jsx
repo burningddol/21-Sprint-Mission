@@ -5,8 +5,8 @@ import {
   getProductCommentsById,
 } from '../utils/getProductsApi';
 import styled from 'styled-components';
-import ProductInfo from '../components/ProductInfo';
-import ProductCommentsList from '../components/ProductCommentsList';
+import ProductInfo from '../components/productPage/ProductInfo';
+import ProductCommentsList from '../components/productPage/ProductCommentsList';
 import returnIc from '../assets/return.png';
 
 const Button = styled.button`

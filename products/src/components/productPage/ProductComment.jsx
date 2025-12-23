@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import profilePlaceholder from '../assets/profile.png';
-import getTimeAgo from '../utils/getTimeAgo';
+import profilePlaceholder from '../../assets/profile.png';
+import getTimeAgo from '../../utils/getTimeAgo';
 import KebabMenu from './KebabMenu';
 import CommentEditCard from './CommentEditCard';
+import { memo } from 'react';
 
 const CommentBox = styled.div`
   width: 100%;
@@ -50,7 +51,7 @@ const NickName = styled.span`
   color: var(--gray-600);
 `;
 
-export default function ProductComment({ productComment }) {
+const ProductComment = memo(function ProductComment({ productComment }) {
   const [isEditOpen, setIsEditOpen] = useState(false);
 
   const writer = productComment?.writer;
@@ -87,4 +88,6 @@ export default function ProductComment({ productComment }) {
       </UserInfoBox>
     </CommentBox>
   );
-}
+});
+
+export default ProductComment;

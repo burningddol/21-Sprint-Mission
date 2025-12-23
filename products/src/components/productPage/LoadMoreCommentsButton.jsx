@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import arrowIc from '../assets/big_arrow_down.png';
+import arrowIc from '../../assets/big_arrow_down.png';
 
 const OnLoadingButton = styled.button`
   display: flex;

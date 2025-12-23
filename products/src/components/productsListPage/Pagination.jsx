@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import usePaginationParam from '../hooks/usePaginationParam';
+import usePaginationParam from '../../hooks/usePaginationParam';
 
 const PageBox = styled.div`
   margin: 40px 0 60px 0;

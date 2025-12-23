@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
-import kebabIc from '../assets/kebab.png';
+import kebabIc from '../../assets/kebab.png';
 
 const KebabBox = styled.div`
   position: absolute;

@@ -3,7 +3,7 @@ import styles from './ProductCommentsList.module.scss';
 import ProductComment from './ProductComment';
 import LoadMoreCommentsButton from './LoadMoreCommentsButton';
 import EmptyCommentsImg from './EmptyCommentsImg';
-import media from '../utils/media';
+import media from '../../utils/media';
 import { useRef, useEffect, useState } from 'react';
 
 const Container = styled.div`

@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { getProductsList, getBestProductsList } from '../utils/getProductsApi';
 import styled from 'styled-components';
-import AllProductsList from '../components/AllProductsList';
-import BestProductsList from '../components/BestProductsList';
-import Pagination from '../components/Pagination';
+import AllProductsList from '../components/productsListPage/AllProductsList';
+import BestProductsList from '../components/productsListPage/BestProductsList';
+import Pagination from '../components/productsListPage/Pagination';
 import usePaginationParam from '../hooks/usePaginationParam';
 import useSortParam from '../hooks/useSortParam';
 import media from '../utils/media';

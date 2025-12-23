@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Skeleton from '../utils/Skeleton';
-import media from '../utils/media';
+import Skeleton from '../../utils/Skeleton';
+import media from '../../utils/media';
 
 const ProductBox = styled.div`
   height: 317px;

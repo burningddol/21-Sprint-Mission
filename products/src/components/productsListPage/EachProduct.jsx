@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import styles from './EachProduct.module.scss';
-import favoriteIcon from '../assets/favorite.png';
-import media from '../utils/media';
+import favoriteIcon from '../../assets/favorite.png';
+import media from '../../utils/media';
 
 const ProductBox = styled.div`
   height: 317px;

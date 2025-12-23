@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import styles from './FileInput.module.scss';
-import placeHolderImage from '../assets/place_holder_image.png';
-import xIcon from '../assets/ic_X.png';
-import media from '../utils/media';
+import placeHolderImage from '../../assets/place_holder_image.png';
+import xIcon from '../../assets/ic_X.png';
+import media from '../../utils/media';
 
 const ImgBox = styled.div`
   display: flex;

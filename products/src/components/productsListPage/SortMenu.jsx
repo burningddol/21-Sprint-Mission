@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from './SortMenu.module.scss';
 import styled from 'styled-components';
-import arrowIcon from '../assets/arrow.png';
-import useSortParam from '../hooks/useSortParam';
-import media from '../utils/media';
+import arrowIcon from '../../assets/arrow.png';
+import useSortParam from '../../hooks/useSortParam';
+import media from '../../utils/media';
 
 const SortOptionItem = styled.li`
   width: 130px;
