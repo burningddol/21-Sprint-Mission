@@ -214,7 +214,7 @@ export default function ProductInfo({ product }) {
   return (
     <Container>
       <ImgBox>
-        <ProductImg src={product?.images?.[0]} />
+        <ProductImg src={product.images?.[0]} />
       </ImgBox>
       <ContentsBox>
         <KebabMenu />

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import styles from './ProductCommentsList.module.scss';
+import styles from './ProductCommentList.module.scss';
 import ProductComment from './ProductComment';
 import LoadMoreCommentsButton from './LoadMoreCommentsButton';
 import EmptyCommentsImg from './EmptyCommentsImg';
@@ -36,7 +36,7 @@ const CommentsBox = styled.div`
   gap: 26px 0;
 `;
 
-export default function ProductCommentsList({
+export default function ProductCommentList({
   productComments,
   setCommentsPage,
   isLoadMoreOpen,

@@ -6,7 +6,7 @@ import {
 } from '../utils/getProductsApi';
 import styled from 'styled-components';
 import ProductInfo from '../components/productPage/ProductInfo';
-import ProductCommentsList from '../components/productPage/ProductCommentsList';
+import ProductCommentList from '../components/productPage/ProductCommentList';
 import returnIc from '../assets/return.png';
 
 const Button = styled.button`
@@ -69,7 +69,7 @@ export default function ProductPage() {
   return (
     <section>
       <ProductInfo product={product} />
-      <ProductCommentsList
+      <ProductCommentList
         productComments={productComments}
         setCommentsPage={setCommentsPage}
         isLoadMoreOpen={isLoadMoreOpen}

@@ -51,12 +51,12 @@ const NickName = styled.span`
   color: var(--gray-600);
 `;
 
-const ProductComment = memo(function ProductComment({ productComment }) {
+function ProductComment({ productComment }) {
   const [isEditOpen, setIsEditOpen] = useState(false);
 
-  const writer = productComment?.writer;
+  const writer = productComment.writer;
 
-  const updatedDate = productComment?.updatedAt
+  const updatedDate = productComment.updatedAt
     ? new Date(productComment.updatedAt)
     : null;
   const diffMs = updatedDate ? new Date() - updatedDate : 0;
@@ -67,27 +67,27 @@ const ProductComment = memo(function ProductComment({ productComment }) {
       <KebabMenu setIsEditOpen={setIsEditOpen} />
 
       {!isEditOpen ? (
-        <Comment>{productComment?.content}</Comment>
+        <Comment>{productComment.content}</Comment>
       ) : (
         <CommentEditCard
-          existingComment={productComment?.content}
+          existingComment={productComment.content}
           setIsEditOpen={setIsEditOpen}
         />
       )}
 
       <UserInfoBox>
-        {writer?.image ? (
-          <img src={writer?.image} />
+        {writer.image ? (
+          <img src={writer.image} />
         ) : (
           <img src={profilePlaceholder} />
         )}
         <FlexBox>
-          <NickName>{writer?.nickname}</NickName>
+          <NickName>{writer.nickname}</NickName>
           {getTimeAgo(diffHours)}
         </FlexBox>
       </UserInfoBox>
     </CommentBox>
   );
-});
+}
 
 export default ProductComment;
