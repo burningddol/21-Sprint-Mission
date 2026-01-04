@@ -15,6 +15,31 @@ const StyledForm = styled(Form)`
 export default function LoginForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const CustomInputValues: {
+    label: string;
+    name: string;
+    type: string;
+    placeholder: string;
+    autoComplete: string;
+    forPassword?: boolean;
+  }[] = [
+    {
+      label: '이메일',
+      name: 'email',
+      type: 'email',
+      placeholder: 'codeit@email.com',
+      autoComplete: 'email',
+    },
+    {
+      label: '비밀번호',
+      name: 'password',
+      type: 'password',
+      placeholder: '비밀번호를 입력하세요',
+      autoComplete: 'new-password',
+      forPassword: true,
+    },
+  ];
+
   const onSubmit = async (
     values: LoginFormValues,
     actions: FormikHelpers<LoginFormValues>
@@ -39,22 +64,9 @@ export default function LoginForm() {
     >
       {({ isSubmitting, isValid, dirty }) => (
         <StyledForm>
-          <CustomInput
-            label="이메일"
-            name="email"
-            type="email"
-            placeholder="codeit@email.com"
-            autoComplete="email"
-          />
-
-          <CustomInput
-            label="비밀번호"
-            name="password"
-            type="password"
-            placeholder="비밀번호를 입력하세요"
-            autoComplete="current-password"
-            forPassword
-          />
+          {CustomInputValues.map((value, index) => (
+            <CustomInput key={index} {...value} />
+          ))}
 
           <Button
             width="100%"
