@@ -15,7 +15,7 @@ const StyledForm = styled(Form)`
 export default function LoginForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const CustomInputValues: {
+  const CustomInputProps: {
     label: string;
     name: string;
     type: string;
@@ -64,8 +64,8 @@ export default function LoginForm() {
     >
       {({ isSubmitting, isValid, dirty }) => (
         <StyledForm>
-          {CustomInputValues.map((value, index) => (
-            <CustomInput key={index} {...value} />
+          {CustomInputProps.map((props, index) => (
+            <CustomInput key={index} {...props} />
           ))}
 
           <Button
