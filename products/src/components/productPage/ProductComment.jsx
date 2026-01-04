@@ -4,7 +4,8 @@ import profilePlaceholder from '../../assets/profile.png';
 import getTimeAgo from '../../utils/getTimeAgo';
 import KebabMenu from './KebabMenu';
 import CommentEditCard from './CommentEditCard';
-import { memo } from 'react';
+
+import computeDiffHours from '../../utils/computeDiffHours';
 
 const CommentBox = styled.div`
   width: 100%;
@@ -56,11 +57,7 @@ function ProductComment({ productComment }) {
 
   const writer = productComment.writer;
 
-  const updatedDate = productComment.updatedAt
-    ? new Date(productComment.updatedAt)
-    : null;
-  const diffMs = updatedDate ? new Date() - updatedDate : 0;
-  const diffHours = diffMs / (1000 * 60 * 60);
+  const diffHours = computeDiffHours(productComment?.updatedAt);
 
   return (
     <CommentBox $isEditOpen={isEditOpen}>
@@ -76,11 +73,8 @@ function ProductComment({ productComment }) {
       )}
 
       <UserInfoBox>
-        {writer.image ? (
-          <img src={writer.image} />
-        ) : (
-          <img src={profilePlaceholder} />
-        )}
+        <img src={writer.image ?? profilePlaceholder} />
+
         <FlexBox>
           <NickName>{writer.nickname}</NickName>
           {getTimeAgo(diffHours)}

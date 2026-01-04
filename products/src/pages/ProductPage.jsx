@@ -7,7 +7,7 @@ import {
 import styled from 'styled-components';
 import ProductInfo from '../components/productPage/ProductInfo';
 import ProductCommentList from '../components/productPage/ProductCommentList';
-import returnIc from '../assets/return.png';
+import goBackIcon from '../assets/goBack.png';
 
 const Button = styled.button`
   display: flex;
@@ -27,6 +27,8 @@ const Button = styled.button`
   color: var(--gray-100);
 `;
 
+const COMMENTS_LIMIT = 6;
+
 export default function ProductPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [product, setProduct] = useState({});
@@ -38,15 +40,13 @@ export default function ProductPage() {
   const navigate = useNavigate();
   const { productId } = useParams();
 
-  const commentsLimit = 6;
-
   useEffect(() => {
     async function loadProductInfo() {
       try {
         setIsLoading(true);
         const [product, commentsData] = await Promise.all([
           getProductById(productId),
-          getProductCommentsById(productId, commentsLimit, nextCursor),
+          getProductCommentsById(productId, COMMENTS_LIMIT, nextCursor),
         ]);
         setProduct(product);
         setProductComments((prev) => [...prev, ...commentsData.list]);
@@ -56,7 +56,7 @@ export default function ProductPage() {
           return;
         }
 
-        setNextCursor(commentsData?.nextCursor);
+        setNextCursor(commentsData.nextCursor);
       } catch (e) {
         console.log(e + '에러');
       } finally {
@@ -65,6 +65,8 @@ export default function ProductPage() {
     }
     loadProductInfo();
   }, [commentsPage]);
+
+  if (Object.keys(product).length === 0) return;
 
   return (
     <section>
@@ -79,7 +81,7 @@ export default function ProductPage() {
       <Link to="/">
         <Button>
           목록으로 돌아가기
-          <img src={returnIc} />
+          <img src={goBackIcon} />
         </Button>
       </Link>
     </section>
