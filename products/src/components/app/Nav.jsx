@@ -1,9 +1,9 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import pandaFace from '../assets/panda_face.png';
-import userIcon from '../assets/user_icon.png';
+import pandaFace from '../../assets/panda_face.png';
+import userIcon from '../../assets/user_icon.png';
 import styled from 'styled-components';
 import styles from './Nav.module.scss';
-import media from '../utils/media';
+import media from '../../utils/media';
 
 const NavContainer = styled.div`
   display: flex;

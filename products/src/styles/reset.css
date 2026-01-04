@@ -131,6 +131,7 @@ table {
 
 button {
   cursor: pointer;
+  padding: 0;
 }
 
 * {
