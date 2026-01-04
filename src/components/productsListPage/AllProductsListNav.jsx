@@ -115,7 +115,7 @@ export default function AllProductsListNav({ search, setSearch }) {
             />
           </form>
         </div>
-        <Button as={Link} to="/addproduct">
+        <Button as={Link} to="/products/addproduct">
           상품 등록하기
         </Button>
         <div className={styles.positionBox}>
