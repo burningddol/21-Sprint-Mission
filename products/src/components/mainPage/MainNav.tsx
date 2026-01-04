@@ -13,6 +13,8 @@ const NavBox = styled.div`
   justify-content: space-between;
   align-items: center;
   position: fixed;
+  top: 0;
+  left: 0;
   background-color: var(--white);
   ${media.nowTablet`
     padding: 0 24px;

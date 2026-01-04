@@ -8,7 +8,7 @@ import { signUpSchema, SignUpFormValues } from '@/utils/authSchema';
 const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
-  gap: 24px 0;
+  width: 100%;
 `;
 
 export default function SignUpForm() {
@@ -64,6 +64,7 @@ export default function SignUpForm() {
             name="nickname"
             type="text"
             placeholder="닉네임을 입력해주세요"
+            autoComplete="username"
           />
 
           <CustomInput

@@ -3,13 +3,29 @@ import pandaLogo from '@/assets/panda_title_big.png';
 import LoginForm from '@/components/authPage/LoginForm';
 import SimpleLoginForm from '@/components/authPage/SimpleLoginForm';
 import { Link } from 'react-router-dom';
+import media from '@/utils/media';
 
 const Header = styled.header`
   width: 396px;
   height: 132px;
   margin: 150px auto 40px auto;
+
+  ${media.nowMobile`
+    width: 198px;
+    height: 66px;
+    margin: 150px auto 24px auto;
+  `}
 `;
 
+const StyledImg = styled.img`
+  width: 396px;
+  height: 132px;
+
+  ${media.nowMobile`
+    width: 198px;
+    height: 66px;
+  `};
+`;
 const Main = styled.main`
   width: 640px;
 
@@ -17,6 +33,11 @@ const Main = styled.main`
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
+
+  ${media.nowMobile`
+    width: 343px;
+    
+  `};
 `;
 
 const StyledSpan = styled.span`
@@ -36,7 +57,9 @@ export default function LoginPage() {
   return (
     <>
       <Header>
-        <img src={pandaLogo} alt="판다얼굴로고" />
+        <Link to="/">
+          <StyledImg src={pandaLogo} alt="판다얼굴로고" />
+        </Link>
       </Header>
       <Main>
         <LoginForm />

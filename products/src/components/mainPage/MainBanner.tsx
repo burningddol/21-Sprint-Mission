@@ -11,7 +11,7 @@ const BannerBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-
+  margin-top: 70px;
   ${media.nowTablet`
     height: 771px;
    

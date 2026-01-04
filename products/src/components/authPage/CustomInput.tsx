@@ -10,7 +10,7 @@ interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Container = styled.div`
-  width: 640px;
+  width: 100%;
   margin-bottom: 24px;
   display: flex;
   flex-direction: column;
@@ -78,7 +78,7 @@ export default function CustomInput({
   ...props
 }: CustomInputProps) {
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [field, meta] = useField(props.name);
+  const [field, meta] = useField(props.name!);
   const hasError = meta.touched && !!meta.error;
   const passwordState: 'text' | 'password' = isVisible ? 'text' : 'password';
 
