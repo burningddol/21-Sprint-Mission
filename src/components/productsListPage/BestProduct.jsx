@@ -55,18 +55,18 @@ const ImgBox = styled.div`
 export default function BestProduct({ product }) {
   return (
     <ProductBox>
-      <Link to={`/${product.id}`}>
+      <Link to={`/products/${product.id}`}>
         <ImgBox>
           <BestProductImg src={product.images} />
         </ImgBox>
       </Link>
 
       <ProductInfo>
-        <Link to={`/${product.id}`}>
+        <Link to={`/products/${product.id}`}>
           <span className={styles.name}> {product.name} </span>
         </Link>
 
-        <Link to={`/${product.id}`}>
+        <Link to={`/products/${product.id}`}>
           <span className={styles.price}> {product.price}원 </span>
         </Link>
 
