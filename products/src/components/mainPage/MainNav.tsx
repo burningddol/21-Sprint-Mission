@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import pandaTitle from '@/assets/panda_title.png';
 import titleImg from '@/assets/onlyTitle.png';
 import Button from '../common/Button';
+import { Link } from 'react-router-dom';
 
 const NavBox = styled.div`
   width: 100%;
@@ -11,7 +12,8 @@ const NavBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  position: fixed;
+  background-color: var(--white);
   ${media.nowTablet`
     padding: 0 24px;
   `}
@@ -37,15 +39,17 @@ export default function MainNav() {
     <header>
       <NavBox>
         <TitleLogo />
-        <Button
-          width="128px"
-          height="48px"
-          $borderRadius="8px"
-          fontSize="16px"
-          fontWeight="400"
-        >
-          로그인
-        </Button>
+        <Link to="/login">
+          <Button
+            width="128px"
+            height="48px"
+            $borderRadius="8px"
+            fontSize="16px"
+            fontWeight="400"
+          >
+            로그인
+          </Button>
+        </Link>
       </NavBox>
     </header>
   );

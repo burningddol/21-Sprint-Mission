@@ -1,8 +1,8 @@
 // Button.tsx
 import styled from 'styled-components';
-import React from 'react';
+import { ButtonHTMLAttributes } from 'react';
 import media from '@/utils/media';
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   width?: string;
   $maxWidth?: string;
   height?: string;
@@ -34,11 +34,21 @@ const StyledButton = styled.button<ButtonProps>`
 
   &:hover {
     background-color: ${({ bgColor }) => bgColor || 'var(--blue-200)'};
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 
   &:active {
-    transform: scale(0.95);
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: var(--gray-400);
+  }
+
+  &:disabled:hover,
+  &:disabled:active {
+    transform: none;
   }
 
   ${media.nowMobile`
