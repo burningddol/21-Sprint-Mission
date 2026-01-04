@@ -21,7 +21,7 @@ function Main() {
             <Route path=":productId" element={<ProductPage />} />
             <Route path="addproduct" element={<AddProductPage />} />
           </Route>
-          <Route path="boards" element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
