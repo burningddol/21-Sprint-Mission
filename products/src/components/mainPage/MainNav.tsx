@@ -40,7 +40,7 @@ export default function MainNav() {
         <Button
           width="128px"
           height="48px"
-          borderRadius="8px"
+          $borderRadius="8px"
           fontSize="16px"
           fontWeight="400"
         >

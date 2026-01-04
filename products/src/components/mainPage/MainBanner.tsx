@@ -80,9 +80,9 @@ export default function MainBanner({ top = false, bottom = false }: location) {
               <TextBox>일상의 모든 물건을 거래해 보세요</TextBox>
               <Button
                 width="100%"
-                maxWidth="357px"
+                $maxWidth="357px"
                 height="56px"
-                borderRadius="40px"
+                $borderRadius="40px"
                 fontSize="20px"
                 color="var(--gray-50)"
               >
