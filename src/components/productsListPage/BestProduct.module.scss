@@ -1,0 +1,27 @@
+.name {
+  font-family: 'pretendard';
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--gray-800);
+}
+
+.price {
+  font-family: 'pretendard';
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gray-800);
+}
+
+.favorite {
+  font-family: 'pretendard';
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--gray-600);
+  margin-left: 5px;
+}
+
+.favoriteBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}

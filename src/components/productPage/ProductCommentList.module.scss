@@ -1,0 +1,44 @@
+.title {
+  font-family: 'pretendard';
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gray-900);
+  display: flex;
+  align-items: center;
+  height: 26px;
+  margin-bottom: 9px;
+}
+
+.commentArea {
+  height: 104px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--gray-100);
+  padding: 16px 24px;
+  font-family: 'pretendard';
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--gray-500);
+}
+
+.btnBox {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.submitBtn {
+  width: 74px;
+  height: 42px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--gray-400);
+  font-family: 'pretendard';
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--gray-100);
+}
+
+.submitBtn.active {
+  background-color: var(--blue-100);
+}
