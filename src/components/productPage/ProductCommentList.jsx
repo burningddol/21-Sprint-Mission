@@ -56,7 +56,7 @@ export default function ProductCommentList({
       submitBtnRef.current.classList.remove(styles.active);
     }
   };
-
+  console.log(nextCursor);
   return (
     <Container>
       <StyledForm>

@@ -21,7 +21,7 @@ export const loginSchema = yup.object({
 
 export type LoginFormValues = yup.InferType<typeof loginSchema>;
 
-export const signUpSchema = yup.object().shape({
+export const signUpSchema = yup.object({
   email: yup
     .string()
     .email('잘못된 이메일입니다.')
