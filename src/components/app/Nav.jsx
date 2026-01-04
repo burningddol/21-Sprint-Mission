@@ -1,9 +1,11 @@
-import { NavLink, useLocation } from 'react-router-dom';
-import pandaFace from '../../assets/panda_face.png';
+import { NavLink, useLocation, Link } from 'react-router-dom';
+
 import userIcon from '../../assets/user_icon.png';
 import styled from 'styled-components';
 import styles from './Nav.module.scss';
 import media from '../../utils/media';
+import pandaTitle from '@/assets/panda_title.png';
+import titleImg from '@/assets/title_productPage.png';
 
 const NavContainer = styled.div`
   display: flex;
@@ -23,35 +25,24 @@ const NavContainer = styled.div`
     `}
 `;
 
-const LogoBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+const TitleLogo = styled.div`
   width: 153px;
   height: 51px;
+  background-image: url(${pandaTitle});
   margin-right: 40px;
 
-  ${media.nowMobile`
-    margin-right: 0;
-    width: 82px;
-    `}
-`;
-const PandaImg = styled.img`
-  margin-right: 3px;
-  ${media.nowMobile`
-    display: none;
-    `}
-`;
-
-const LogoText = styled.span`
-  font-family: 'ROKAFSans';
-  font-size: 25.63px;
-  font-weight: 700;
-  color: var(--blue-100);
+  ${media.nowTablet`
+    margin-right: 30px;
+  `}
 
   ${media.nowMobile`
-    font-size: 20.2px;
-    `}
+    width: 85px;
+    margin-right: 0px;
+    background-image: url(${titleImg});
+    background-repeat: no-repeat;
+    background-position: center;
+
+  `}
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -66,14 +57,6 @@ const StyledNavLink = styled(NavLink)`
   padding: 12px 10px;
   text-align: center;
   vertical-align: middle;
-
-  ${(props) =>
-    props['data-force-active'] &&
-    `
-    
-    color: var(--blue-100);
-    
-  `}
 
   &.active {
     color: var(--blue-100);
@@ -90,23 +73,14 @@ const StyledNavLink = styled(NavLink)`
 export default function Nav() {
   const location = useLocation();
 
-  const isActive =
-    location.pathname === '/addproduct' || /^\/\d+$/.test(location.pathname);
-
   return (
     <NavContainer>
       <div className={styles.left}>
-        <LogoBox>
-          <PandaImg src={pandaFace} alt="판다마켓 로고 판다얼굴" />
-          <LogoText>판다마켓</LogoText>
-        </LogoBox>
+        <Link to="/">
+          <TitleLogo />
+        </Link>
         <StyledNavLink to="/boards"> 자유게시판 </StyledNavLink>
-        <StyledNavLink
-          to="/"
-          data-force-active={isActive} //특정 주소에서 active시키는 커스텀 class
-        >
-          중고마켓
-        </StyledNavLink>
+        <StyledNavLink to="/products">중고마켓</StyledNavLink>
       </div>
       <img src={userIcon} alt="유저인터페이스 아이콘" />
     </NavContainer>

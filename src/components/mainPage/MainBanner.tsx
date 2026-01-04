@@ -3,6 +3,7 @@ import bannerImg from '@/assets/banner_panda.png';
 import bannerBottomImg from '@/assets/banner_panda_bottom.png';
 import Button from '../common/Button';
 import media from '@/utils/media';
+import { Link } from 'react-router-dom';
 
 const BannerBox = styled.div`
   width: 100%;
@@ -173,6 +174,12 @@ const ImgContentBottom = styled.img`
   `}
 `;
 
+const StyledLink = styled(Link)`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
 interface location {
   top?: boolean;
   bottom?: boolean;
@@ -187,19 +194,21 @@ export default function MainBanner({ top = false, bottom = false }: location) {
           <ContentsBox>
             <TextContents>
               <TextBox>일상의 모든 물건을 거래해 보세요</TextBox>
-              <Button
-                width="100%"
-                $maxWidth="357px"
-                height="56px"
-                $borderRadius="40px"
-                fontSize="20px"
-                color="var(--gray-50)"
-                $mobileWidth="240px"
-                $mobileHeight="48px"
-                $mobileFontSize="18px"
-              >
-                구경하러 가기
-              </Button>
+              <StyledLink to="/products">
+                <Button
+                  width="100%"
+                  $maxWidth="357px"
+                  height="56px"
+                  $borderRadius="40px"
+                  fontSize="20px"
+                  color="var(--gray-50)"
+                  $mobileWidth="240px"
+                  $mobileHeight="48px"
+                  $mobileFontSize="18px"
+                >
+                  구경하러 가기
+                </Button>
+              </StyledLink>
             </TextContents>
             <ImgContent src={bannerImg} alt="판다가 인사하는 그림" />
           </ContentsBox>
