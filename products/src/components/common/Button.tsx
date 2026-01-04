@@ -1,7 +1,7 @@
 // Button.tsx
 import styled from 'styled-components';
 import React from 'react';
-
+import media from '@/utils/media';
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   width?: string;
   $maxWidth?: string;
@@ -11,6 +11,9 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   fontSize?: string;
   fontWeight?: string;
   $borderRadius?: string;
+  $mobileWidth?: string;
+  $mobileHeight?: string;
+  $mobileFontSize?: string;
 }
 
 const StyledButton = styled.button<ButtonProps>`
@@ -37,6 +40,12 @@ const StyledButton = styled.button<ButtonProps>`
   &:active {
     transform: scale(0.95);
   }
+
+  ${media.nowMobile`
+    width: ${({ $mobileWidth, width }) => $mobileWidth || width};
+    height: ${({ $mobileHeight, height }) => $mobileHeight || height};
+    font-size: ${({ $mobileFontSize, fontSize }) => $mobileFontSize || fontSize};
+  `}
 `;
 
 function Button({ ...props }: ButtonProps) {

@@ -3,12 +3,31 @@ import hotItem from '@/assets/hot_item.png';
 import searchItem from '@/assets/search_item.png';
 import registerItem from '@/assets/register_item.png';
 import Article from './Article';
+import media from '@/utils/media';
 
 const List = styled.section`
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   height: 2160px;
   font-family: 'pretendard';
+
+  ${media.nowTablet`
+    box-sizing: content-box;
+    padding: 20px 0 40px 0;
+    height: 2228px;
+    gap: 52px 0;
+    background-color: var(--color-section-bg);
+    
+  `}
+
+  ${media.nowMobile`
+    box-sizing: content-box;
+    padding: 50px 0 100px 0;
+    height: 1310px;
+    gap: 40px 0;
+
+    
+  `}
 `;
 
 export default function ArticleList() {
@@ -23,7 +42,7 @@ export default function ArticleList() {
       articleImg: hotItem,
       imgAlt: '판다 두마리가 옷구경하는 그림',
       articleTitle: 'Hot item',
-      articleContent: '인기 상품을 확인해 보세요',
+      articleContent: '인기 상품을 확인해보세요',
       articleSubContent:
         '가장 HOT한 중고거래 물품을 판다 마켓에서 확인해 보세요',
     },
@@ -45,9 +64,9 @@ export default function ArticleList() {
 
   return (
     <List>
-      <Article articleInfo={articleInfo[0]} />
-      <Article articleInfo={articleInfo[1]} reverse />
-      <Article articleInfo={articleInfo[2]} />
+      {articleInfo.map((article, index) => (
+        <Article key={index} articleInfo={article} reverse={index == 1} />
+      ))}
     </List>
   );
 }

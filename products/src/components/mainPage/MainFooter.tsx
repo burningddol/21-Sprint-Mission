@@ -4,6 +4,7 @@ import faceBookIcon from '@/assets/facebook.png';
 import twitterIcon from '@/assets/twitter.png';
 import youtubeIcon from '@/assets/youtube.png';
 import instagramIcon from '@/assets/instagram.png';
+import media from '@/utils/media';
 
 const Footer = styled.footer`
   width: 100%;
@@ -23,10 +24,24 @@ const ContentsBox = styled.div`
   font-family: 'pretendard';
   font-size: 16px;
   font-weight: 400;
+
+  ${media.nowTablet`
+    width: 536px;
+  `}
+
+  ${media.nowMobile`
+    width: 311px;
+  `}
 `;
 
 const FirmInfo = styled.span`
   color: var(--gray-400);
+
+  ${media.nowMobile`
+    position: absolute;
+    top:80px;
+
+  `}
 `;
 
 const FooterMenu = styled.span`
