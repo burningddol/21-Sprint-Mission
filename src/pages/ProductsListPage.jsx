@@ -32,7 +32,7 @@ export default function ProductsPage() {
   const [debouncedSearch, setDebouncedSearch] = useState(search);
   const { currentPage, setCurrentPage } = usePaginationParam();
 
-  const isLoading = products.length == 0;
+  const isLoading = products.length == 0 && !search;
   const isLoadingBest = bestProducts.length == 0;
 
   // 검색 입력 시 데이터 로드 디바운스

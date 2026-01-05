@@ -12,33 +12,33 @@ const StyledForm = styled(Form)`
   flex-direction: column;
 `;
 
+const CUSTOM_PROPS: {
+  label: string;
+  name: string;
+  type: string;
+  placeholder: string;
+  autoComplete: string;
+  forPassword?: boolean;
+}[] = [
+  {
+    label: '이메일',
+    name: 'email',
+    type: 'email',
+    placeholder: 'codeit@email.com',
+    autoComplete: 'email',
+  },
+  {
+    label: '비밀번호',
+    name: 'password',
+    type: 'password',
+    placeholder: '비밀번호를 입력하세요',
+    autoComplete: 'new-password',
+    forPassword: true,
+  },
+];
+
 export default function LoginForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const CustomInputProps: {
-    label: string;
-    name: string;
-    type: string;
-    placeholder: string;
-    autoComplete: string;
-    forPassword?: boolean;
-  }[] = [
-    {
-      label: '이메일',
-      name: 'email',
-      type: 'email',
-      placeholder: 'codeit@email.com',
-      autoComplete: 'email',
-    },
-    {
-      label: '비밀번호',
-      name: 'password',
-      type: 'password',
-      placeholder: '비밀번호를 입력하세요',
-      autoComplete: 'new-password',
-      forPassword: true,
-    },
-  ];
 
   const onSubmit = async (
     values: LoginFormValues,
@@ -64,7 +64,7 @@ export default function LoginForm() {
     >
       {({ isSubmitting, isValid, dirty }) => (
         <StyledForm>
-          {CustomInputProps.map((props, index) => (
+          {CUSTOM_PROPS.map((props, index) => (
             <CustomInput key={index} {...props} />
           ))}
 

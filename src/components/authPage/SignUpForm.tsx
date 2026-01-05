@@ -11,48 +11,48 @@ const StyledForm = styled(Form)`
   width: 100%;
 `;
 
+const CUSTOM_PROPS: {
+  label: string;
+  name: string;
+  type: string;
+  placeholder: string;
+  autoComplete: string;
+  forPassword?: boolean;
+}[] = [
+  {
+    label: '이메일',
+    name: 'email',
+    type: 'email',
+    placeholder: 'codeit@email.com',
+    autoComplete: 'email',
+  },
+  {
+    label: '닉네임',
+    name: 'nickname',
+    type: 'text',
+    placeholder: '닉네임을 입력해주세요',
+    autoComplete: 'username',
+  },
+  {
+    label: '비밀번호',
+    name: 'password',
+    type: 'password',
+    placeholder: '비밀번호를 입력하세요',
+    autoComplete: 'new-password',
+    forPassword: true,
+  },
+  {
+    label: '비밀번호 확인',
+    name: 'confirmPassword',
+    type: 'confirmPassword',
+    placeholder: '비밀번호를 다시 한 번 입력하세요',
+    autoComplete: 'new-password',
+    forPassword: true,
+  },
+];
+
 export default function SignUpForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const CustomInputProps: {
-    label: string;
-    name: string;
-    type: string;
-    placeholder: string;
-    autoComplete: string;
-    forPassword?: boolean;
-  }[] = [
-    {
-      label: '이메일',
-      name: 'email',
-      type: 'email',
-      placeholder: 'codeit@email.com',
-      autoComplete: 'email',
-    },
-    {
-      label: '닉네임',
-      name: 'nickname',
-      type: 'text',
-      placeholder: '닉네임을 입력해주세요',
-      autoComplete: 'username',
-    },
-    {
-      label: '비밀번호',
-      name: 'password',
-      type: 'password',
-      placeholder: '비밀번호를 입력하세요',
-      autoComplete: 'new-password',
-      forPassword: true,
-    },
-    {
-      label: '비밀번호 확인',
-      name: 'confirmPassword',
-      type: 'confirmPassword',
-      placeholder: '비밀번호를 다시 한 번 입력하세요',
-      autoComplete: 'new-password',
-      forPassword: true,
-    },
-  ];
 
   const onSubmit = async (
     values: SignUpFormValues,
@@ -91,7 +91,7 @@ export default function SignUpForm() {
     >
       {({ isSubmitting, isValid, dirty }) => (
         <StyledForm>
-          {CustomInputProps.map((props, index) => (
+          {CUSTOM_PROPS.map((props, index) => (
             <CustomInput key={index} {...props} />
           ))}
 
