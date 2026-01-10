@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import plus from "@/assets/images/plus.svg";
+
+import plusWhite from "@/assets/images/plus-white.svg";
 import Button from "@/share/components/button";
 import { useRef, useState } from "react";
 import { addItem } from "@/share/axios";
@@ -10,6 +11,8 @@ export default function AddForm() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { addToDoItem } = useSeparatedItems();
+
+  const btnBgColor = isLoading ? "var(--slate-200)" : "var(--violet-600)";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,9 +43,10 @@ export default function AddForm() {
       />
       <Button
         icon={!isLoading}
-        src={plus}
+        src={plusWhite}
         type="submit"
-        bgColor="var(--slate-200)"
+        bgColor={btnBgColor}
+        color="var(--white)"
         alt="더하기모양그림"
         disabled={isLoading}
       >
@@ -80,4 +84,8 @@ const AddInput = styled.input`
   box-shadow:
     3px 3px 0 1px var(--slate-900),
     0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  &:focus {
+    outline: none;
+  }
 `;

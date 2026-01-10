@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import logo from "@/assets/images/logo.svg";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Navigation() {
   return (
     <Header>
       <Container>
-        <Image src={logo} alt="로고" priority />
+        <Link href="/">
+          <Image src={logo} alt="로고" priority />
+        </Link>
       </Container>
     </Header>
   );
