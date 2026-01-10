@@ -54,4 +54,8 @@ const SubmitButton = styled.button<SubmitButtonStyleProps>`
       3px 3px 0 1px var(--slate-900),
       0px 4px 4px rgba(0, 0, 0, 0.25);
   }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 `;

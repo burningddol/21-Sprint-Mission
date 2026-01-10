@@ -1,13 +1,52 @@
 import styled from "styled-components";
 import plus from "@/assets/images/plus.svg";
-import Button from "@/share/global-style/components/button";
+import Button from "@/share/components/button";
+import { useRef, useState } from "react";
+import { addItem } from "@/share/axios";
+import { useSeparatedItems } from "@/share/zustand";
+import { Spinner } from "@/share/components/spinner";
 
 export default function AddForm() {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { addToDoItem } = useSeparatedItems();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!inputRef.current) return alert("조금 뒤 다시 시도하세요");
+
+    if (!inputRef.current?.value) return alert("1글자 이상 입력해주세요");
+
+    const title: string = inputRef.current.value;
+    setIsLoading(true);
+    try {
+      const data = await addItem(title);
+      const newItem = { id: data.id, name: title, isCompleted: false };
+      addToDoItem(newItem);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setIsLoading(false);
+      inputRef.current.value = "";
+    }
+  };
+
   return (
-    <StyledForm>
-      <AddInput placeholder="할 일을 입력해주세요" />
-      <Button icon src={plus} bgColor="var(--slate-200)" alt="더하기모양그림">
-        추가하기
+    <StyledForm onSubmit={handleSubmit}>
+      <AddInput
+        name="title"
+        placeholder="할 일을 입력해주세요"
+        ref={inputRef}
+      />
+      <Button
+        icon={!isLoading}
+        src={plus}
+        type="submit"
+        bgColor="var(--slate-200)"
+        alt="더하기모양그림"
+        disabled={isLoading}
+      >
+        {isLoading ? <Spinner /> : "추가하기"}
       </Button>
     </StyledForm>
   );

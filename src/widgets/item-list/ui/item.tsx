@@ -1,16 +1,41 @@
 import styled from "styled-components";
 import check from "@/assets/images/check.svg";
+import { toggleItem } from "@/share/axios";
+import { useSeparatedItems } from "@/share/zustand";
 
+type Item = {
+  id: number;
+  name?: string;
+  isCompleted: boolean;
+};
 interface Props {
   toDo: boolean;
+  item: Item;
 }
 
-export default function Item({ toDo }: Props) {
+export default function Item({ toDo, item }: Props) {
+  const { addToDoItem, addDoneItem, removeToDoItem, removeDoneItem } =
+    useSeparatedItems();
+
+  const handleClick = () => {
+    toggleItem(item.id, item.isCompleted);
+
+    if (!item.isCompleted) {
+      removeToDoItem(item.id);
+      addDoneItem(item);
+      item.isCompleted = !item.isCompleted;
+    } else {
+      removeDoneItem(item.id);
+      addToDoItem(item);
+      item.isCompleted = !item.isCompleted;
+    }
+  };
+
   return (
-    <ItemButton $toDo={toDo}>
+    <ItemButton $toDo={toDo} onClick={handleClick}>
       <CheckBox $toDo={toDo} />
       <Check $toDo={toDo} />
-      비타민
+      {item.name}
     </ItemButton>
   );
 }
@@ -63,11 +88,16 @@ const ItemButton = styled.button<StyledProps>`
   height: 50px;
   border: 2px solid var(--slate-900);
   border-radius: 27px;
-  background-color: var(--white);
-  transition: box-shadow 0.25s ease;
+  background-color: ${({ $toDo }) =>
+    $toDo ? "var(--white)" : "var(--violet-100)"};
+  transition:
+    box-shadow 0.25s ease,
+    background-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 
   &:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: ${({ $toDo }) =>
+      !$toDo ? "var(--white)" : "var(--violet-100)"};
 
     ${CheckBox} {
       background-color: ${({ $toDo }) =>
