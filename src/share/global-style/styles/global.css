@@ -1,0 +1,47 @@
+@import url("./reset.css");
+
+:root {
+  --slate-900: #0f172a;
+  --slate-800: #1e293b;
+  --slate-500: #64748b;
+  --slate-400: #94a3b8;
+  --slate-300: #cbd5e1;
+  --slate-200: #e2e8f0;
+  --slate-100: #f1f5f9;
+
+  --violet-600: #7c3aed;
+  --violet-100: #ede9fe;
+
+  --white: #ffffff;
+
+  --yellow-50: #fefce8;
+
+  --rose-500: #f43f5e;
+  --lime-300: #bef264;
+
+  --amber-800: #92400e;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+}
+
+/*---------------font------------*/
+
+@font-face {
+  font-family: "NanumSquare";
+  font-weight: 500;
+  src: url("../fonts/NanumSquareR.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "NanumSquare";
+  font-weight: 700;
+  src: url("../fonts/NanumSquareB.ttf") format("ttf");
+}
