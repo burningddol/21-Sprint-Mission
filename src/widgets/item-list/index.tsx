@@ -34,6 +34,9 @@ export default function ItemList({ option }: Props) {
 
 const Section = styled.section`
   width: 100%;
+  padding: 0 0 16px 0;
+  background-color: #f4f5f9;
+  border-radius: 18px;
 `;
 
 const ListContainer = styled.div`

@@ -46,6 +46,8 @@ export default function Home({ initItems }: PageProps) {
 const Container = styled.main`
   width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 10;
 `;
 
 const FlexBox = styled.div`
@@ -54,4 +56,5 @@ const FlexBox = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
+  gap: 0 24px;
 `;
