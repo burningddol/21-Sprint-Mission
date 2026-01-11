@@ -4,6 +4,7 @@ import Monster from "./ui/monster";
 import LightObject from "./ui/light-object";
 import { Suspense } from "react";
 import { memo } from "react";
+import { Loader } from "./ui/loader";
 
 const COUNT = 44;
 function RenderModel() {
@@ -15,7 +16,7 @@ function RenderModel() {
           "linear-gradient(to top, #ffffff 0%, var(--violet-100) 80%)",
       }}
     >
-      <Suspense fallback={null}>
+      <Suspense fallback={<Loader />}>
         <OrbitControls
           enablePan={false}
           enableZoom={false}
