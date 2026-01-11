@@ -5,7 +5,7 @@ import LightObject from "./ui/light-object";
 import { Suspense } from "react";
 import { memo } from "react";
 
-const COUNT = 110;
+const COUNT = 44;
 function RenderModel() {
   return (
     <Canvas

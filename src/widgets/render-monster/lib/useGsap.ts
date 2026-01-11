@@ -26,7 +26,7 @@ useGsap.changeRotation = (rotation: THREE.Euler) => {
 
 const MIN = -50;
 const MAX = 50;
-const N = 150;
+const N = 44;
 
 useGsap.changePosition = (position: THREE.Vector3, index: number) => {
   const t = index / (N - 1);
@@ -36,16 +36,16 @@ useGsap.changePosition = (position: THREE.Vector3, index: number) => {
   position.x = x;
   position.y = Math.random() * 85 - 50;
   position.z = Math.random() * 107 - 70;
-  const durationTime = Math.random() * 50 + 30;
+  const durationTime = Math.random() * 25 + 15;
   gsap.to(position, {
-    y: 60,
+    y: 55,
 
     duration: durationTime,
     repeat: -1,
     ease: "none",
 
     onRepeat(this: gsap.core.Tween) {
-      position.y = -60;
+      position.y = -55;
       this.invalidate().restart();
     },
   });
