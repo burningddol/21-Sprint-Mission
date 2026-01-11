@@ -65,7 +65,7 @@ const SubmitButton = styled.button<SubmitButtonStyleProps>`
     position: absolute;
     left: -29.7%;
     top: -25px;
-    width: 100vw;
+    width: 160%;
     height: 2px;
 
     background: var(--violet-600);
@@ -87,7 +87,7 @@ const SubmitButton = styled.button<SubmitButtonStyleProps>`
     position: absolute;
     left: -29.7%;
     top: -25px;
-    width: 100vw;
+    width: 160%;
     height: 2px;
 
     background: var(--violet-600);
