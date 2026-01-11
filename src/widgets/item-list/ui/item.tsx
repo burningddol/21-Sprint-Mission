@@ -3,22 +3,24 @@ import check from "@/assets/images/check.svg";
 import { toggleItem } from "@/share/axios";
 import { useSeparatedItems } from "@/share/zustand";
 
-type Item = {
+type ItemType = {
   id: number;
   name?: string;
   isCompleted: boolean;
 };
 interface Props {
   toDo: boolean;
-  item: Item;
+  item: ItemType;
+  clickAudio: () => void;
 }
 
-export default function Item({ toDo, item }: Props) {
+export default function Item({ toDo, item, clickAudio }: Props) {
   const { addToDoItem, addDoneItem, removeToDoItem, removeDoneItem } =
     useSeparatedItems();
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
+    clickAudio();
     toggleItem(item.id, item.isCompleted);
 
     if (!item.isCompleted) {

@@ -42,9 +42,9 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>Create Next App</title>
+          <title>To Do List</title>
 
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/toDoList.png" />
         </Head>
         <body>
           <Main />

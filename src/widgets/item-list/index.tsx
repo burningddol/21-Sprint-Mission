@@ -6,6 +6,8 @@ import Item from "./ui/item";
 import empty1 from "@/assets/images/empty1.svg";
 import empty2 from "@/assets/images/empty2.svg";
 import { useSeparatedItems } from "@/share/zustand";
+import { useButtonAudio } from "@/features/audio/useAudio";
+import { useCallback } from "react";
 
 interface Props {
   option: boolean;
@@ -14,6 +16,8 @@ interface Props {
 export default function ItemList({ option }: Props) {
   const { toDoItems, doneItems } = useSeparatedItems();
   const isEmpty = option ? toDoItems.length === 0 : doneItems.length === 0;
+
+  const clickAudio = useButtonAudio();
 
   return (
     <Section>
@@ -26,10 +30,20 @@ export default function ItemList({ option }: Props) {
       <ListContainer>
         {option
           ? toDoItems.map((item) => (
-              <Item key={item.id} toDo={option} item={item} />
+              <Item
+                key={item.id}
+                toDo={option}
+                item={item}
+                clickAudio={clickAudio}
+              />
             ))
           : doneItems.map((item) => (
-              <Item key={item.id} toDo={option} item={item} />
+              <Item
+                key={item.id}
+                toDo={option}
+                item={item}
+                clickAudio={clickAudio}
+              />
             ))}
         {isEmpty && (
           <>

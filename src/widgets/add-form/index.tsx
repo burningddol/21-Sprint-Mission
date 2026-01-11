@@ -6,12 +6,13 @@ import { useRef, useState } from "react";
 import { addItem } from "@/share/axios";
 import { useSeparatedItems } from "@/share/zustand";
 import { Spinner } from "@/share/components/spinner";
+import { useButtonAudio } from "@/features/audio/useAudio";
 
 export default function AddForm() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { addToDoItem } = useSeparatedItems();
-
+  const ClickAudio = useButtonAudio();
   const btnBgColor = isLoading ? "var(--slate-200)" : "var(--violet-600)";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -19,7 +20,7 @@ export default function AddForm() {
     if (!inputRef.current) return alert("조금 뒤 다시 시도하세요");
 
     if (!inputRef.current?.value) return alert("1글자 이상 입력해주세요");
-
+    ClickAudio();
     const title: string = inputRef.current.value;
     setIsLoading(true);
     try {
