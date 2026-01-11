@@ -19,6 +19,7 @@ const Header = styled.header`
   width: 100%;
   height: 60px;
   border-bottom: 1px solid var(--slate-200);
+  background-color: var(--white);
 `;
 
 const Container = styled.div`

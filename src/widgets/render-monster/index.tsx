@@ -4,7 +4,7 @@ import Monster from "./ui/monster";
 import LightObject from "./ui/light-object";
 import { Suspense } from "react";
 
-const COUNT = 140;
+const COUNT = 110;
 export default function RenderModel() {
   return (
     <Canvas
