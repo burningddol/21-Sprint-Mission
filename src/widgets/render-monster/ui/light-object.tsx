@@ -1,8 +1,10 @@
 const LightObject = () => {
   return (
     <>
-      <ambientLight intensity={5} />
-      <spotLight position={[10, 15, 10]} angle={0.55} penumbra={0.8} />
+      <ambientLight intensity={3.5} />
+
+      <directionalLight position={[6, 10, 7]} intensity={1.5} />
+      <directionalLight position={[-6, 12, -5]} intensity={3} />
     </>
   );
 };

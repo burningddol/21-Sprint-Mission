@@ -24,17 +24,17 @@ useGsap.changeRotation = (rotation: THREE.Euler) => {
   });
 };
 
-useGsap.changePosition = (position: THREE.Vector3, index: number) => {
-  const MIN = -50;
-  const MAX = 50;
-  const N = 150;
+const MIN = -50;
+const MAX = 50;
+const N = 150;
 
+useGsap.changePosition = (position: THREE.Vector3, index: number) => {
   const t = index / (N - 1);
   const u = 0.5 - 0.5 * Math.cos(t * Math.PI);
   const x = MIN + u * (MAX - MIN);
 
   position.x = x;
-  position.y = Math.random() * 120 - 60;
+  position.y = Math.random() * 85 - 50;
   position.z = Math.random() * 107 - 70;
   const durationTime = Math.random() * 50 + 30;
   gsap.to(position, {
@@ -45,7 +45,7 @@ useGsap.changePosition = (position: THREE.Vector3, index: number) => {
     ease: "none",
 
     onRepeat(this: gsap.core.Tween) {
-      position.y = -70;
+      position.y = -60;
       this.invalidate().restart();
     },
   });

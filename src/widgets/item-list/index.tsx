@@ -55,7 +55,7 @@ export default function ItemList({ option }: Props) {
 const Section = styled.section`
   width: 100%;
   padding: 0 0 16px 0;
-  background-color: #f4f5f9;
+  background: linear-gradient(to top, var(--lime-400) 50%, transparent 100%);
 
   border-radius: 18px;
 `;

@@ -10,7 +10,8 @@ export default function RenderModel() {
     <Canvas
       camera={{ position: [0, 0, 50], fov: 55, near: 0.1, far: 200 }}
       style={{
-        background: "linear-gradient(to top, #ffffff 0%, var(--slate-100) 70%)",
+        background:
+          "linear-gradient(to top, #ffffff 0%, var(--violet-100) 80%)",
       }}
     >
       <Suspense fallback={null}>
