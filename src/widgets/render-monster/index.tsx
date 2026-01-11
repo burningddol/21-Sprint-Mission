@@ -6,7 +6,7 @@ import { Suspense } from "react";
 import { memo } from "react";
 import { Loader } from "./ui/loader";
 
-const COUNT = 1;
+const COUNT = 44;
 function RenderModel() {
   return (
     <Canvas
