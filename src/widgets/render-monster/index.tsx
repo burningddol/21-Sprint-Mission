@@ -3,9 +3,10 @@ import { OrbitControls } from "@react-three/drei";
 import Monster from "./ui/monster";
 import LightObject from "./ui/light-object";
 import { Suspense } from "react";
+import { memo } from "react";
 
 const COUNT = 110;
-export default function RenderModel() {
+function RenderModel() {
   return (
     <Canvas
       camera={{ position: [0, 0, 50], fov: 55, near: 0.1, far: 200 }}
@@ -28,3 +29,5 @@ export default function RenderModel() {
     </Canvas>
   );
 }
+
+export default memo(RenderModel);
