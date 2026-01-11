@@ -19,7 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
 const CanvasWrapper = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 101vh;
   position: absolute;
   top: 60px;
   z-index: 1;

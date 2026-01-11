@@ -7,15 +7,23 @@ import empty1 from "@/assets/images/empty1.svg";
 import empty2 from "@/assets/images/empty2.svg";
 import { useSeparatedItems } from "@/share/zustand";
 import { useButtonAudio } from "@/features/audio/useAudio";
-import { useCallback } from "react";
 
+// @option
+// toDO일때 true
+// done일때 false
 interface Props {
   option: boolean;
 }
 
 export default function ItemList({ option }: Props) {
   const { toDoItems, doneItems } = useSeparatedItems();
-  const isEmpty = option ? toDoItems.length === 0 : doneItems.length === 0;
+  const isEmpty: boolean = option
+    ? toDoItems.length === 0
+    : doneItems.length === 0;
+
+  const isMax: boolean = !option
+    ? toDoItems.length > 11
+    : doneItems.length > 11;
 
   const clickAudio = useButtonAudio();
 
@@ -35,6 +43,7 @@ export default function ItemList({ option }: Props) {
                 toDo={option}
                 item={item}
                 clickAudio={clickAudio}
+                isMax={isMax}
               />
             ))
           : doneItems.map((item) => (
@@ -43,6 +52,7 @@ export default function ItemList({ option }: Props) {
                 toDo={option}
                 item={item}
                 clickAudio={clickAudio}
+                isMax={isMax}
               />
             ))}
         {isEmpty && (

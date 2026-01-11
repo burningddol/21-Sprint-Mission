@@ -3,6 +3,7 @@ import AddForm from "@/widgets/add-form";
 import ItemList from "@/widgets/item-list";
 import { getItemList } from "@/share/axios";
 import useItems from "@/features/data/items/useItems";
+import media from "@/share/media/media";
 
 export async function getServerSideProps() {
   const initItems: Item[] = await getItemList();
@@ -48,6 +49,10 @@ const Container = styled.main`
   margin: 0 auto;
   position: relative;
   z-index: 10;
+
+  ${media.nowTablet`
+    width: 950px;
+  `}
 `;
 
 const FlexBox = styled.div`

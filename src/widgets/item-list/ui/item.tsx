@@ -12,14 +12,19 @@ interface Props {
   toDo: boolean;
   item: ItemType;
   clickAudio: () => void;
+  isMax: boolean;
 }
 
-export default function Item({ toDo, item, clickAudio }: Props) {
+export default function Item({ toDo, item, clickAudio, isMax }: Props) {
   const { addToDoItem, addDoneItem, removeToDoItem, removeDoneItem } =
     useSeparatedItems();
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
+    if (isMax)
+      return alert(
+        `${toDo ? "Done" : "To Do"}항목이 최대 개수에 도달했습니다.`
+      );
     clickAudio();
     toggleItem(item.id, item.isCompleted);
 

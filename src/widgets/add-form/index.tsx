@@ -11,15 +11,21 @@ import { useButtonAudio } from "@/features/audio/useAudio";
 export default function AddForm() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { addToDoItem } = useSeparatedItems();
+  const { toDoItems, addToDoItem } = useSeparatedItems();
+
   const ClickAudio = useButtonAudio();
   const btnBgColor = isLoading ? "var(--slate-200)" : "var(--violet-600)";
+
+  const isMax: boolean = toDoItems.length > 11;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!inputRef.current) return alert("조금 뒤 다시 시도하세요");
 
     if (!inputRef.current?.value) return alert("1글자 이상 입력해주세요");
+
+    if (isMax) return alert("To Do List항목이 최대 개수에 도달했습니다.");
+
     ClickAudio();
     const title: string = inputRef.current.value;
     setIsLoading(true);
