@@ -6,11 +6,11 @@ export function Loader() {
 
   return (
     <Html center>
-      <BootWindow>
+      <Boot3D>
         <Spinner />
         <Title>3D Loading...</Title>
         <Percent>{progress.toFixed(0)}%</Percent>
-      </BootWindow>
+      </Boot3D>
     </Html>
   );
 }
@@ -20,11 +20,11 @@ const spin = keyframes`
   to { transform: rotate(360deg); }
 `;
 
-export const BootWindow = styled.div`
+const Boot3D = styled.div`
   font-family: "NanumSquare";
   width: 220px;
   padding: 20px 16px;
-  background: rgba(245, 243, 255, 0.9); /* 연보라 */
+  background: rgba(245, 243, 255, 0.9);
   backdrop-filter: blur(8px);
   border-radius: 14px;
   box-shadow:
@@ -37,23 +37,23 @@ export const BootWindow = styled.div`
   gap: 14px;
 `;
 
-export const Spinner = styled.div`
+const Spinner = styled.div`
   width: 36px;
   height: 36px;
   border-radius: 50%;
   border: 3px solid rgba(167, 139, 250, 0.2);
-  border-top-color: #a78bfa; /* 보라색 */
+  border-top-color: #a78bfa;
   animation: ${spin} 0.9s linear infinite;
 `;
 
-export const Title = styled.div`
+const Title = styled.div`
   font-size: 13px;
   font-weight: 600;
   color: #4c1d95;
   letter-spacing: 0.03em;
 `;
 
-export const Percent = styled.div`
+const Percent = styled.div`
   font-family: "NanumSquare";
   font-size: 12px;
   color: #7c3aed;
