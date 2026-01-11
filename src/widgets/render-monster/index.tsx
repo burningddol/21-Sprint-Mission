@@ -9,7 +9,9 @@ export default function RenderModel() {
   return (
     <Canvas
       camera={{ position: [0, 0, 50], fov: 55, near: 0.1, far: 200 }}
-      style={{ background: "var(--slate-100)" }}
+      style={{
+        background: "linear-gradient(to top, #ffffff 0%, var(--slate-100) 70%)",
+      }}
     >
       <Suspense fallback={null}>
         <OrbitControls
