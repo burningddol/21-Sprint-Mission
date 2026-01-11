@@ -57,5 +57,4 @@ const Percent = styled.div`
   font-family: "NanumSquare";
   font-size: 12px;
   color: #7c3aed;
-  font-family: "JetBrains Mono", monospace;
 `;
