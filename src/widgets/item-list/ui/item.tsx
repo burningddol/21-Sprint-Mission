@@ -90,6 +90,8 @@ const ItemButton = styled.button<StyledProps>`
   border-radius: 27px;
   background-color: ${({ $toDo }) =>
     $toDo ? "var(--white)" : "var(--violet-100)"};
+
+  text-decoration: ${({ $toDo }) => ($toDo ? "none" : "line-through")};
   transition:
     box-shadow 0.25s ease,
     background-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);

@@ -39,11 +39,11 @@ body {
 @font-face {
   font-family: "NanumSquare";
   font-weight: 500;
-  src: url("../fonts/NanumSquareR.ttf") format("ttf");
+  src: url("../fonts/NanumSquareR.ttf") format("woff");
 }
 
 @font-face {
   font-family: "NanumSquare";
   font-weight: 700;
-  src: url("../fonts/NanumSquareB.ttf") format("ttf");
+  src: url("../fonts/NanumSquareB.ttf") format("woff");
 }
