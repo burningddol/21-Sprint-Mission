@@ -17,7 +17,8 @@ export default function Item({ toDo, item }: Props) {
   const { addToDoItem, addDoneItem, removeToDoItem, removeDoneItem } =
     useSeparatedItems();
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     toggleItem(item.id, item.isCompleted);
 
     if (!item.isCompleted) {
@@ -32,9 +33,11 @@ export default function Item({ toDo, item }: Props) {
   };
 
   return (
-    <ItemButton $toDo={toDo} onClick={handleClick}>
-      <CheckBox $toDo={toDo} />
-      <Check $toDo={toDo} />
+    <ItemButton $toDo={toDo}>
+      <CheckBox $toDo={toDo} onClick={handleClick}>
+        <Check $toDo={toDo} />
+      </CheckBox>
+
       {item.name}
     </ItemButton>
   );
@@ -46,8 +49,8 @@ type StyledProps = {
 
 const Check = styled.div<StyledProps>`
   position: absolute;
-  top: 8px;
-  left: 9.5px;
+  top: -1px;
+  left: -1.5px;
   width: 32px;
   height: 32px;
   transform: translateY(-50%);
@@ -74,6 +77,14 @@ const CheckBox = styled.div<StyledProps>`
   background-color: ${({ $toDo }) =>
     $toDo ? "var(--yellow-50)" : "var(--violet-600)"};
   transition: background-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  &:hover {
+    background-color: ${({ $toDo }) =>
+      !$toDo ? "var(--yellow-50)" : "var(--violet-600)"};
+    ${Check} {
+      transform: ${({ $toDo }) => (!$toDo ? "scale(0)" : "scale(1)")};
+    }
+  }
 `;
 
 const ItemButton = styled.button<StyledProps>`
@@ -100,13 +111,5 @@ const ItemButton = styled.button<StyledProps>`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background-color: ${({ $toDo }) =>
       !$toDo ? "var(--white)" : "var(--violet-100)"};
-
-    ${CheckBox} {
-      background-color: ${({ $toDo }) =>
-        !$toDo ? "var(--yellow-50)" : "var(--violet-600)"};
-    }
-    ${Check} {
-      transform: ${({ $toDo }) => (!$toDo ? "scale(0)" : "scale(1)")};
-    }
   }
 `;
