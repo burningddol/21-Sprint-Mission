@@ -5,7 +5,7 @@ import * as THREE from "three";
 import { createMonsterMotion, applyRotation } from "../lib/useMonsterMotion";
 
 function Monster({ index }: { index: number }) {
-  const { scene } = useGLTF("/monster/monster.glb");
+  const { scene } = useGLTF("/monster/monster1.glb");
   const objRef = useRef<THREE.Object3D>(null);
 
   const object = useMemo(() => scene.clone(), [scene]);
