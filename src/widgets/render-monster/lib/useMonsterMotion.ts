@@ -45,7 +45,7 @@ export function createMonsterMotion(
     rand(-TAU / 20, TAU / 20)
   );
 
-  return { x, z, yStart, yEnd, speed, baseRot, rotSpeed };
+  return { x, z, yStart, yEnd, speed, baseRot, rotSpeed }; // 랜덤한 x, z, yStart값과 speed를 생성 회전값도
 }
 
 export function applyRotation(
