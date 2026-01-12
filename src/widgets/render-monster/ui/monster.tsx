@@ -2,7 +2,11 @@ import { useGLTF } from "@react-three/drei";
 import { memo, useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { createMonsterMotion, applyRotation } from "../lib/useMonsterMotion";
+import {
+  createMonsterMotion,
+  applyRotation,
+  applyRotationY,
+} from "../lib/useMonsterMotion";
 
 function Monster({ index }: { index: number }) {
   const { scene } = useGLTF("/monster/monster1.glb");
@@ -40,3 +44,22 @@ function Monster({ index }: { index: number }) {
 }
 
 export default memo(Monster);
+
+export function LoginMonster() {
+  const { scene } = useGLTF("/monster/monster1.glb");
+  const objRef = useRef<THREE.Object3D>(null);
+
+  useFrame((_, delta) => {
+    const obj = objRef.current;
+    if (!obj) return;
+
+    const dt = Math.min(delta, 1 / 30); // 33ms 이상은 잘라서 부드럽게
+    const speed = 0.8;
+
+    applyRotationY(obj, speed, dt);
+  });
+
+  return (
+    <primitive ref={objRef} object={scene} scale={10} position={[0, -2, 0]} />
+  );
+}

@@ -57,3 +57,11 @@ export function applyRotation(
   obj.rotation.y += rotSpeed.y * delta;
   obj.rotation.z += rotSpeed.z * delta;
 }
+
+export function applyRotationY(
+  obj: THREE.Object3D,
+  speed: number,
+  delta: number
+) {
+  obj.rotation.y += speed * delta;
+}

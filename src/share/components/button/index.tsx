@@ -10,6 +10,8 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   bgColor?: string;
   alt?: string;
   color?: string;
+  size?: string;
+  add?: boolean;
 }
 
 export default function Button({
@@ -19,11 +21,20 @@ export default function Button({
   type = "button",
   alt = "",
   color = "black",
+  size = "small",
+  add = false,
   children,
   ...props
 }: Props) {
   return (
-    <SubmitButton type={type} $bgColor={bgColor} $color={color} {...props}>
+    <SubmitButton
+      type={type}
+      $bgColor={bgColor}
+      $color={color}
+      $size={size}
+      $add={add}
+      {...props}
+    >
       {icon && <Image src={src} alt={alt} />}
       {children}
     </SubmitButton>
@@ -33,13 +44,15 @@ export default function Button({
 type SubmitButtonStyleProps = {
   $bgColor: string;
   $color: string;
+  $size: string;
+  $add: boolean;
 };
 
 const SubmitButton = styled.button<SubmitButtonStyleProps>`
   font-family: "NanumSquare";
   font-size: 16px;
   color: ${({ $color }) => $color};
-  width: 164.35px;
+  width: ${({ $size }) => ($size === "big" ? "100%" : "164.35px")};
   height: 52px;
   display: flex;
   gap: 0 5px;
@@ -103,15 +116,19 @@ const SubmitButton = styled.button<SubmitButtonStyleProps>`
       opacity 220ms ease;
   }
 
-  &:hover::after {
-    transform: scaleX(1);
-    filter: blur(0.2px);
-  }
+  ${({ $add }) =>
+    $add &&
+    `
+      &:hover::after {
+        transform: scaleX(1);
+        filter: blur(0.2px);
+      }
 
-  &:hover::before {
-    transform: scaleX(1);
-    opacity: 1;
-  }
+       &:hover::before {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+    `}
 
   &:focus-visible {
     outline: none;

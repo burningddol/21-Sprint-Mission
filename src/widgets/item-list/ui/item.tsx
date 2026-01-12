@@ -2,6 +2,7 @@ import styled from "styled-components";
 import check from "@/assets/images/check.svg";
 import { toggleItem } from "@/share/axios";
 import { useSeparatedItems } from "@/share/zustand";
+import { useEffect, useState } from "react";
 
 type ItemType = {
   id: number;
@@ -15,9 +16,18 @@ interface Props {
   isMax: boolean;
 }
 
+const KEY = "apiId";
+
 export default function Item({ toDo, item, clickAudio, isMax }: Props) {
   const { addToDoItem, addDoneItem, removeToDoItem, removeDoneItem } =
     useSeparatedItems();
+
+  const [apiId, setApiId] = useState<string>("");
+
+  useEffect(() => {
+    const id = localStorage.getItem(KEY) as string;
+    setApiId(id);
+  }, []);
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -26,7 +36,7 @@ export default function Item({ toDo, item, clickAudio, isMax }: Props) {
         `${toDo ? "Done" : "To Do"}항목이 최대 개수에 도달했습니다.`
       );
     clickAudio();
-    toggleItem(item.id, item.isCompleted);
+    toggleItem(item.id, item.isCompleted, apiId);
 
     if (!item.isCompleted) {
       removeToDoItem(item.id);

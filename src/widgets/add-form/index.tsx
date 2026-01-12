@@ -7,11 +7,15 @@ import { addItem } from "@/share/axios";
 import { useSeparatedItems } from "@/share/zustand";
 import { Spinner } from "@/share/components/spinner";
 import { useButtonAudio } from "@/features/audio/useAudio";
+import { useRouter } from "next/router";
+
+const KEY = "apiId";
 
 export default function AddForm() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { toDoItems, addToDoItem } = useSeparatedItems();
+  const router = useRouter();
 
   const ClickAudio = useButtonAudio();
   const btnBgColor = isLoading ? "var(--slate-200)" : "var(--violet-600)";
@@ -20,8 +24,13 @@ export default function AddForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const apiId = localStorage.getItem(KEY) as string;
     if (!inputRef.current) return alert("조금 뒤 다시 시도하세요");
 
+    if (!apiId) {
+      alert("로그인 정보가 없습니다. 로그인페이지로 이동 합니다");
+      return router.replace("/login");
+    }
     if (!inputRef.current?.value) return alert("1글자 이상 입력해주세요");
 
     if (isMax) return alert("To Do List항목이 최대 개수에 도달했습니다.");
@@ -30,7 +39,7 @@ export default function AddForm() {
     const title: string = inputRef.current.value;
     setIsLoading(true);
     try {
-      const data = await addItem(title);
+      const data = await addItem(title, apiId);
       const newItem = { id: data.id, name: title, isCompleted: false };
       addToDoItem(newItem);
     } catch (e) {
@@ -55,6 +64,7 @@ export default function AddForm() {
         bgColor={btnBgColor}
         color="var(--white)"
         alt="더하기모양그림"
+        add
         disabled={isLoading}
       >
         {isLoading ? <Spinner /> : "추가하기"}

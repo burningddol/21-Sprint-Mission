@@ -35,5 +35,5 @@ export default function useItems({ initItems }: Props) {
     setDoneItems(done);
   }, [items]);
 
-  return null;
+  return setItems;
 }
