@@ -35,8 +35,7 @@ export function createMonsterMotion(
   const yStart = Math.random() * 85 - 50;
   const yEnd = -initY;
 
-  const duration = rand(30, 60);
-  const speed = Math.abs(yEnd - initY) / duration;
+  const speed = rand(0.6, 2.5);
 
   const baseRot = new THREE.Euler(rand(0, TAU), rand(0, TAU), rand(0, TAU));
 
@@ -51,10 +50,10 @@ export function createMonsterMotion(
 
 export function applyRotation(
   obj: THREE.Object3D,
-  motion: MonsterMotionParams,
+  rotSpeed: THREE.Vector3,
   delta: number
 ) {
-  obj.rotation.x += motion.rotSpeed.x * delta;
-  obj.rotation.y += motion.rotSpeed.y * delta;
-  obj.rotation.z += motion.rotSpeed.z * delta;
+  obj.rotation.x += rotSpeed.x * delta;
+  obj.rotation.y += rotSpeed.y * delta;
+  obj.rotation.z += rotSpeed.z * delta;
 }

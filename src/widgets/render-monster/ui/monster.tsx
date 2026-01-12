@@ -25,13 +25,14 @@ function Monster({ index }: { index: number }) {
   useFrame((_, delta) => {
     const obj = objRef.current;
     if (!obj) return;
+    if (delta > 0.1) return;
 
     const initY = -motion.yEnd; // yEnd = -initY
     const y = yRef.current + motion.speed * delta;
     yRef.current = y >= motion.yEnd ? initY : y;
     obj.position.y = yRef.current;
 
-    applyRotation(obj, motion, delta);
+    applyRotation(obj, motion.rotSpeed, delta);
   });
 
   return <primitive ref={objRef} object={object} scale={10} />;
