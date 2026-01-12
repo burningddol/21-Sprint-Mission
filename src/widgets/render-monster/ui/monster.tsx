@@ -8,7 +8,7 @@ function Monster({ index }: { index: number }) {
   const { scene } = useGLTF("/monster/monster.glb");
   const objRef = useRef<THREE.Object3D>(null);
 
-  const object = useMemo(() => scene.clone(true), [scene]);
+  const object = useMemo(() => scene.clone(), [scene]);
   const motion = useMemo(() => createMonsterMotion(index, 44), [index]);
 
   const yRef = useRef(motion.yStart);
