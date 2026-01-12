@@ -57,7 +57,11 @@ export default function ItemList({ option }: Props) {
             ))}
         {isEmpty && (
           <>
-            <StyledImage src={option ? empty1 : empty2} alt="몬스터그림" />
+            <StyledImage
+              src={option ? empty1 : empty2}
+              alt="몬스터그림"
+              priority
+            />
             <StyledSpan>
               {option ? (
                 <>
