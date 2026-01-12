@@ -1,23 +1,40 @@
 import { useGLTF } from "@react-three/drei";
-import { useRef, useEffect, useMemo } from "react";
+import { memo, useEffect, useMemo, useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import useGsap from "../lib/useGsap";
-import { memo } from "react";
+import { createMonsterMotion, applyRotation } from "../lib/useMonsterMotion";
 
 function Monster({ index }: { index: number }) {
   const { scene } = useGLTF("/monster/monster.glb");
-  const monsterRef = useRef<THREE.Object3D>(null);
-  const { changeRotation, changePosition } = useGsap;
+  const objRef = useRef<THREE.Object3D>(null);
 
-  const cloned = useMemo(() => scene.clone(true), [scene]);
+  const object = useMemo(() => scene.clone(true), [scene]);
+  const motion = useMemo(() => createMonsterMotion(index, 44), [index]);
+
+  const yRef = useRef(motion.yStart);
 
   useEffect(() => {
-    const monster = monsterRef.current as THREE.Object3D;
-    changeRotation(monster.rotation);
-    changePosition(monster.position, index);
-  }, []);
+    const obj = objRef.current;
+    if (!obj) return;
 
-  return <primitive object={cloned} scale={10} ref={monsterRef} />;
+    yRef.current = motion.yStart;
+    obj.position.set(motion.x, motion.yStart, motion.z);
+    obj.rotation.copy(motion.baseRot);
+  }, [motion]);
+
+  useFrame((_, delta) => {
+    const obj = objRef.current;
+    if (!obj) return;
+
+    const initY = -motion.yEnd; // yEnd = -initY
+    const y = yRef.current + motion.speed * delta;
+    yRef.current = y >= motion.yEnd ? initY : y;
+    obj.position.y = yRef.current;
+
+    applyRotation(obj, motion, delta);
+  });
+
+  return <primitive ref={objRef} object={object} scale={10} />;
 }
 
-export default memo(Monster); // 부모가 메모되어있긴한데 걍 안전빵
+export default memo(Monster);
