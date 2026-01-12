@@ -7,7 +7,7 @@ import media from "@/share/media/media";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 
-/*    유저별 개인공간 제공을 위해 apiId가 브라우저에서 정해지므로 SSR무의미
+/*    유저별 개인공간 제공을 위해 apiId가 브라우저에서 정해지므로 SSR무의미해짐 
 export async function getServerSideProps() {
   const initItems: Item[] = await getItemList();
 
