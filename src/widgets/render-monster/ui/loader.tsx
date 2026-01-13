@@ -22,7 +22,7 @@ const spin = keyframes`
 
 const Boot3D = styled.div`
   font-family: "NanumSquare";
-  width: 220px;
+  width: 300px;
   padding: 20px 16px;
   background: rgba(245, 243, 255, 0.9);
   backdrop-filter: blur(8px);
@@ -36,6 +36,7 @@ const Boot3D = styled.div`
   align-items: center;
   gap: 14px;
   position: relative;
+  top: 250px;
 
   z-index: 999999999999999;
 `;
