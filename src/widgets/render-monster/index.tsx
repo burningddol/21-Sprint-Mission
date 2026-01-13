@@ -9,7 +9,7 @@ const COUNT = 44;
 function RenderModel() {
   return (
     <Canvas
-      dpr={1}
+      dpr={[1, 1.5]}
       gl={{ powerPreference: "high-performance" }}
       camera={{ position: [0, 0, 50], fov: 55, near: 0.1, far: 200 }}
       style={{
