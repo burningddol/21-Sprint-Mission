@@ -6,10 +6,20 @@ import useItems from "@/features/data/items/useItems";
 import media from "@/share/media/media";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { GetServerSidePropsContext } from "next";
 
-/*    유저별 개인공간 제공을 위해 apiId가 브라우저에서 정해지므로 SSR무의미해짐 
-export async function getServerSideProps() {
-  const initItems: Item[] = await getItemList();
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  const id = ctx.params?.id;
+
+  if (!id) {
+    return {
+      props: {
+        initItems: [],
+      },
+    };
+  }
+
+  const initItems: Item[] = await getItemList(id as string);
 
   return {
     props: {
@@ -18,11 +28,9 @@ export async function getServerSideProps() {
   };
 }
 
-
-
 type PageProps = {
   initItems: Item[];
-};*/
+};
 
 type Item = {
   id: number;
@@ -32,8 +40,8 @@ type Item = {
 
 const KEY = "apiId";
 
-export default function List(/*{ initItems }: PageProps*/) {
-  const setItems = useItems({ initItems: [] });
+export default function List({ initItems }: PageProps) {
+  const setItems = useItems({ initItems });
   const router = useRouter();
 
   useEffect(() => {

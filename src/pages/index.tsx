@@ -13,7 +13,7 @@ export default function Home() {
     const apiId = localStorage.getItem(KEY);
 
     if (apiId) {
-      router.replace("/list");
+      router.replace(`/list/${apiId}`);
     } else {
       router.replace("/login");
     }

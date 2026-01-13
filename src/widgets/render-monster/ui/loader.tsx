@@ -36,7 +36,8 @@ const Boot3D = styled.div`
   align-items: center;
   gap: 14px;
   position: relative;
-  z-index: 999999999999999999;
+
+  z-index: 999999999999999;
 `;
 
 const Spinner = styled.div`
