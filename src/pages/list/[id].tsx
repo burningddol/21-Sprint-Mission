@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
 
+//해당 logic Cookie 활용으로 바꿀 예정
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const id = ctx.params?.id;
 
