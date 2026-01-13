@@ -34,12 +34,11 @@ export default function Login() {
     const apiId = Math.random().toString(36).slice(2, 10);
     localStorage.setItem("apiId", apiId);
     try {
-      router.replace(`/list/${apiId}`);
+      await router.replace(`/list/${apiId}`);
     } catch (e) {
       console.log(e);
     } finally {
       setIsLoading(false);
-      inputRef.current.value = "";
     }
   };
 
