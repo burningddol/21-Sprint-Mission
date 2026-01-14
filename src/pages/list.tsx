@@ -23,23 +23,37 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   if (!apiId) {
     return {
       props: {
-        initItems: [],
+        toDoList: [],
+        doneList: [],
       },
     };
   }
 
   const initItems: Item[] = await getItemList(apiId as string);
 
+  // parse 함수로 따로 분리 예정
+  const { toDoList, doneList } = initItems.reduce<AccType>(
+    (acc, item) => {
+      item.isCompleted ? acc.doneList.push(item) : acc.toDoList.push(item);
+      return acc;
+    },
+    { toDoList: [], doneList: [] }
+  );
+
   return {
     props: {
-      initItems,
+      toDoList,
+      doneList,
     },
   };
 }
 
-type PageProps = {
-  initItems: Item[];
+type AccType = {
+  toDoList: Item[];
+  doneList: Item[];
 };
+
+type PageProps = AccType;
 
 type Item = {
   id: number;
@@ -49,29 +63,22 @@ type Item = {
 
 const KEY = "apiId";
 
-export default function List({ initItems }: PageProps) {
-  const [visible, setVisible] = useState(false);
-  const setItems = useItems({ initItems });
+// 추 후 zustand 전역상태 초기값에 toDOlist랑 doneList 설정 할 것
+export default function List({ toDoList, doneList }: PageProps) {
+  const [isVisible, setIsVisible] = useState(false);
+  useItems({ toDoList, doneList });
   const router = useRouter();
-
-  useEffect(() => {
-    requestAnimationFrame(() => {
-      setVisible(true);
-    });
-  }, []);
 
   useEffect(() => {
     const apiId = localStorage.getItem(KEY) as string; //string일때만 진입함
     if (!apiId) {
-      router.replace("/login");
+      router.replace("/");
       return;
+    } else {
+      requestAnimationFrame(() => {
+        setIsVisible(true);
+      });
     }
-
-    const loadItems = async () => {
-      const initItems: Item[] = await getItemList(apiId);
-      setItems(initItems);
-    };
-    loadItems();
   }, []);
 
   const toDo = true;
@@ -88,11 +95,12 @@ export default function List({ initItems }: PageProps) {
           alignItems: "center",
           justifyContent: "center",
           zIndex: 10,
-          opacity: visible ? 0 : 0.3,
+          opacity: isVisible ? 0 : 0.3,
           transition: "opacity 2s ease",
           pointerEvents: "none",
         }}
       />
+
       <Container>
         <AddForm />
 

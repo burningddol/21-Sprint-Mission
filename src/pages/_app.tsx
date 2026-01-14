@@ -7,11 +7,11 @@ import styled from "styled-components";
 import Router from "next/router";
 
 function PageLoadingOverlay() {
-  const [visible, setVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     requestAnimationFrame(() => {
-      setVisible(true);
+      setIsVisible(true);
     });
   }, []);
   // 인라인스타일 분리 예정
@@ -25,7 +25,7 @@ function PageLoadingOverlay() {
         alignItems: "center",
         justifyContent: "center",
         zIndex: 9999,
-        opacity: visible ? 0.3 : 0,
+        opacity: isVisible ? 0.3 : 0,
         transition: "opacity 0.5s ease",
       }}
     />

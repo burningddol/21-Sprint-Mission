@@ -1,5 +1,5 @@
 import { useSeparatedItems } from "@/share/zustand";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 type Item = {
   id: number;
@@ -8,32 +8,18 @@ type Item = {
 };
 
 type Props = {
-  initItems: Item[];
+  toDoList: Item[];
+  doneList: Item[];
 };
 
-type AccType = {
-  toDo: Item[];
-  done: Item[];
-};
-
-export default function useItems({ initItems }: Props) {
-  const [items, setItems] = useState<Item[]>(initItems);
-
+export default function useItems({ toDoList, doneList }: Props) {
   const { setToDoItems, setDoneItems } = useSeparatedItems();
 
   //완료 비완료 분리
   useEffect(() => {
-    const { toDo, done } = items.reduce<AccType>(
-      (acc, item) => {
-        item.isCompleted ? acc.done.push(item) : acc.toDo.push(item);
-        return acc;
-      },
-      { toDo: [], done: [] }
-    );
+    setToDoItems(toDoList);
+    setDoneItems(doneList);
+  }, []);
 
-    setToDoItems(toDo);
-    setDoneItems(done);
-  }, [items]);
-
-  return setItems;
+  return null;
 }
