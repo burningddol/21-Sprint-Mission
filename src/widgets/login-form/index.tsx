@@ -38,8 +38,8 @@ export default function LoginForm({ apiId, name }: Props) {
 
     const maxAge = 31536000; //1년
 
-    document.cookie = `apiId=${encodeURIComponent(newApiId)}; path=/; max-age=${maxAge}`;
-    document.cookie = `name=${encodeURIComponent(newName)}; path=/; max-age=${maxAge}`;
+    document.cookie = `apiId=${encodeURIComponent(newApiId)}; path=/; max-age=${maxAge} SameSite=None; Secure`;
+    document.cookie = `name=${encodeURIComponent(newName)}; path=/; max-age=${maxAge} SameSite=None; Secure`;
 
     try {
       await router.replace(`/list`);
