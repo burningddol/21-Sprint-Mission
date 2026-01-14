@@ -94,7 +94,7 @@ export default function LoginForm({ apiId, name }: Props) {
         {hasId && (
           <>
             <div style={{ height: "40px" }} />
-            <Link href="/list">
+            <Link href="/list" prefetch={true}>
               <Button
                 type="button"
                 bgColor={btnBgColor}

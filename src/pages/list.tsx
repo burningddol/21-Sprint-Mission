@@ -4,7 +4,7 @@ import ItemList from "@/widgets/item-list";
 import { getItemList } from "@/share/axios";
 import useItems from "@/features/data/items/useItems";
 import media from "@/share/media/media";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
 
@@ -50,8 +50,15 @@ type Item = {
 const KEY = "apiId";
 
 export default function List({ initItems }: PageProps) {
+  const [visible, setVisible] = useState(false);
   const setItems = useItems({ initItems });
   const router = useRouter();
+
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      setVisible(true);
+    });
+  }, []);
 
   useEffect(() => {
     const apiId = localStorage.getItem(KEY) as string; //string일때만 진입함
@@ -69,9 +76,23 @@ export default function List({ initItems }: PageProps) {
 
   const toDo = true;
   const done = false;
-
+  // 인라인스타일 분리 예정
   return (
     <>
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          background: "rgba(255,255,255,0.75)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 10,
+          opacity: visible ? 0 : 0.35,
+          transition: "opacity 2s ease",
+          pointerEvents: "none",
+        }}
+      />
       <Container>
         <AddForm />
 
