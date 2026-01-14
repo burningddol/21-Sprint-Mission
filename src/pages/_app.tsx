@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "@/share/global-style/styles/global.css";
 import Navigation from "@/widgets/navigation";
 import RenderModel from "@/widgets/render-monster";
@@ -26,19 +26,32 @@ function PageLoadingOverlay() {
         justifyContent: "center",
         zIndex: 9999,
         opacity: visible ? 0.35 : 0,
-        transition: "opacity 0.6s ease",
+        transition: "opacity 0.5s ease",
       }}
     />
   );
 }
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [isRouteLoading, setIsRouteLoading] = useState(false);
+  const [isRouteLoading, setIsRouteLoading] = useState<boolean>(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const start = () => setIsRouteLoading(true);
-    const end = () => setIsRouteLoading(false);
+    const start = () => {
+      // 0.2초 후에도 아직 로딩 중이면 overlay 띄움
+      timerRef.current = setTimeout(() => {
+        setIsRouteLoading(true);
+      }, 200);
+    };
 
+    const end = () => {
+      // 페이지 도착
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+      setIsRouteLoading(false);
+    };
     Router.events.on("routeChangeStart", start);
     Router.events.on("routeChangeComplete", end);
     Router.events.on("routeChangeError", end);
@@ -49,6 +62,7 @@ export default function App({ Component, pageProps }: AppProps) {
       Router.events.off("routeChangeError", end);
     };
   }, []);
+
   return (
     <>
       {isRouteLoading && <PageLoadingOverlay />}
