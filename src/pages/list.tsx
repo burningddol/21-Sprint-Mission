@@ -70,13 +70,14 @@ export default function List({ toDoList, doneList }: PageProps) {
   const router = useRouter();
 
   useEffect(() => {
+    const apiId = localStorage.getItem(KEY) as string; //string일때만 진입함
+
     // iframe 실행 용 iframe에서 쿠키저장이 안됨
     const loadItems = async () => {
       const initItems: Item[] = await getItemList(apiId as string);
       setAllItems(initItems);
     };
 
-    const apiId = localStorage.getItem(KEY) as string; //string일때만 진입함
     if (!apiId) {
       router.replace("/");
       return;

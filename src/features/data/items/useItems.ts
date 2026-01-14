@@ -40,7 +40,7 @@ export default function useItems({ toDoList, doneList }: Props) {
       setToDoItems(newToDoList);
       setDoneItems(newDoneList);
     }
-  }, []);
+  }, [allItems]);
 
   return setAllItems;
 }
