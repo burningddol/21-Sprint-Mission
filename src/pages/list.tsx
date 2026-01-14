@@ -8,11 +8,19 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
 
-//해당 logic Cookie 활용으로 바꿀 예정
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-  const id = ctx.params?.id;
+  const cookie = ctx.req.headers.cookie || "";
 
-  if (!id) {
+  const parseCookie = (key: string) => {
+    return cookie
+      .split("; ")
+      .find((v) => v.startsWith(key + "="))
+      ?.split("=")[1];
+  };
+
+  const apiId = parseCookie("apiId");
+
+  if (!apiId) {
     return {
       props: {
         initItems: [],
@@ -20,7 +28,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     };
   }
 
-  const initItems: Item[] = await getItemList(id as string);
+  const initItems: Item[] = await getItemList(apiId as string);
 
   return {
     props: {

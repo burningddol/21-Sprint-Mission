@@ -1,71 +1,44 @@
-import { useEffect } from "react";
-import styled, { keyframes } from "styled-components";
-import { useRouter } from "next/router";
+import LoginForm from "@/widgets/login-form";
+import { GetServerSidePropsContext } from "next";
 
-const KEY = "apiId";
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  const cookie = ctx.req.headers.cookie || "";
 
-export default function Home() {
-  const router = useRouter();
+  const parseCookie = (key: string) => {
+    return cookie
+      .split("; ")
+      .find((v) => v.startsWith(key + "="))
+      ?.split("=")[1];
+  };
 
-  useEffect(() => {
-    // SSR 방지용
-    if (typeof window === "undefined") return;
+  const apiId = parseCookie("apiId");
+  const name = parseCookie("name");
 
-    const apiId = localStorage.getItem(KEY);
+  if (!apiId) {
+    return {
+      props: {
+        apiId: null,
+        name: null,
+      },
+    };
+  }
 
-    if (apiId) {
-      router.replace(`/list/${apiId}`);
-    } else {
-      router.replace("/login");
-    }
-  }, [router]);
+  const decodedApiId = decodeURIComponent(apiId);
+  const decodedName = name ? decodeURIComponent(name) : null;
 
-  return (
-    <Boot3D>
-      <Spinner />
-    </Boot3D>
-  );
+  return {
+    props: {
+      apiId: decodedApiId,
+      name: decodedName,
+    },
+  };
 }
 
-const spin = keyframes`
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-`;
+interface Props {
+  apiId: string;
+  name: string;
+}
 
-const inOut = keyframes`
-  from { opacity: 0.2; }
-  to { opacity: 1 }
-`;
-
-const Boot3D = styled.div`
-  font-family: "NanumSquare";
-  width: 250px;
-  height: 250px;
-
-  background: rgba(245, 243, 255, 0.9);
-  backdrop-filter: blur(8px);
-  border-radius: 14px;
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(167, 139, 250, 0.4);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-  position: absolute;
-  top: 200px;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  animation: ${inOut} 0.3s ease;
-  z-index: 999999999999999;
-`;
-
-const Spinner = styled.div`
-  width: 35%;
-  height: 35%;
-  border-radius: 50%;
-  border: 3.5px solid rgba(167, 139, 250, 0.2);
-  border-top-color: #a78bfa;
-  animation: ${spin} 0.9s linear infinite;
-`;
+export default function Home({ apiId, name }: Props) {
+  return <LoginForm apiId={apiId} name={name} />;
+}
