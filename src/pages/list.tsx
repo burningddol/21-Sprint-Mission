@@ -88,7 +88,7 @@ export default function List({ initItems }: PageProps) {
           alignItems: "center",
           justifyContent: "center",
           zIndex: 10,
-          opacity: visible ? 0 : 0.35,
+          opacity: visible ? 0 : 0.3,
           transition: "opacity 2s ease",
           pointerEvents: "none",
         }}

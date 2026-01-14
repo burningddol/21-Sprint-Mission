@@ -25,7 +25,7 @@ function PageLoadingOverlay() {
         alignItems: "center",
         justifyContent: "center",
         zIndex: 9999,
-        opacity: visible ? 0.35 : 0,
+        opacity: visible ? 0.3 : 0,
         transition: "opacity 0.5s ease",
       }}
     />
@@ -38,10 +38,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     const start = () => {
-      // 0.2초 후에도 아직 로딩 중이면 overlay 띄움
+      // 0.15초 후에도 아직 로딩 중이면 overlay 띄움
       timerRef.current = setTimeout(() => {
         setIsRouteLoading(true);
-      }, 200);
+      }, 150);
     };
 
     const end = () => {
