@@ -66,10 +66,16 @@ const KEY = "apiId";
 // 추 후 zustand 전역상태 초기값에 toDOlist랑 doneList 설정 할 것
 export default function List({ toDoList, doneList }: PageProps) {
   const [isVisible, setIsVisible] = useState(false);
-  useItems({ toDoList, doneList });
+  const setAllItems = useItems({ toDoList, doneList });
   const router = useRouter();
 
   useEffect(() => {
+    // iframe 실행 용 iframe에서 쿠키저장이 안됨
+    const loadItems = async () => {
+      const initItems: Item[] = await getItemList(apiId as string);
+      setAllItems(initItems);
+    };
+
     const apiId = localStorage.getItem(KEY) as string; //string일때만 진입함
     if (!apiId) {
       router.replace("/");
@@ -77,6 +83,9 @@ export default function List({ toDoList, doneList }: PageProps) {
     } else {
       requestAnimationFrame(() => {
         setIsVisible(true);
+
+        // iframe 실행 용 iframe에서 쿠키저장이 안됨
+        loadItems();
       });
     }
   }, []);
