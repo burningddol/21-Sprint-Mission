@@ -4,6 +4,7 @@ import placeHolder from "@/assets/images/place-holder.svg";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { useButtonAudio } from "@/features/audio/useAudio";
+import { fileNameSchema } from "@/share/utils/validation";
 
 interface Props {
   name: string;
@@ -28,10 +29,17 @@ export default function ImageInput({ name, imageUrl }: Props) {
     const file = e.target.files?.[0] || null;
     if (!file) return setPreviewURL(null);
 
-    const url = URL.createObjectURL(file);
-    setPreviewURL(url);
+    const result = fileNameSchema.safeParse({ fileName: file.name });
 
-    setTimeout(() => URL.revokeObjectURL(url), 1500);
+    if (!result.success) {
+      e.target.value = "";
+      return alert(result.error.issues[0].message);
+    }
+
+    setPreviewURL((prev) => {
+      if (prev) URL.revokeObjectURL(prev); // 이전 미리보기 정리
+      return URL.createObjectURL(file); // 새 미리보기 생성
+    });
   };
 
   return (
