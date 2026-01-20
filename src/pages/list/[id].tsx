@@ -18,7 +18,8 @@ import ImageInput from "@/widgets/image-input";
 import Button from "@/share/components/button";
 import { useRouter } from "next/router";
 import { Spinner } from "@/share/components/spinner";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import ItemName from "@/widgets/item-name";
 
 type Item = {
   isCompleted: boolean;
@@ -33,6 +34,12 @@ type StyledProps = {
   $toDo: boolean;
 };
 
+interface Body {
+  memo: string;
+  name: string;
+  imageUrl?: string;
+}
+
 interface Props {
   item: Item;
 }
@@ -40,43 +47,10 @@ interface Props {
 export default function ItemPage({ item }: Props) {
   const [isRemoveLoading, setIsRemoveLoading] = useState<boolean>(false);
   const [isSubmitLoading, setIsSubmitLoading] = useState<boolean>(false);
+
   const router = useRouter();
-  const {
-    toDoItems,
-    doneItems,
-    addToDoItem,
-    addDoneItem,
-    removeToDoItem,
-    removeDoneItem,
-  } = useSeparatedItems();
 
   const clickAudio = useButtonAudio();
-
-  const toDo = item.isCompleted ? false : true;
-  const isMax: boolean = item.isCompleted
-    ? toDoItems.length > 11
-    : doneItems.length > 11;
-
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-    if (isMax)
-      return alert(
-        `${toDo ? "Done" : "To Do"}항목이 최대 개수에 도달했습니다.`,
-      );
-
-    clickAudio();
-    toggleItem(item.id, item.isCompleted, item.tenantId);
-
-    if (!item.isCompleted) {
-      removeToDoItem(item.id);
-      addDoneItem(item);
-      item.isCompleted = !item.isCompleted;
-    } else {
-      removeDoneItem(item.id);
-      addToDoItem(item);
-      item.isCompleted = !item.isCompleted;
-    }
-  };
 
   const handleRemove = async () => {
     setIsRemoveLoading(true);
@@ -97,7 +71,9 @@ export default function ItemPage({ item }: Props) {
     const formData = new FormData(form);
 
     const memo = String(formData.get("memo") ?? "").trim(); // <textarea name="memo" />
+    const name = String(formData.get("name") ?? "").trim(); // <input  name="name" />
     const file = formData.get("imageFile"); // <input type="file" name="imageFile" />
+
     setIsSubmitLoading(true);
     clickAudio();
     try {
@@ -108,7 +84,7 @@ export default function ItemPage({ item }: Props) {
         imageUrl = await uploadImageAndGetUrl(item.tenantId, file);
       }
 
-      const body: { memo: string; imageUrl?: string } = { memo };
+      const body: Body = { memo, name };
       if (imageUrl) body.imageUrl = imageUrl;
 
       await patchItem(item.tenantId, item.id, body);
@@ -120,49 +96,42 @@ export default function ItemPage({ item }: Props) {
   };
 
   return (
-    <Container>
-      <Title $toDo={toDo}>
-        <CheckBox $toDo={toDo} onClick={handleClick}>
-          <Check $toDo={toDo} />
-        </CheckBox>
-        {item.name}
-      </Title>
+    <StyledForm onSubmit={handleSubmit}>
+      <ItemName item={item} />
 
-      <form onSubmit={handleSubmit}>
-        <FlexBox>
-          <ImageInput name="imageFile" imageUrl={item?.imageUrl} />
+      <FlexBox>
+        <ImageInput name="imageFile" imageUrl={item?.imageUrl} />
 
-          <TextAreaWrapper>
-            <TextArea name="memo" defaultValue={item.memo} />
-          </TextAreaWrapper>
-        </FlexBox>
+        <TextAreaWrapper>
+          <TextArea name="memo" defaultValue={item.memo} />
+        </TextAreaWrapper>
+      </FlexBox>
 
-        <ButtonBox>
-          <Button
-            type="submit"
-            icon={!isSubmitLoading}
-            src={checkBlack}
-            alt="체크모양"
-            color="var(--black)"
-            bgColor="var(--lime-300)"
-            disabled={isSubmitLoading || isRemoveLoading}
-          >
-            {isSubmitLoading ? <Spinner /> : "수정 완료"}
-          </Button>
-          <Button
-            icon={!isRemoveLoading}
-            src={X}
-            alt="엑스모양"
-            color="var(--white)"
-            bgColor="var(--rose-500)"
-            onClick={handleRemove}
-            disabled={isRemoveLoading || isSubmitLoading}
-          >
-            {isRemoveLoading ? <Spinner /> : "삭제하기"}
-          </Button>
-        </ButtonBox>
-      </form>
-    </Container>
+      <ButtonBox>
+        <Button
+          type="submit"
+          icon={!isSubmitLoading}
+          src={checkBlack}
+          alt="체크모양"
+          color="var(--black)"
+          bgColor="var(--lime-300)"
+          disabled={isSubmitLoading || isRemoveLoading}
+        >
+          {isSubmitLoading ? <Spinner /> : "수정 완료"}
+        </Button>
+        <Button
+          icon={!isRemoveLoading}
+          src={X}
+          alt="엑스모양"
+          color="var(--white)"
+          bgColor="var(--rose-500)"
+          onClick={handleRemove}
+          disabled={isRemoveLoading || isSubmitLoading}
+        >
+          {isRemoveLoading ? <Spinner /> : "삭제하기"}
+        </Button>
+      </ButtonBox>
+    </StyledForm>
   );
 }
 
@@ -182,7 +151,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   }
 }
 
-const Container = styled.div`
+const StyledForm = styled.form`
   width: 996px;
   height: 400px;
   display: flex;
@@ -191,33 +160,6 @@ const Container = styled.div`
   margin: 24px auto;
   gap: 24px 0;
   z-index: 1;
-`;
-
-const Title = styled.div<StyledProps>`
-  width: 100%;
-  height: 64px;
-  border: 2px solid var(--slate-900);
-  border-radius: 24px;
-  background-color: ${({ $toDo }) =>
-    $toDo ? "var(--white)" : "var(--violet-100)"};
-  text-decoration: underline;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-family: "NanumSquare";
-  font-size: 20px;
-  font-weight: 700;
-
-  transition:
-    box-shadow 0.25s ease,
-    background-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-
-  &:hover {
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    background-color: ${({ $toDo }) =>
-      !$toDo ? "var(--white)" : "var(--violet-100)"};
-  }
 `;
 
 const Check = styled.div<StyledProps>`
