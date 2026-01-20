@@ -6,6 +6,10 @@ import RenderModel from "@/widgets/render-monster";
 import styled from "styled-components";
 import Router from "next/router";
 
+type OverlayProps = {
+  $isVisible: boolean;
+};
+
 function PageLoadingOverlay() {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -14,22 +18,8 @@ function PageLoadingOverlay() {
       setIsVisible(true);
     });
   }, []);
-  // 인라인스타일 분리 예정
-  return (
-    <div
-      style={{
-        position: "fixed",
-        inset: 0,
-        background: "rgba(255,255,255,0.75)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 9999,
-        opacity: isVisible ? 0.3 : 0,
-        transition: "opacity 0.5s ease",
-      }}
-    />
-  );
+
+  return <Overlay $isVisible={isVisible} />;
 }
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -83,4 +73,17 @@ const CanvasWrapper = styled.div`
   position: absolute;
   top: 60px;
   z-index: 1;
+`;
+
+const Overlay = styled.div<OverlayProps>`
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+
+  opacity: ${({ $isVisible }) => ($isVisible ? 0.3 : 0)};
+  transition: opacity 0.5s ease;
 `;

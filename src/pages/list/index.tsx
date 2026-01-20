@@ -7,46 +7,8 @@ import media from "@/share/media/media";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
-
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-  const cookie = ctx.req.headers.cookie || "";
-
-  const parseCookie = (key: string) => {
-    return cookie
-      .split("; ")
-      .find((v) => v.startsWith(key + "="))
-      ?.split("=")[1];
-  };
-
-  const apiId = parseCookie("apiId");
-
-  if (!apiId) {
-    return {
-      props: {
-        toDoList: [],
-        doneList: [],
-      },
-    };
-  }
-
-  const initItems: Item[] = await getItemList(apiId as string);
-
-  // parse 함수로 따로 분리 예정
-  const { toDoList, doneList } = initItems.reduce<AccType>(
-    (acc, item) => {
-      item.isCompleted ? acc.doneList.push(item) : acc.toDoList.push(item);
-      return acc;
-    },
-    { toDoList: [], doneList: [] }
-  );
-
-  return {
-    props: {
-      toDoList,
-      doneList,
-    },
-  };
-}
+import parseCookie from "@/share/utils/parseCookie";
+import parseItems from "@/share/utils/parseItems";
 
 type AccType = {
   toDoList: Item[];
@@ -59,6 +21,10 @@ type Item = {
   id: number;
   name?: string;
   isCompleted: boolean;
+};
+
+type OverlayProps = {
+  $isVisible: boolean;
 };
 
 const KEY = "apiId";
@@ -96,31 +62,45 @@ export default function List({ toDoList, doneList }: PageProps) {
   // 인라인스타일 분리 예정
   return (
     <>
-      <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          background: "rgba(255,255,255,0.75)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          zIndex: 10,
-          opacity: isVisible ? 0 : 0.3,
-          transition: "opacity 2s ease",
-          pointerEvents: "none",
-        }}
-      />
+      <Overlay $isVisible={isVisible} />
 
       <Container>
         <AddForm />
 
         <FlexBox>
-          <ItemList option={toDo} />
-          <ItemList option={done} />
+          <ItemList variant={toDo} />
+          <ItemList variant={done} />
         </FlexBox>
       </Container>
     </>
   );
+}
+
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  const cookie = ctx.req.headers.cookie || "";
+
+  const apiId = parseCookie("apiId", cookie);
+
+  if (!apiId) {
+    return {
+      props: {
+        toDoList: [],
+        doneList: [],
+      },
+    };
+  }
+
+  const initItems: Item[] = await getItemList(apiId as string);
+
+  // parse 함수로 따로 분리 예정
+  const { toDoList, doneList } = parseItems(initItems);
+
+  return {
+    props: {
+      toDoList,
+      doneList,
+    },
+  };
 }
 
 const Container = styled.main`
@@ -141,4 +121,19 @@ const FlexBox = styled.div`
   align-items: flex-start;
   width: 100%;
   gap: 0 24px;
+`;
+
+const Overlay = styled.div<OverlayProps>`
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+
+  opacity: ${({ $isVisible }) => ($isVisible ? 0 : 0.3)};
+  transition: opacity 2s ease;
+
+  pointer-events: none;
 `;

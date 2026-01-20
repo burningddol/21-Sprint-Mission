@@ -3,12 +3,18 @@ import check from "@/assets/images/check.svg";
 import { toggleItem } from "@/share/axios";
 import { useSeparatedItems } from "@/share/zustand";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 type ItemType = {
   id: number;
   name?: string;
   isCompleted: boolean;
 };
+
+type StyledProps = {
+  $toDo: boolean;
+};
+
 interface Props {
   toDo: boolean;
   item: ItemType;
@@ -22,6 +28,8 @@ export default function Item({ toDo, item, clickAudio, isMax }: Props) {
   const { addToDoItem, addDoneItem, removeToDoItem, removeDoneItem } =
     useSeparatedItems();
 
+  const router = useRouter();
+
   const [apiId, setApiId] = useState<string>("");
 
   useEffect(() => {
@@ -33,7 +41,7 @@ export default function Item({ toDo, item, clickAudio, isMax }: Props) {
     e.stopPropagation();
     if (isMax)
       return alert(
-        `${toDo ? "Done" : "To Do"}항목이 최대 개수에 도달했습니다.`
+        `${toDo ? "Done" : "To Do"}항목이 최대 개수에 도달했습니다.`,
       );
     clickAudio();
     toggleItem(item.id, item.isCompleted, apiId);
@@ -49,8 +57,12 @@ export default function Item({ toDo, item, clickAudio, isMax }: Props) {
     }
   };
 
+  const handleButtonClick = () => {
+    clickAudio();
+    router.push(`/list/${item.id}`);
+  };
   return (
-    <ItemButton $toDo={toDo}>
+    <ItemButton $toDo={toDo} onClick={handleButtonClick}>
       <CheckBox $toDo={toDo} onClick={handleClick}>
         <Check $toDo={toDo} />
       </CheckBox>
@@ -59,10 +71,6 @@ export default function Item({ toDo, item, clickAudio, isMax }: Props) {
     </ItemButton>
   );
 }
-
-type StyledProps = {
-  $toDo: boolean;
-};
 
 const Check = styled.div<StyledProps>`
   position: absolute;

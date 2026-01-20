@@ -16,7 +16,7 @@ export async function getItemList(apiId: string) {
 export async function toggleItem(
   itemId: number,
   isCompleted: boolean,
-  apiId: string
+  apiId: string,
 ) {
   await axios.patch(`/${apiId}/items/${itemId}`, {
     isCompleted: !isCompleted,
@@ -29,4 +29,41 @@ export async function addItem(name: string, apiId: string) {
   });
   const data = response.data;
   return data;
+}
+
+export async function getItemById(apiId: string, id: string) {
+  const response = await axios.get(`/${apiId}/items/${id}`);
+  const data = response.data;
+
+  return data;
+}
+
+export async function removeItem(apiId: string, id: number) {
+  await axios.delete(`/${apiId}/items/${id}`);
+
+  return null;
+}
+
+export async function patchItem(apiId: string, itemId: number, data: any) {
+  await axios.patch(`/${apiId}/items/${itemId}`, data);
+}
+
+type UploadImageResponse = {
+  url: string;
+};
+
+export async function uploadImageAndGetUrl(
+  apiId: string,
+  file: File,
+): Promise<string> {
+  const fd = new FormData();
+
+  fd.append("image", file);
+
+  const response = await axios.post<UploadImageResponse>(
+    `/${apiId}/images/upload`,
+    fd,
+  );
+  const data = response.data;
+  return data.url;
 }

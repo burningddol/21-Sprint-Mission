@@ -12,16 +12,16 @@ import { useButtonAudio } from "@/features/audio/useAudio";
 // toDO일때 true
 // done일때 false
 interface Props {
-  option: boolean;
+  variant: boolean;
 }
 
-export default function ItemList({ option }: Props) {
+export default function ItemList({ variant }: Props) {
   const { toDoItems, doneItems } = useSeparatedItems();
-  const isEmpty: boolean = option
+  const isEmpty: boolean = variant
     ? toDoItems.length === 0
     : doneItems.length === 0;
 
-  const isMax: boolean = !option
+  const isMax: boolean = !variant
     ? toDoItems.length > 11
     : doneItems.length > 11;
 
@@ -29,18 +29,14 @@ export default function ItemList({ option }: Props) {
 
   return (
     <Section>
-      {option ? (
-        <Image src={todo} alt="ToDo 아이콘" />
-      ) : (
-        <Image src={done} alt="ToDo 아이콘" />
-      )}
+      <Image src={variant ? todo : done} alt="ToDo 아이콘" />
 
       <ListContainer>
-        {option
+        {variant
           ? toDoItems.map((item) => (
               <Item
                 key={item.id}
-                toDo={option}
+                toDo={variant}
                 item={item}
                 clickAudio={clickAudio}
                 isMax={isMax}
@@ -49,7 +45,7 @@ export default function ItemList({ option }: Props) {
           : doneItems.map((item) => (
               <Item
                 key={item.id}
-                toDo={option}
+                toDo={variant}
                 item={item}
                 clickAudio={clickAudio}
                 isMax={isMax}
@@ -58,12 +54,12 @@ export default function ItemList({ option }: Props) {
         {isEmpty && (
           <>
             <StyledImage
-              src={option ? empty1 : empty2}
+              src={variant ? empty1 : empty2}
               alt="몬스터그림"
               priority
             />
             <StyledSpan>
-              {option ? (
+              {variant ? (
                 <>
                   할 일이 없어요. <br /> TODO를 새롭게 추가해주세요!
                 </>

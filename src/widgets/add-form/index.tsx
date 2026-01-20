@@ -64,7 +64,6 @@ export default function AddForm() {
         bgColor={btnBgColor}
         color="var(--white)"
         alt="더하기모양그림"
-        add
         disabled={isLoading}
       >
         {isLoading ? <Spinner /> : "추가하기"}

@@ -6,6 +6,7 @@ import { Spinner } from "@/share/components/spinner";
 import { useButtonAudio } from "@/features/audio/useAudio";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import setCookie from "@/share/utils/setCookie";
 
 interface Props {
   apiId: string;
@@ -14,7 +15,7 @@ interface Props {
 
 export default function LoginForm({ apiId, name }: Props) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [hasId, setHaId] = useState<boolean>(!!apiId);
+  const [hasId, setHasId] = useState<boolean>(!!apiId);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
@@ -36,10 +37,8 @@ export default function LoginForm({ apiId, name }: Props) {
     localStorage.setItem("apiId", newApiId);
     localStorage.setItem("name", newName);
 
-    const maxAge = 31536000; //1년
-
-    document.cookie = `apiId=${encodeURIComponent(newApiId)}; path=/; max-age=${maxAge} SameSite=None; Secure`;
-    document.cookie = `name=${encodeURIComponent(newName)}; path=/; max-age=${maxAge} SameSite=None; Secure`;
+    setCookie("apiId", newApiId);
+    setCookie("name", newName);
 
     try {
       await router.replace(`/list`);
@@ -55,15 +54,14 @@ export default function LoginForm({ apiId, name }: Props) {
     const localName = localStorage.getItem("name");
 
     if (!apiId && localApiId && localName) {
-      setHaId(true);
-      const maxAge = 31536000; //1년
-      document.cookie = `apiId=${encodeURIComponent(localApiId)}; path=/; max-age=${maxAge}`;
-      document.cookie = `name=${encodeURIComponent(localName)}; path=/; max-age=${maxAge}`;
+      setHasId(true);
+      setCookie("apiId", encodeURIComponent(localApiId));
+      setCookie("name", encodeURIComponent(localName));
     }
 
     if (apiId && (!localApiId || !localName)) {
-      document.cookie = `apiId=${encodeURIComponent(apiId)}; path=/; max-age=0`;
-      document.cookie = `name=${encodeURIComponent(name)}; path=/; max-age=0`;
+      setCookie("apiId", encodeURIComponent(apiId), "0");
+      setCookie("name", encodeURIComponent(name), "0");
     }
   }, []);
 
@@ -94,7 +92,7 @@ export default function LoginForm({ apiId, name }: Props) {
         {hasId && (
           <>
             <div style={{ height: "40px" }} />
-            <Link href="/list" prefetch={true}>
+            <Link href="/list" prefetch>
               <Button
                 type="button"
                 bgColor={btnBgColor}

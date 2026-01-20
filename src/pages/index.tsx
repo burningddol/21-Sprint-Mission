@@ -1,18 +1,21 @@
+import parseCookie from "@/share/utils/parseCookie";
 import LoginForm from "@/widgets/login-form";
 import { GetServerSidePropsContext } from "next";
+
+interface Props {
+  apiId: string;
+  name: string;
+}
+
+export default function Home({ apiId, name }: Props) {
+  return <LoginForm apiId={apiId} name={name} />;
+}
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const cookie = ctx.req.headers.cookie || "";
 
-  const parseCookie = (key: string) => {
-    return cookie
-      .split("; ")
-      .find((v) => v.startsWith(key + "="))
-      ?.split("=")[1];
-  };
-
-  const apiId = parseCookie("apiId");
-  const name = parseCookie("name");
+  const apiId = parseCookie("apiId", cookie);
+  const name = parseCookie("name", cookie);
 
   if (!apiId) {
     return {
@@ -32,13 +35,4 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
       name: decodedName,
     },
   };
-}
-
-interface Props {
-  apiId: string;
-  name: string;
-}
-
-export default function Home({ apiId, name }: Props) {
-  return <LoginForm apiId={apiId} name={name} />;
 }
