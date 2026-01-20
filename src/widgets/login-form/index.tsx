@@ -49,6 +49,10 @@ export default function LoginForm({ apiId, name }: Props) {
     }
   };
 
+  const handleClick = () => {
+    setIsLoading(true);
+  };
+
   useEffect(() => {
     const localApiId = localStorage.getItem("apiId");
     const localName = localStorage.getItem("name");
@@ -98,10 +102,11 @@ export default function LoginForm({ apiId, name }: Props) {
                 bgColor={btnBgColor}
                 color="var(--white)"
                 alt="더하기모양그림"
+                onClick={handleClick}
                 disabled={isLoading}
                 size="big"
               >
-                {name}님 어서오세요
+                {isLoading ? <Spinner /> : `${name}님 어서오세요`}
               </Button>
             </Link>
           </>
