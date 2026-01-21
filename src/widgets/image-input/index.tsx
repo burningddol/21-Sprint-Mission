@@ -11,6 +11,8 @@ interface Props {
   imageUrl: string | undefined;
 }
 
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+
 export default function ImageInput({ name, imageUrl }: Props) {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [previewURL, setPreviewURL] = useState<string | null>(null);
@@ -28,6 +30,11 @@ export default function ImageInput({ name, imageUrl }: Props) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
     if (!file) return setPreviewURL(null);
+
+    if (file.size > MAX_FILE_SIZE) {
+      e.target.value = "";
+      return alert("파일 크기는 5MB 이하만 업로드할 수 있어요.");
+    }
 
     const result = fileNameSchema.safeParse({ fileName: file.name });
 

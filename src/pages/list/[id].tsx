@@ -5,20 +5,20 @@ import {
   uploadImageAndGetUrl,
 } from "@/share/axios";
 import styled from "styled-components";
-import check from "@/assets/images/check.svg";
+
 import parseCookie from "@/share/utils/parseCookie";
 import memoImage from "@/assets/images/memo.svg";
 import checkBlack from "@/assets/images/check-black.svg";
 import X from "@/assets/images/X.svg";
-import { toggleItem } from "@/share/axios";
+
 import { GetServerSidePropsContext } from "next";
-import { useSeparatedItems } from "@/share/zustand";
+
 import { useButtonAudio } from "@/features/audio/useAudio";
 import ImageInput from "@/widgets/image-input";
 import Button from "@/share/components/button";
 import { useRouter } from "next/router";
 import { Spinner } from "@/share/components/spinner";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import ItemName from "@/widgets/item-name";
 
 type Item = {
@@ -28,10 +28,6 @@ type Item = {
   name: string;
   tenantId: string;
   id: number;
-};
-
-type StyledProps = {
-  $toDo: boolean;
 };
 
 interface Body {
@@ -162,43 +158,6 @@ const StyledForm = styled.form`
   z-index: 1;
 `;
 
-const Check = styled.div<StyledProps>`
-  position: relative;
-  top: -1px;
-  left: -1.5px;
-  width: 32px;
-  height: 32px;
-
-  background-image: url(${check.src});
-  background-repeat: no-repeat;
-  background-position: center;
-
-  background-size: 20px 20px;
-
-  transform: ${({ $toDo }) => ($toDo ? "scale(0)" : "scale(1)")};
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-`;
-
-const CheckBox = styled.div<StyledProps>`
-  width: 32px;
-  height: 32px;
-  margin-right: 16px;
-  cursor: pointer;
-  border: 2px solid var(--slate-900);
-  border-radius: 16px;
-  background-color: ${({ $toDo }) =>
-    $toDo ? "var(--yellow-50)" : "var(--violet-600)"};
-  transition: background-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-
-  &:hover {
-    background-color: ${({ $toDo }) =>
-      !$toDo ? "var(--yellow-50)" : "var(--violet-600)"};
-    ${Check} {
-      transform: ${({ $toDo }) => (!$toDo ? "scale(0)" : "scale(1)")};
-    }
-  }
-`;
-
 const FlexBox = styled.div`
   width: 100%;
   height: 311px;
@@ -227,7 +186,8 @@ const TextArea = styled.textarea`
   outline: none;
   resize: none;
   overflow-y: auto;
-
+  text-align: center;
+  line-height: 1.5;
   font-family: "NanumSquare";
   font-size: 16px;
   font-weight: 500;
