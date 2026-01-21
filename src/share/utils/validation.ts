@@ -1,9 +1,9 @@
 import { z } from "zod";
 
-const noKorean = z.string().refine((v) => !/[가-힣ㄱ-ㅎㅏ-ㅣ]/.test(v), {
-  message: "파일이름에 한글(자음/모음 포함)은 포함할 수 없단 말입니다!",
+const fileName = z.string().regex(/^[A-Za-z0-9_.-]+$/, {
+  message:
+    "파일 이름에는 영문, 숫자, _, -, . 만 사용할 수 있숨니다. \n (한글, 띄어쓰기, 특수문자 불가)",
 });
-
 export const fileNameSchema = z.object({
-  fileName: noKorean,
+  fileName,
 });
