@@ -4,6 +4,10 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import Button from '../common/Button';
 import { signUpSchema, SignUpFormValues } from '@/utils/authSchema';
+import { SignUpData } from '@/types/auth';
+import { postSignUpData } from '@/api/authApi';
+import { useNavigate } from 'react-router-dom';
+import { useToast } from '../common/Toast';
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -53,28 +57,33 @@ const CUSTOM_PROPS: {
 
 export default function SignUpForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  const { showToast } = useToast();
 
   const onSubmit = async (
     values: SignUpFormValues,
     actions: FormikHelpers<SignUpFormValues>
   ) => {
     setIsLoading(true);
-    alert(
-      values.email +
-        '\n' +
-        values.nickname +
-        '\n' +
-        values.password +
-        '\n' +
-        '개인정보 냠냠'
-    );
+
+    const signUpData: SignUpData = {
+      email: values.email,
+      nickname: values.nickname,
+      password: values.password,
+      passwordConfirmation: values.confirmPassword,
+    };
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      actions.resetForm();
+      await postSignUpData(signUpData);
+      showToast('회원가입에 성공했습니다', 'success');
+      navigate('/login');
     } catch (e) {
       console.log(e);
+      showToast('회원가입에 실패했습니다', 'error');
     } finally {
       setIsLoading(false);
+      actions.resetForm();
     }
   };
 

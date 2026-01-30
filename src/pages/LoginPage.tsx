@@ -1,7 +1,10 @@
 import AuthLayout from '@/components/auth/AuthLayout';
 import LoginForm from '@/components/auth/LoginForm';
+import useRedirect from '@/hooks/useRedirect';
 
 export default function LoginPage() {
+  useRedirect('logined');
+
   return (
     <AuthLayout
       linkTo="/signup"

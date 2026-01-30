@@ -5,6 +5,10 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import Button from '../common/Button';
 import { LoginFormValues } from '@/utils/authSchema';
+import { LoginData, User } from '@/types/auth';
+import { postLoginData } from '@/api/authApi';
+import { useUser } from '../common/UserProvider';
+import { useNavigate } from 'react-router-dom';
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -39,20 +43,31 @@ const CUSTOM_PROPS: {
 
 export default function LoginForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const { setUser } = useUser();
 
   const onSubmit = async (
     values: LoginFormValues,
     actions: FormikHelpers<LoginFormValues>
   ) => {
     setIsLoading(true);
-    alert(values.email + '\n' + values.password + '\n' + '개인정보 냠냠');
+
+    const loginData: LoginData = {
+      email: values.email,
+      password: values.password,
+    };
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      actions.resetForm();
+      const data = await postLoginData(loginData);
+      setUser(data.user);
+      localStorage.setItem('accessToken', data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
+      navigate('/');
     } catch (e) {
       console.log(e);
     } finally {
       setIsLoading(false);
+      actions.resetForm();
     }
   };
 
