@@ -1,7 +1,7 @@
-// Button.tsx
 import styled from 'styled-components';
 import { ButtonHTMLAttributes } from 'react';
 import media from '@/utils/media';
+
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   width?: string;
   $maxWidth?: string;
@@ -16,7 +16,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   $mobileFontSize?: string;
 }
 
-const StyledButton = styled.button<ButtonProps>`
+const Button = styled.button<ButtonProps>`
   width: ${({ width }) => width || '150px'};
   max-width: ${({ $maxWidth }) => $maxWidth || '9999px'};
   height: ${({ height }) => height || '50px'};
@@ -52,14 +52,10 @@ const StyledButton = styled.button<ButtonProps>`
   }
 
   ${media.nowMobile`
-    width: ${({ $mobileWidth, width }) => $mobileWidth || width};
-    height: ${({ $mobileHeight, height }) => $mobileHeight || height};
-    font-size: ${({ $mobileFontSize, fontSize }) => $mobileFontSize || fontSize};
+    width: ${(props: ButtonProps) => props.$mobileWidth || props.width};
+    height: ${(props: ButtonProps) => props.$mobileHeight || props.height};
+    font-size: ${(props: ButtonProps) => props.$mobileFontSize || props.fontSize};
   `}
 `;
-
-function Button({ ...props }: ButtonProps) {
-  return <StyledButton {...props} />;
-}
 
 export default Button;

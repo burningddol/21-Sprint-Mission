@@ -1,7 +1,7 @@
-import ArticleList from '@/components/mainPage/ArticleList';
-import MainBanner from '@/components/mainPage/MainBanner';
-import MainFooter from '@/components/mainPage/MainFooter';
-import MainNav from '@/components/mainPage/MainNav';
+import ArticleList from '@/components/main/ArticleList';
+import MainBanner from '@/components/main/MainBanner';
+import MainFooter from '@/components/main/MainFooter';
+import MainNav from '@/components/main/MainNav';
 
 export default function MainPage() {
   return (
