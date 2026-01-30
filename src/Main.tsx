@@ -1,22 +1,24 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ProductApp from './components/app/ProductApp';
-import ProductsListPage from './pages/ProductsListPage.jsx';
-import NotFoundPage from './pages/NotFoundPage.jsx';
-import AddProductPage from './pages/AddProductPage.jsx';
-import ProductPage from './pages/ProductPage.jsx';
+import { ToastProvider } from './components/common/Toast';
+import ProductLayout from './components/layout/ProductLayout';
+import ProductsListPage from './pages/ProductsListPage';
+import NotFoundPage from './pages/NotFoundPage';
+import AddProductPage from './pages/AddProductPage';
+import ProductPage from './pages/ProductPage';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 
-function Main() {
+export default function Main() {
   return (
     <BrowserRouter>
+      <ToastProvider>
       <Routes>
         <Route path="/">
           <Route index element={<MainPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignUpPage />} />
-          <Route path="products" element={<ProductApp />}>
+          <Route path="products" element={<ProductLayout />}>
             <Route index element={<ProductsListPage />} />
             <Route path=":productId" element={<ProductPage />} />
             <Route path="addproduct" element={<AddProductPage />} />
@@ -24,8 +26,7 @@ function Main() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
+      </ToastProvider>
     </BrowserRouter>
   );
 }
-
-export default Main;

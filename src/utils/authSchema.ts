@@ -45,7 +45,7 @@ export const signUpSchema = yup.object({
 
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref('password'), null], '비밀번호가 일치하지 않습니다')
+    .oneOf([yup.ref('password')], '비밀번호가 일치하지 않습니다')
     .required('비밀번호 확인을 입력해주세요'),
 });
 
