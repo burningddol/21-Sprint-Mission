@@ -9,6 +9,7 @@ import { LoginData, User } from '@/types/auth';
 import { postLoginData } from '@/api/authApi';
 import { useUser } from '../common/UserProvider';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '../common/Toast';
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -46,6 +47,8 @@ export default function LoginForm() {
   const navigate = useNavigate();
   const { setUser } = useUser();
 
+  const { showToast } = useToast();
+
   const onSubmit = async (
     values: LoginFormValues,
     actions: FormikHelpers<LoginFormValues>
@@ -65,6 +68,7 @@ export default function LoginForm() {
       navigate('/');
     } catch (e) {
       console.log(e);
+      showToast('로그인에 실패했습니다', 'error');
     } finally {
       setIsLoading(false);
       actions.resetForm();

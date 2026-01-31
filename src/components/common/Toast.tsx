@@ -51,7 +51,7 @@ const ToastWrapper = styled.div<{ $type: ToastType }>`
   }
 `;
 
-const TOAST_DURATION = 3000;
+const TOAST_DURATION = 2200;
 
 interface ToastProviderProps {
   children: ReactNode;
@@ -59,11 +59,16 @@ interface ToastProviderProps {
 
 export function ToastProvider({ children }: ToastProviderProps) {
   const [toast, setToast] = useState<ToastData | null>(null);
+  const [isClosed, setIsClosed] = useState<boolean>(false);
 
   const showToast = useCallback(
     (message: string, type: ToastType = 'error') => {
       setToast({ message, type });
-      setTimeout(() => setToast(null), TOAST_DURATION);
+      setTimeout(() => setIsClosed(true), TOAST_DURATION - 300);
+      setTimeout(() => {
+        setToast(null);
+        setIsClosed(false);
+      }, TOAST_DURATION);
     },
     []
   );
@@ -71,7 +76,11 @@ export function ToastProvider({ children }: ToastProviderProps) {
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
-      {toast && <ToastWrapper $type={toast.type}>{toast.message}</ToastWrapper>}
+      {toast && (
+        <ToastWrapper $type={toast.type} className={isClosed ? 'closing' : ''}>
+          {toast.message}
+        </ToastWrapper>
+      )}
     </ToastContext.Provider>
   );
 }
