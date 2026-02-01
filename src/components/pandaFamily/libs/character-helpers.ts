@@ -108,25 +108,25 @@ export function getTarget(
   if (focus === 'email') {
     switch (role) {
       case 'main':
-        return { dx: MAX_OFFSET * 1.2, dy: -2.3, tilt: 6 };
+        return { dx: MAX_OFFSET * 1.2, dy: -2.3, tilt: 13 };
       case 'peeker':
-        return { dx: MAX_OFFSET * 1.1, dy: -1.8, tilt: 3 };
+        return { dx: MAX_OFFSET * 1.1, dy: -1.8, tilt: 10 };
       case 'shy':
-        return { dx: MAX_OFFSET * 1, dy: -1.8, tilt: 4 };
+        return { dx: MAX_OFFSET * 1, dy: -1.8, tilt: 13 };
       case 'idle':
-        return { dx: MAX_OFFSET * 0.8, dy: -1.8, tilt: 5 };
+        return { dx: MAX_OFFSET * 0.8, dy: -1.8, tilt: 10 };
     }
   }
   if (focus === 'nickname') {
     switch (role) {
       case 'main':
-        return { dx: MAX_OFFSET * 1.2, dy: -1.6, tilt: 6 };
+        return { dx: MAX_OFFSET * 1.2, dy: -1.6, tilt: 13 };
       case 'peeker':
-        return { dx: MAX_OFFSET * 1.1, dy: -1.1, tilt: 3 };
+        return { dx: MAX_OFFSET * 1.1, dy: -1.1, tilt: 10 };
       case 'shy':
-        return { dx: MAX_OFFSET * 1, dy: -1.1, tilt: 4 };
+        return { dx: MAX_OFFSET * 1, dy: -1.1, tilt: 13 };
       case 'idle':
-        return { dx: MAX_OFFSET * 0.8, dy: -1.1, tilt: 5 };
+        return { dx: MAX_OFFSET * 0.8, dy: -1.1, tilt: 10 };
     }
   }
   // password
