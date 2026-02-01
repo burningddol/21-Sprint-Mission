@@ -78,7 +78,7 @@ export function getEyeState(
     case 'main':
       return password ? 'squint' : 'open';
     case 'peeker':
-      return 'halfOpen';
+      return password ? 'halfOpen' : 'open';
     case 'shy':
       return password ? 'squint' : 'open';
     case 'idle':
