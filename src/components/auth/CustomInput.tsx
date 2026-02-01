@@ -82,6 +82,11 @@ export default function CustomInput({
   const hasError = meta.touched && !!meta.error;
   const passwordState: 'text' | 'password' = isVisible ? 'text' : 'password';
 
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    field.onBlur(e);
+    props.onBlur?.(e);
+  };
+
   return (
     <Container>
       <Label>{label}</Label>
@@ -89,6 +94,7 @@ export default function CustomInput({
         <Input
           {...field}
           {...props}
+          onBlur={handleBlur}
           type={forPassword ? passwordState : props.type}
           $onError={hasError}
         />
