@@ -6,48 +6,93 @@ import styled from 'styled-components';
 import Button from '../common/Button';
 import { LoginFormValues } from '@/utils/authSchema';
 import { LoginData, User } from '@/types/auth';
+import { Link } from 'react-router-dom';
 import { postLoginData } from '@/api/authApi';
 import { useUser } from '../common/UserProvider';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../common/Toast';
+import { FocusTarget } from '../pandaFamily/Character';
+import SimpleLoginForm from './SimpleLoginForm';
+import media from '@/utils/media';
 
-const StyledForm = styled(Form)`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-`;
+interface LoginFormProps {
+  onFocusChange: (target: FocusTarget) => void;
+  onTypingChange: (typing: boolean) => void;
+}
 
-const CUSTOM_PROPS: {
+export interface CustomProps {
   label: string;
   name: string;
   type: string;
   placeholder: string;
   autoComplete: string;
   forPassword?: boolean;
-}[] = [
-  {
-    label: '이메일',
-    name: 'email',
-    type: 'email',
-    placeholder: 'codeit@email.com',
-    autoComplete: 'email',
-  },
-  {
-    label: '비밀번호',
-    name: 'password',
-    type: 'password',
-    placeholder: '비밀번호를 입력하세요',
-    autoComplete: 'new-password',
-    forPassword: true,
-  },
-];
+  onFocus: () => void;
+  onBlur: () => void;
+  onKeyDown: () => void;
+  onKeyUp: () => void;
+}
 
-export default function LoginForm() {
+const StyledForm = styled(Form)`
+  display: flex;
+  width: 580px;
+  flex-direction: column;
+  ${media.nowTablet`
+      width: 350px;
+    `}
+`;
+
+const FooterText = styled.span`
+  font-family: 'pretendard';
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--gray-800);
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: underline;
+  color: var(--blue-100);
+`;
+
+export default function LoginForm({
+  onFocusChange,
+  onTypingChange,
+}: LoginFormProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const { setUser } = useUser();
 
   const { showToast } = useToast();
+
+  const customProps: CustomProps[] = [
+    {
+      label: '이메일',
+      name: 'email',
+      type: 'email',
+      placeholder: 'codeit@email.com',
+      autoComplete: 'email',
+      onFocus: () => onFocusChange('email'),
+      onBlur: () => onFocusChange('none'),
+      onKeyDown: () => onTypingChange(true),
+      onKeyUp: () => onTypingChange(false),
+    },
+    {
+      label: '비밀번호',
+      name: 'password',
+      type: 'password',
+      placeholder: '비밀번호를 입력하세요',
+      autoComplete: 'new-password',
+      forPassword: true,
+      onFocus: () => onFocusChange('password'),
+      onBlur: () => onFocusChange('none'),
+      onKeyDown: () => onTypingChange(true),
+      onKeyUp: () => onTypingChange(false),
+    },
+  ];
 
   const onSubmit = async (
     values: LoginFormValues,
@@ -83,7 +128,7 @@ export default function LoginForm() {
     >
       {({ isSubmitting, isValid, dirty }) => (
         <StyledForm>
-          {CUSTOM_PROPS.map((props, index) => (
+          {customProps.map((props, index) => (
             <CustomInput key={index} {...props} />
           ))}
 
@@ -98,6 +143,12 @@ export default function LoginForm() {
           >
             {isLoading ? '제출중...' : '로그인'}
           </Button>
+          <SimpleLoginForm />
+
+          <FooterText>
+            판다마켓이 처음이신가요?{' '}
+            <StyledLink to="/signup"> 회원가입</StyledLink>
+          </FooterText>
         </StyledForm>
       )}
     </Formik>

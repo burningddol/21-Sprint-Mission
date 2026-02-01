@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import pandaLogo from '@/assets/panda_title_big.png';
-import SimpleLoginForm from './SimpleLoginForm';
 import { Link } from 'react-router-dom';
 import media from '@/utils/media';
 import { ReactNode } from 'react';
@@ -28,7 +27,6 @@ const StyledImg = styled.img`
 `;
 
 const Main = styled.main<{ $hasBottomMargin?: boolean }>`
-  width: 640px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,32 +39,15 @@ const Main = styled.main<{ $hasBottomMargin?: boolean }>`
   `};
 `;
 
-const FooterText = styled.span`
-  font-family: 'pretendard';
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--gray-800);
-  margin-top: 10px;
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: underline;
-  color: var(--blue-100);
-`;
-
 interface AuthLayoutProps {
   children: ReactNode;
-  linkTo: string;
-  linkLabel: string;
-  footerText: string;
+
   hasBottomMargin?: boolean;
 }
 
 export default function AuthLayout({
   children,
-  linkTo,
-  linkLabel,
-  footerText,
+
   hasBottomMargin = false,
 }: AuthLayoutProps) {
   return (
@@ -76,13 +57,7 @@ export default function AuthLayout({
           <StyledImg src={pandaLogo} alt="판다얼굴로고" />
         </Link>
       </Header>
-      <Main $hasBottomMargin={hasBottomMargin}>
-        {children}
-        <SimpleLoginForm />
-        <FooterText>
-          {footerText} <StyledLink to={linkTo}>{linkLabel}</StyledLink>
-        </FooterText>
-      </Main>
+      <Main $hasBottomMargin={hasBottomMargin}>{children}</Main>
     </>
   );
 }

@@ -8,58 +8,99 @@ import { SignUpData } from '@/types/auth';
 import { postSignUpData } from '@/api/authApi';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../common/Toast';
+import { FocusTarget } from '../pandaFamily/Character';
+import { Link } from 'react-router-dom';
+import { CustomProps } from './LoginForm';
+import SimpleLoginForm from './SimpleLoginForm';
+import media from '@/utils/media';
+
+interface SignUpFormProps {
+  onFocusChange: (target: FocusTarget) => void;
+  onTypingChange: (typing: boolean) => void;
+}
 
 const StyledForm = styled(Form)`
   display: flex;
+  width: 580px;
   flex-direction: column;
-  width: 100%;
+  ${media.nowTablet`
+      width: 350px;
+    `}
 `;
 
-const CUSTOM_PROPS: {
-  label: string;
-  name: string;
-  type: string;
-  placeholder: string;
-  autoComplete: string;
-  forPassword?: boolean;
-}[] = [
-  {
-    label: '이메일',
-    name: 'email',
-    type: 'email',
-    placeholder: 'codeit@email.com',
-    autoComplete: 'email',
-  },
-  {
-    label: '닉네임',
-    name: 'nickname',
-    type: 'text',
-    placeholder: '닉네임을 입력해주세요',
-    autoComplete: 'username',
-  },
-  {
-    label: '비밀번호',
-    name: 'password',
-    type: 'password',
-    placeholder: '비밀번호를 입력하세요',
-    autoComplete: 'new-password',
-    forPassword: true,
-  },
-  {
-    label: '비밀번호 확인',
-    name: 'confirmPassword',
-    type: 'confirmPassword',
-    placeholder: '비밀번호를 다시 한 번 입력하세요',
-    autoComplete: 'new-password',
-    forPassword: true,
-  },
-];
+const FooterText = styled.span`
+  font-family: 'pretendard';
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--gray-800);
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-export default function SignUpForm() {
+const StyledLink = styled(Link)`
+  text-decoration: underline;
+  color: var(--blue-100);
+`;
+
+export default function SignUpForm({
+  onFocusChange,
+  onTypingChange,
+}: SignUpFormProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const { showToast } = useToast();
+
+  const customProps: CustomProps[] = [
+    {
+      label: '이메일',
+      name: 'email',
+      type: 'email',
+      placeholder: 'codeit@email.com',
+      autoComplete: 'email',
+      onFocus: () => onFocusChange('email'),
+      onBlur: () => onFocusChange('none'),
+      onKeyDown: () => onTypingChange(true),
+      onKeyUp: () => onTypingChange(false),
+    },
+    {
+      label: '닉네임',
+      name: 'nickname',
+      type: 'text',
+      placeholder: '닉네임을 입력해주세요',
+      autoComplete: 'username',
+      onFocus: () => onFocusChange('nickname'),
+      onBlur: () => onFocusChange('none'),
+      onKeyDown: () => onTypingChange(true),
+      onKeyUp: () => onTypingChange(false),
+    },
+    {
+      label: '비밀번호',
+      name: 'password',
+      type: 'password',
+      placeholder: '비밀번호를 입력하세요',
+      autoComplete: 'new-password',
+      forPassword: true,
+      onFocus: () => onFocusChange('password'),
+      onBlur: () => onFocusChange('none'),
+      onKeyDown: () => onTypingChange(true),
+      onKeyUp: () => onTypingChange(false),
+    },
+    {
+      label: '비밀번호 확인',
+      name: 'confirmPassword',
+      type: 'confirmPassword',
+      placeholder: '비밀번호를 다시 한 번 입력하세요',
+      autoComplete: 'new-password',
+      forPassword: true,
+      onFocus: () => onFocusChange('password'),
+      onBlur: () => onFocusChange('none'),
+      onKeyDown: () => onTypingChange(true),
+      onKeyUp: () => onTypingChange(false),
+    },
+  ];
 
   const onSubmit = async (
     values: SignUpFormValues,
@@ -100,7 +141,7 @@ export default function SignUpForm() {
     >
       {({ isSubmitting, isValid, dirty }) => (
         <StyledForm>
-          {CUSTOM_PROPS.map((props, index) => (
+          {customProps.map((props, index) => (
             <CustomInput key={index} {...props} />
           ))}
 
@@ -115,6 +156,12 @@ export default function SignUpForm() {
           >
             {isLoading ? '제출중...' : '회원가입'}
           </Button>
+          <SimpleLoginForm />
+
+          <FooterText>
+            이미 회원이신가요??
+            <StyledLink to="/login"> 로그인</StyledLink>
+          </FooterText>
         </StyledForm>
       )}
     </Formik>
