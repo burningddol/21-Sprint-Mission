@@ -26,7 +26,7 @@ const CharactersView = styled.div`
   display: block;
   position: relative;
   bottom: 80px;
-  transform: scale(1.15);
+  transform: scale(1.08);
   ${media.nowTablet`
      transform: scaleX(0.78) scaleY(0.88);
      bottom: 40px;
