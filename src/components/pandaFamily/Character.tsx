@@ -211,7 +211,7 @@ export default function Character({
         <path
           ref={body}
           d={getBodyPath(geo.bodyBottom, geo.bodyMidY)}
-          fill="white"
+          fill={role === 'peeker' ? '#f5f2f2' : 'white'}
           stroke={OUTLINE}
           strokeWidth="2.2"
           strokeLinejoin="round"
